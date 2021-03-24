@@ -191,7 +191,7 @@
                 "userAssignedIdentities": {}
             },
             "properties": {
-                "customSubDomainName": "luis-chbot-sld-dev-authoring",
+                "customSubDomainName": "[parameters('accounts_luis_chbot_authoring_name')]",
                 "privateEndpointConnections": [],
                 "publicNetworkAccess": "Enabled"
             }
@@ -1157,10 +1157,10 @@
             "name": "[parameters('serverfarms_aspapi_chbot_name')]",
             "location": "West US",
             "sku": {
-                "name": "F1",
-                "tier": "Free",
-                "size": "F1",
-                "family": "F",
+                "name": "S1",
+                "tier": "Standard",
+                "size": "S1",
+                "family": "S",
                 "capacity": 0
             },
             "kind": "app",
