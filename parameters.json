@@ -33,7 +33,7 @@
       "value": "chbot-sld-pprd"
     },
     "storageAccounts_stgapilog_name": {
-      "value": "stgapilog"
+      "value": "stgapilogsldpprd"
     },
     "serverfarms_asp_chbot_name": {
       "value": "asp-chbot-sld-pprd"
@@ -90,7 +90,7 @@
       "value": "stg0azfn0chbot0sld0pprd"
     },
     "storageAccounts_storageaccountrgchb8da0_name": {
-      "value": "storageaccountrgchb8da0"
+      "value": "storageaccountrgchbotsldpprd"
     },
     "databaseAccounts_cosmos_chbot_name": {
       "value": "cosmos-chbot-sld-pprd"
