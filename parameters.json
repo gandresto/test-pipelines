@@ -3,10 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "channels_WebChatChannel_enablePreview": {
-            "value": null
+            "value": true
         },
         "channels_WebChatChannel_enablePreview_1": {
-            "value": null
+            "value": true
         },
         "sites_chbot_sld_dev_01_name": {
             "value": null
