@@ -41,7 +41,7 @@
             "type": "String"
         },
         "storageAccounts_stgapilog_name": {
-            "defaultValue": "stgapilog",
+            "defaultValue": "stgapilogsldpprd",
             "type": "String"
         },
         "serverfarms_asp_chbot_name": {
@@ -117,7 +117,7 @@
             "type": "String"
         },
         "storageAccounts_storageaccountrgchb8da0_name": {
-            "defaultValue": "storageaccountrgchb8da0",
+            "defaultValue": "storageaccountrgchbotsldpprd",
             "type": "String"
         },
         "databaseAccounts_cosmos_chbot_name": {
@@ -877,7 +877,7 @@
             "name": "[parameters('searchServices_qnaappchbot_asfb3yhf7rn4l5q_name')]",
             "location": "West US",
             "sku": {
-                "name": "free"
+                "name": "standard"
             },
             "properties": {
                 "replicaCount": 1,
@@ -1181,10 +1181,10 @@
             "name": "[parameters('serverfarms_asp_azfnpy_chbot_name')]",
             "location": "Central US",
             "sku": {
-                "name": "P1v2",
-                "tier": "PremiumV2",
-                "size": "P1v2",
-                "family": "Pv2",
+                "name": "S1",
+                "tier": "Standard",
+                "size": "S1",
+                "family": "S",
                 "capacity": 1
             },
             "kind": "linux",
