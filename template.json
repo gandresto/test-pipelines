@@ -9,35 +9,35 @@
             "type": "Bool"
         },
         "sites_chbot_name": {
-            "defaultValue": "chbot-sld-dev-01",
+            "defaultValue": "chbot-sld-pprd-01",
             "type": "String"
         },
         "sites_azfn_chbot_name": {
-            "defaultValue": "azfn-chbot-sld-dev",
+            "defaultValue": "azfn-chbot-sld-pprd",
             "type": "String"
         },
         "servers_srv_chbot_name": {
-            "defaultValue": "srv-chbot-sld-dev",
+            "defaultValue": "srv-chbot-sld-pprd",
             "type": "String"
         },
         "sites_azfn_py_chbot_name": {
-            "defaultValue": "azfn-py-chbot-sld-dev",
+            "defaultValue": "azfn-py-chbot-sld-pprd",
             "type": "String"
         },
         "sites_qna_app_chbot_name": {
-            "defaultValue": "qna-app-chbot-sld-dev",
+            "defaultValue": "qna-app-chbot-sld-pprd",
             "type": "String"
         },
         "sites_wsp_api_chbot_name": {
-            "defaultValue": "wsp-api-chbot-sld-dev",
+            "defaultValue": "wsp-api-chbot-sld-pprd",
             "type": "String"
         },
         "sites_azfn_py_chbott_name": {
-            "defaultValue": "azfn-py-chbott-sld-dev",
+            "defaultValue": "azfn-py-chbott-sld-pprd",
             "type": "String"
         },
         "components_chbot_name": {
-            "defaultValue": "chbot-sld-dev",
+            "defaultValue": "chbot-sld-pprd",
             "type": "String"
         },
         "storageAccounts_stgapilog_name": {
@@ -45,75 +45,75 @@
             "type": "String"
         },
         "serverfarms_asp_chbot_name": {
-            "defaultValue": "asp-chbot-sld-dev",
+            "defaultValue": "asp-chbot-sld-pprd",
             "type": "String"
         },
         "serverfarms_qna_chbot_name": {
-            "defaultValue": "qna-chbot-sld-dev",
+            "defaultValue": "qna-chbot-sld-pprd",
             "type": "String"
         },
         "serverfarms_aspapi_chbot_name": {
-            "defaultValue": "aspapi-chbot-sld-dev",
+            "defaultValue": "aspapi-chbot-sld-pprd",
             "type": "String"
         },
         "components_azfn_chbot_name": {
-            "defaultValue": "azfn-chbot-sld-dev",
+            "defaultValue": "azfn-chbot-sld-pprd",
             "type": "String"
         },
         "botServices_chbot_01_name": {
-            "defaultValue": "chbot-sld-dev-01",
+            "defaultValue": "chbot-sld-pprd-01",
             "type": "String"
         },
         "vaults_keyvault_chtbot_name": {
-            "defaultValue": "keyvault-chtbot-sld-dev",
+            "defaultValue": "keyvault-chtbot-sld-pprd",
             "type": "String"
         },
         "components_qna_chbot_ai_name": {
-            "defaultValue": "qna-chbot-sld-dev-ai",
+            "defaultValue": "qna-chbot-sld-pprd-ai",
             "type": "String"
         },
         "serverfarms_asp_azfnpy_chbot_name": {
-            "defaultValue": "asp-azfnpy-chbot-sld-dev",
+            "defaultValue": "asp-azfnpy-chbot-sld-pprd",
             "type": "String"
         },
         "components_azfn_py_chbot_name": {
-            "defaultValue": "azfn-py-chbot-sld-dev",
+            "defaultValue": "azfn-py-chbot-sld-pprd",
             "type": "String"
         },
         "components_wsp_api_chbot_name": {
-            "defaultValue": "wsp-api-chbot-sld-dev",
+            "defaultValue": "wsp-api-chbot-sld-pprd",
             "type": "String"
         },
         "storageAccounts_stg0chbot0_name": {
-            "defaultValue": "stg0chbot0sld0dev",
+            "defaultValue": "stg0chbot0sld0pprd",
             "type": "String"
         },
         "components_azfn_py_chbott_name": {
-            "defaultValue": "azfn-py-chbott-sld-dev",
+            "defaultValue": "azfn-py-chbott-sld-pprd",
             "type": "String"
         },
         "storageAccounts_sqlvawxg6hrzqkpzti_name": {
-            "defaultValue": "sqlvawxg6hrzqkpzti",
+            "defaultValue": "sqlvawxg6hrzqkpztipprd",
             "type": "String"
         },
         "storageAccounts_stg0chbot0gral_name": {
-            "defaultValue": "stg0chbot0sld0gral",
+            "defaultValue": "stg0chbot0sld0gralpprd",
             "type": "String"
         },
         "accounts_qna_chbot_name": {
-            "defaultValue": "qna-chbot-sld-dev",
+            "defaultValue": "qna-chbot-sld-pprd",
             "type": "String"
         },
         "accounts_luis_chbot_name": {
-            "defaultValue": "luis-chbot-sld-dev",
+            "defaultValue": "luis-chbot-sld-pprd",
             "type": "String"
         },
         "storageAccounts_stg_chbot_std_name": {
-            "defaultValue": "stg0chbot0sld0dev0std",
+            "defaultValue": "stg0chbot0sld0pprd0std",
             "type": "String"
         },
         "storageAccounts_stg_azfn_chbot_name": {
-            "defaultValue": "stg0azfn0chbot0sld0dev",
+            "defaultValue": "stg0azfn0chbot0sld0pprd",
             "type": "String"
         },
         "storageAccounts_storageaccountrgchb8da0_name": {
@@ -121,23 +121,23 @@
             "type": "String"
         },
         "databaseAccounts_cosmos_chbot_name": {
-            "defaultValue": "cosmos-chbot-sld-dev",
+            "defaultValue": "cosmos-chbot-sld-pprd",
             "type": "String"
         },
         "workspaces_wksalyt_chbot_name": {
-            "defaultValue": "wksalyt-chbot-sld-dev",
+            "defaultValue": "wksalyt-chbot-sld-pprd",
             "type": "String"
         },
         "workspaces_wkspace_chbot_name": {
-            "defaultValue": "wkspace-chbot-sld-dev",
+            "defaultValue": "wkspace-chbot-sld-pprd",
             "type": "String"
         },
         "accounts_luis_chbot_authoring_name": {
-            "defaultValue": "luis-chbot-sld-dev-Authoring",
+            "defaultValue": "luis-chbot-sld-pprd-Authoring",
             "type": "String"
         },
         "searchServices_qnaappchbot_asfb3yhf7rn4l5q_name": {
-            "defaultValue": "qnaappchbotslddev-asfb3yhf7rn4l5q",
+            "defaultValue": "qnaappchbotsldpprd-asfb3yhf7rn4l5q",
             "type": "String"
         }
     },
