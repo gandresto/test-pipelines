@@ -1,111 +1,111 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "channels_WebChatChannel_enablePreview": {
-            "value": true
-        },
-        "channels_WebChatChannel_enablePreview_1": {
-            "value": true
-        },
-        "sites_chbot_sld_dev_01_name": {
-            "value": null
-        },
-        "sites_azfn_chbot_sld_dev_name": {
-            "value": null
-        },
-        "servers_srv_chbot_sld_dev_name": {
-            "value": null
-        },
-        "sites_azfn_py_chbot_sld_dev_name": {
-            "value": null
-        },
-        "sites_qna_app_chbot_sld_dev_name": {
-            "value": null
-        },
-        "sites_wsp_api_chbot_sld_dev_name": {
-            "value": null
-        },
-        "sites_azfn_py_chbott_sld_dev_name": {
-            "value": null
-        },
-        "components_chbot_sld_dev_name": {
-            "value": null
-        },
-        "storageAccounts_stgapilog_name": {
-            "value": null
-        },
-        "serverfarms_asp_chbot_sld_dev_name": {
-            "value": null
-        },
-        "serverfarms_qna_chbot_sld_dev_name": {
-            "value": null
-        },
-        "serverfarms_aspapi_chbot_sld_dev_name": {
-            "value": null
-        },
-        "components_azfn_chbot_sld_dev_name": {
-            "value": null
-        },
-        "botServices_chbot_sld_dev_01_name": {
-            "value": null
-        },
-        "vaults_keyvault_chtbot_sld_dev_name": {
-            "value": null
-        },
-        "components_qna_chbot_sld_dev_ai_name": {
-            "value": null
-        },
-        "serverfarms_asp_azfnpy_chbot_sld_dev_name": {
-            "value": null
-        },
-        "components_azfn_py_chbot_sld_dev_name": {
-            "value": null
-        },
-        "components_wsp_api_chbot_sld_dev_name": {
-            "value": null
-        },
-        "storageAccounts_stg0chbot0sld0dev_name": {
-            "value": null
-        },
-        "components_azfn_py_chbott_sld_dev_name": {
-            "value": null
-        },
-        "storageAccounts_sqlvawxg6hrzqkpzti_name": {
-            "value": null
-        },
-        "storageAccounts_stg0chbot0sld0gral_name": {
-            "value": null
-        },
-        "accounts_qna_chbot_sld_dev_name": {
-            "value": null
-        },
-        "accounts_luis_chbot_sld_dev_name": {
-            "value": null
-        },
-        "storageAccounts_stg0chbot0sld0dev0std_name": {
-            "value": null
-        },
-        "storageAccounts_stg0azfn0chbot0sld0dev_name": {
-            "value": null
-        },
-        "storageAccounts_storageaccountrgchb8da0_name": {
-            "value": null
-        },
-        "databaseAccounts_cosmos_chbot_sld_dev_name": {
-            "value": null
-        },
-        "workspaces_wksalyt_chbot_sld_dev_name": {
-            "value": null
-        },
-        "workspaces_wkspace_chbot_sld_dev_name": {
-            "value": null
-        },
-        "accounts_luis_chbot_sld_dev_Authoring_name": {
-            "value": null
-        },
-        "searchServices_qnaappchbotslddev_asfb3yhf7rn4l5q_name": {
-            "value": null
-        }
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "channels_WebChatChannel_enablePreview": {
+      "value": true
+    },
+    "channels_WebChatChannel_enablePreview_1": {
+      "value": true
+    },
+    "sites_chbot_name": {
+      "value": "chbot-sld-pprd-01"
+    },
+    "sites_azfn_chbot_name": {
+      "value": "azfn-chbot-sld-pprd"
+    },
+    "servers_srv_chbot_name": {
+      "value": "srv-chbot-sld-pprd"
+    },
+    "sites_azfn_py_chbot_name": {
+      "value": "azfn-py-chbot-sld-pprd"
+    },
+    "sites_qna_app_chbot_name": {
+      "value": "qna-app-chbot-sld-pprd"
+    },
+    "sites_wsp_api_chbot_name": {
+      "value": "wsp-api-chbot-sld-pprd"
+    },
+    "sites_azfn_py_chbott_name": {
+      "value": "azfn-py-chbott-sld-pprd"
+    },
+    "components_chbot_name": {
+      "value": "chbot-sld-pprd"
+    },
+    "storageAccounts_stgapilog_name": {
+      "value": "stgapilog"
+    },
+    "serverfarms_asp_chbot_name": {
+      "value": "asp-chbot-sld-pprd"
+    },
+    "serverfarms_qna_chbot_name": {
+      "value": "qna-chbot-sld-pprd"
+    },
+    "serverfarms_aspapi_chbot_name": {
+      "value": "aspapi-chbot-sld-pprd"
+    },
+    "components_azfn_chbot_name": {
+      "value": "azfn-chbot-sld-pprd"
+    },
+    "botServices_chbot_01_name": {
+      "value": "chbot-sld-pprd-01"
+    },
+    "vaults_keyvault_chtbot_name": {
+      "value": "keyvault-chtbot-sld-pprd"
+    },
+    "components_qna_chbot_ai_name": {
+      "value": "qna-chbot-sld-pprd-ai"
+    },
+    "serverfarms_asp_azfnpy_chbot_name": {
+      "value": "asp-azfnpy-chbot-sld-pprd"
+    },
+    "components_azfn_py_chbot_name": {
+      "value": "azfn-py-chbot-sld-pprd"
+    },
+    "components_wsp_api_chbot_name": {
+      "value": "wsp-api-chbot-sld-pprd"
+    },
+    "storageAccounts_stg0chbot0_name": {
+      "value": "stg0chbot0sld0pprd"
+    },
+    "components_azfn_py_chbott_name": {
+      "value": "azfn-py-chbott-sld-pprd"
+    },
+    "storageAccounts_sqlvawxg6hrzqkpzti_name": {
+      "value": "sqlvawxg6hrzqkpztipprd"
+    },
+    "storageAccounts_stg0chbot0gral_name": {
+      "value": "stg0chbot0sld0gralpprd"
+    },
+    "accounts_qna_chbot_name": {
+      "value": "qna-chbot-sld-pprd"
+    },
+    "accounts_luis_chbot_name": {
+      "value": "luis-chbot-sld-pprd"
+    },
+    "storageAccounts_stg_chbot_std_name": {
+      "value": "stg0chbot0sld0pprd0std"
+    },
+    "storageAccounts_stg_azfn_chbot_name": {
+      "value": "stg0azfn0chbot0sld0pprd"
+    },
+    "storageAccounts_storageaccountrgchb8da0_name": {
+      "value": "storageaccountrgchb8da0"
+    },
+    "databaseAccounts_cosmos_chbot_name": {
+      "value": "cosmos-chbot-sld-pprd"
+    },
+    "workspaces_wksalyt_chbot_name": {
+      "value": "wksalyt-chbot-sld-pprd"
+    },
+    "workspaces_wkspace_chbot_name": {
+      "value": "wkspace-chbot-sld-pprd"
+    },
+    "accounts_luis_chbot_authoring_name": {
+      "value": "luis-chbot-sld-pprd-Authoring"
+    },
+    "searchServices_qnaappchbot_asfb3yhf7rn4l5q_name": {
+      "value": "qnaappchbotsldpprd-asfb3yhf7rn4l5q"
     }
+  }
 }
