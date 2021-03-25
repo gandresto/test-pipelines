@@ -321,523 +321,7 @@
                     "family": "A",
                     "name": "Standard"
                 },
-                "tenantId": "c65a3ea6-0f7c-400b-8934-5a6dc1705645",
-                "accessPolicies": [
-                    {
-                        "tenantId": "c65a3ea6-0f7c-400b-8934-5a6dc1705645",
-                        "objectId": "9241652d-728f-4aaf-ab50-9de5b160cf2c",
-                        "permissions": {
-                            "keys": [
-                                "Get",
-                                "List",
-                                "Update",
-                                "Create",
-                                "Import",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "secrets": [
-                                "Get",
-                                "List",
-                                "Set",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "certificates": [
-                                "Get",
-                                "List",
-                                "Update",
-                                "Create",
-                                "Import",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore",
-                                "ManageContacts",
-                                "ManageIssuers",
-                                "GetIssuers",
-                                "ListIssuers",
-                                "SetIssuers",
-                                "DeleteIssuers"
-                            ]
-                        }
-                    },
-                    {
-                        "tenantId": "c65a3ea6-0f7c-400b-8934-5a6dc1705645",
-                        "objectId": "e5507763-0039-4da7-ac1f-df07c4889256",
-                        "permissions": {
-                            "keys": [
-                                "Get",
-                                "List",
-                                "Update",
-                                "Create",
-                                "Import",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "secrets": [
-                                "Get",
-                                "List",
-                                "Set",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "certificates": [
-                                "Get",
-                                "List",
-                                "Update",
-                                "Create",
-                                "Import",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore",
-                                "ManageContacts",
-                                "ManageIssuers",
-                                "GetIssuers",
-                                "ListIssuers",
-                                "SetIssuers",
-                                "DeleteIssuers"
-                            ]
-                        }
-                    },
-                    {
-                        "tenantId": "c65a3ea6-0f7c-400b-8934-5a6dc1705645",
-                        "objectId": "45a5dfdc-2ed8-4af4-bf83-92ccb467deff",
-                        "permissions": {
-                            "keys": [
-                                "Get",
-                                "List",
-                                "Update",
-                                "Create",
-                                "Import",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "secrets": [
-                                "Get",
-                                "List",
-                                "Set",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "certificates": [
-                                "Get",
-                                "List",
-                                "Update",
-                                "Create",
-                                "Import",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore",
-                                "ManageContacts",
-                                "ManageIssuers",
-                                "GetIssuers",
-                                "ListIssuers",
-                                "SetIssuers",
-                                "DeleteIssuers"
-                            ]
-                        }
-                    },
-                    {
-                        "tenantId": "c65a3ea6-0f7c-400b-8934-5a6dc1705645",
-                        "objectId": "96c69b27-c531-4a35-91b8-d26812ad4106",
-                        "permissions": {
-                            "keys": [
-                                "Get",
-                                "List",
-                                "Update",
-                                "Create",
-                                "Import",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "secrets": [
-                                "Get",
-                                "List",
-                                "Set",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "certificates": [
-                                "Get",
-                                "List",
-                                "Update",
-                                "Create",
-                                "Import",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore",
-                                "ManageContacts",
-                                "ManageIssuers",
-                                "GetIssuers",
-                                "ListIssuers",
-                                "SetIssuers",
-                                "DeleteIssuers"
-                            ]
-                        }
-                    },
-                    {
-                        "tenantId": "c65a3ea6-0f7c-400b-8934-5a6dc1705645",
-                        "objectId": "09e0ca48-971a-4873-aea8-afffea4052a2",
-                        "permissions": {
-                            "keys": [
-                                "Get",
-                                "List",
-                                "Update",
-                                "Create",
-                                "Import",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "secrets": [
-                                "Get",
-                                "List",
-                                "Set",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "certificates": [
-                                "Get",
-                                "List",
-                                "Update",
-                                "Create",
-                                "Import",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore",
-                                "ManageContacts",
-                                "ManageIssuers",
-                                "GetIssuers",
-                                "ListIssuers",
-                                "SetIssuers",
-                                "DeleteIssuers"
-                            ]
-                        }
-                    },
-                    {
-                        "tenantId": "c65a3ea6-0f7c-400b-8934-5a6dc1705645",
-                        "objectId": "70164016-7f6a-487f-bdf3-3763ee7c26bb",
-                        "permissions": {
-                            "keys": [],
-                            "secrets": [
-                                "Get",
-                                "List",
-                                "Set",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "certificates": []
-                        }
-                    },
-                    {
-                        "tenantId": "c65a3ea6-0f7c-400b-8934-5a6dc1705645",
-                        "objectId": "57992bde-ffa4-4ac9-9e49-40b18100f0d8",
-                        "permissions": {
-                            "keys": [
-                                "Get",
-                                "List",
-                                "Update",
-                                "Create",
-                                "Import",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "secrets": [
-                                "Get",
-                                "List",
-                                "Set",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "certificates": [
-                                "Get",
-                                "List",
-                                "Update",
-                                "Create",
-                                "Import",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore",
-                                "ManageContacts",
-                                "ManageIssuers",
-                                "GetIssuers",
-                                "ListIssuers",
-                                "SetIssuers",
-                                "DeleteIssuers"
-                            ]
-                        }
-                    },
-                    {
-                        "tenantId": "c65a3ea6-0f7c-400b-8934-5a6dc1705645",
-                        "objectId": "6b09d683-c81c-44d5-b29f-0dfccc487985",
-                        "permissions": {
-                            "keys": [],
-                            "secrets": [
-                                "Get",
-                                "List",
-                                "Set",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "certificates": []
-                        }
-                    },
-                    {
-                        "tenantId": "c65a3ea6-0f7c-400b-8934-5a6dc1705645",
-                        "objectId": "45f4ba73-457d-45a3-a8d4-e87c45200faf",
-                        "permissions": {
-                            "keys": [
-                                "Get",
-                                "List",
-                                "Update",
-                                "Create",
-                                "Import",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore",
-                                "Decrypt",
-                                "Encrypt",
-                                "UnwrapKey",
-                                "WrapKey",
-                                "Verify",
-                                "Sign",
-                                "Purge"
-                            ],
-                            "secrets": [
-                                "Get",
-                                "List",
-                                "Set",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "certificates": [
-                                "Get",
-                                "List",
-                                "Update",
-                                "Create",
-                                "Import",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore",
-                                "ManageContacts",
-                                "ManageIssuers",
-                                "GetIssuers",
-                                "ListIssuers",
-                                "SetIssuers",
-                                "DeleteIssuers"
-                            ]
-                        }
-                    },
-                    {
-                        "tenantId": "c65a3ea6-0f7c-400b-8934-5a6dc1705645",
-                        "objectId": "1d9a41ae-7d71-4872-8be9-3e22ebfa89db",
-                        "permissions": {
-                            "keys": [
-                                "Get",
-                                "List",
-                                "Update",
-                                "Create",
-                                "Import",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "secrets": [
-                                "Get",
-                                "List",
-                                "Set",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "certificates": [
-                                "Get",
-                                "List",
-                                "Update",
-                                "Create",
-                                "Import",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore",
-                                "ManageContacts",
-                                "ManageIssuers",
-                                "GetIssuers",
-                                "ListIssuers",
-                                "SetIssuers",
-                                "DeleteIssuers"
-                            ]
-                        }
-                    },
-                    {
-                        "tenantId": "c65a3ea6-0f7c-400b-8934-5a6dc1705645",
-                        "objectId": "14a58d98-f299-4e73-af65-2d402d657727",
-                        "permissions": {
-                            "keys": [
-                                "Get",
-                                "List",
-                                "Update",
-                                "Create",
-                                "Import",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "secrets": [
-                                "Get",
-                                "List",
-                                "Set",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "certificates": [
-                                "Get",
-                                "List",
-                                "Update",
-                                "Create",
-                                "Import",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore",
-                                "ManageContacts",
-                                "ManageIssuers",
-                                "GetIssuers",
-                                "ListIssuers",
-                                "SetIssuers",
-                                "DeleteIssuers"
-                            ]
-                        }
-                    },
-                    {
-                        "tenantId": "c65a3ea6-0f7c-400b-8934-5a6dc1705645",
-                        "objectId": "739c2118-3432-4e7f-8d46-0369f3e76297",
-                        "permissions": {
-                            "keys": [
-                                "Get",
-                                "List",
-                                "Update",
-                                "Create",
-                                "Import",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "secrets": [
-                                "Get",
-                                "List",
-                                "Set",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "certificates": [
-                                "Get",
-                                "List",
-                                "Update",
-                                "Create",
-                                "Import",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore",
-                                "ManageContacts",
-                                "ManageIssuers",
-                                "GetIssuers",
-                                "ListIssuers",
-                                "SetIssuers",
-                                "DeleteIssuers"
-                            ]
-                        }
-                    },
-                    {
-                        "tenantId": "c65a3ea6-0f7c-400b-8934-5a6dc1705645",
-                        "objectId": "96841138-d4c9-4e66-89ea-a0946721e6d6",
-                        "permissions": {
-                            "keys": [
-                                "Import",
-                                "Create",
-                                "Update",
-                                "List",
-                                "Get",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "secrets": [
-                                "Get",
-                                "List",
-                                "Set",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "certificates": [
-                                "Get",
-                                "List",
-                                "Update",
-                                "Create",
-                                "Import",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore",
-                                "ManageContacts",
-                                "ManageIssuers",
-                                "GetIssuers",
-                                "ListIssuers",
-                                "SetIssuers",
-                                "DeleteIssuers"
-                            ]
-                        }
-                    }
-                ],
+                "tenantId": "[subscription().tenantId]",
                 "enabledForDeployment": false,
                 "enabledForDiskEncryption": false,
                 "enabledForTemplateDeployment": false,
@@ -4177,7 +3661,7 @@
                 "autoPauseDelay": 60,
                 "storageAccountType": "GRS",
                 "minCapacity": 0.5,
-                "maintenanceConfigurationId": "/subscriptions/8b8959ee-bc8c-4480-9126-4e7f2e1d0b20/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_Default"
+                "maintenanceConfigurationId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_Default']"
             }
         },
         {
@@ -4896,7 +4380,7 @@
             "kind": "functionapp",
             "identity": {
                 "principalId": "96841138-d4c9-4e66-89ea-a0946721e6d6",
-                "tenantId": "c65a3ea6-0f7c-400b-8934-5a6dc1705645",
+                "tenantId": "[subscription().tenantId]",
                 "type": "SystemAssigned"
             },
             "properties": {
@@ -4939,7 +4423,7 @@
             "kind": "functionapp,linux",
             "identity": {
                 "principalId": "09e0ca48-971a-4873-aea8-afffea4052a2",
-                "tenantId": "c65a3ea6-0f7c-400b-8934-5a6dc1705645",
+                "tenantId": "[subscription().tenantId]",
                 "type": "SystemAssigned"
             },
             "properties": {
@@ -4982,7 +4466,7 @@
             "kind": "functionapp,linux",
             "identity": {
                 "principalId": "e5507763-0039-4da7-ac1f-df07c4889256",
-                "tenantId": "c65a3ea6-0f7c-400b-8934-5a6dc1705645",
+                "tenantId": "[subscription().tenantId]",
                 "type": "SystemAssigned"
             },
             "properties": {
@@ -5060,9 +4544,6 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_qna_chbot_name'))]"
             ],
-            "tags": {
-                "hidden-related:/subscriptions/8b8959ee-bc8c-4480-9126-4e7f2e1d0b20/resourcegroups/rg_chbotsalud_dev/providers/Microsoft.Web/serverfarms/qna-chbot-sld-dev": "empty"
-            },
             "kind": "app",
             "properties": {
                 "enabled": true,
@@ -5101,13 +4582,10 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_aspapi_chbot_name'))]"
             ],
-            "tags": {
-                "hidden-related:/subscriptions/8b8959ee-bc8c-4480-9126-4e7f2e1d0b20/resourceGroups/rg_chbotsalud_dev/providers/Microsoft.Web/serverfarms/aspapi-chbot-sld-dev": "empty"
-            },
             "kind": "app",
             "identity": {
                 "principalId": "45f4ba73-457d-45a3-a8d4-e87c45200faf",
-                "tenantId": "c65a3ea6-0f7c-400b-8934-5a6dc1705645",
+                "tenantId": "[subscription().tenantId]",
                 "type": "SystemAssigned"
             },
             "properties": {
@@ -5473,9 +4951,6 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Web/sites', parameters('sites_qna_app_chbot_name'))]"
             ],
-            "tags": {
-                "hidden-related:/subscriptions/8b8959ee-bc8c-4480-9126-4e7f2e1d0b20/resourcegroups/rg_chbotsalud_dev/providers/Microsoft.Web/serverfarms/qna-chbot-sld-dev": "empty"
-            },
             "properties": {
                 "numberOfWorkers": 1,
                 "defaultDocuments": [
@@ -5555,9 +5030,6 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Web/sites', parameters('sites_wsp_api_chbot_name'))]"
             ],
-            "tags": {
-                "hidden-related:/subscriptions/8b8959ee-bc8c-4480-9126-4e7f2e1d0b20/resourceGroups/rg_chbotsalud_dev/providers/Microsoft.Web/serverfarms/aspapi-chbot-sld-dev": "empty"
-            },
             "properties": {
                 "numberOfWorkers": 1,
                 "defaultDocuments": [
@@ -5625,747 +5097,6 @@
             }
         },
         {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_chbot_name'), '/0ed2267e40724e1a95c8071fc17283de')]",
-            "location": "West US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "N/A",
-                "deployer": "ZipDeploy",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-03T01:21:28.9788011Z",
-                "end_time": "2021-03-03T01:21:47.2900739Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_py_chbott_name'), '/13fe3cf0-d627-4762-8153-94d313286799')]",
-            "location": "Central US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbott_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "VS Code",
-                "deployer": "Push-Deployer",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-12T00:17:33.6200463Z",
-                "end_time": "2021-03-12T00:18:28.2096658Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_chbot_name'), '/1a7318028e2f4c9f8fed9f7da6414f91')]",
-            "location": "West US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "N/A",
-                "deployer": "ZipDeploy",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-03T01:12:34.4165004Z",
-                "end_time": "2021-03-03T01:12:35.8384137Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_chbot_name'), '/2f7e54f36d6a45fcb42abfb039111458')]",
-            "location": "West US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "N/A",
-                "deployer": "ZipDeploy",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-24T14:04:36.7748726Z",
-                "end_time": "2021-03-24T14:05:01.9536701Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_py_chbot_name'), '/2fa0a49e-f3ae-4785-8e2b-35664fe0cd17')]",
-            "location": "Central US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "VS Code",
-                "deployer": "Push-Deployer",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-22T15:56:07.4803571Z",
-                "end_time": "2021-03-22T15:57:28.4019863Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_chbot_name'), '/321017281f99475a9ef77349864f98cf')]",
-            "location": "West US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "N/A",
-                "deployer": "ZipDeploy",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-24T14:29:26.8936789Z",
-                "end_time": "2021-03-24T14:29:33.2348801Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_chbot_name'), '/3258e4b922504b23931e12252b059c9d')]",
-            "location": "West US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "N/A",
-                "deployer": "ZipDeploy",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-03T00:09:37.8789491Z",
-                "end_time": "2021-03-03T00:10:08.599187Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_py_chbott_name'), '/34bfc70f-8719-4893-b311-60bb3f10f876')]",
-            "location": "Central US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbott_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "VS Code",
-                "deployer": "Push-Deployer",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-12T00:36:00.5380569Z",
-                "end_time": "2021-03-12T00:36:53.721989Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_py_chbott_name'), '/41b722a6-eb1b-482c-a902-733cc3258130')]",
-            "location": "Central US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbott_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "VS Code",
-                "deployer": "Push-Deployer",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-11T21:34:12.1998995Z",
-                "end_time": "2021-03-11T21:35:06.4355834Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_chbot_name'), '/487e0e0959304909bb65d3674a72a346')]",
-            "location": "West US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "N/A",
-                "deployer": "ZipDeploy",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-03T01:28:55.1016408Z",
-                "end_time": "2021-03-03T01:29:17.4935649Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_py_chbot_name'), '/549fa322-efb5-4432-960f-d1be4a2e1d80')]",
-            "location": "Central US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "VS Code",
-                "deployer": "Push-Deployer",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-22T16:37:47.6446717Z",
-                "end_time": "2021-03-22T16:38:37.2667206Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_chbot_name'), '/55bb0758d98b47a1a23d18d645a4cf75')]",
-            "location": "West US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "N/A",
-                "deployer": "ZipDeploy",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-02T23:49:47.6239991Z",
-                "end_time": "2021-03-02T23:49:49.2022893Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_chbot_name'), '/6326f8535703444a850df58439adacc5')]",
-            "location": "West US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "N/A",
-                "deployer": "ZipDeploy",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-24T14:26:24.2456602Z",
-                "end_time": "2021-03-24T14:26:47.1684099Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_py_chbot_name'), '/64aad525-9c07-428c-b3a2-996006905d5a')]",
-            "location": "Central US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "VS Code",
-                "deployer": "Push-Deployer",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-23T18:03:54.7882207Z",
-                "end_time": "2021-03-23T18:04:48.0021015Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_py_chbot_name'), '/6d3b568a-f0fe-44c6-a0e6-fda8ee950461')]",
-            "location": "Central US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "VS Code",
-                "deployer": "Push-Deployer",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-22T23:12:22.6036969Z",
-                "end_time": "2021-03-22T23:13:13.201441Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_chbot_name'), '/6e71c97889a34866949cb53bd9b0d75a')]",
-            "location": "West US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "N/A",
-                "deployer": "ZipDeploy",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-24T13:44:54.9321667Z",
-                "end_time": "2021-03-24T13:45:18.0941028Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_chbot_name'), '/7307ced43eaa48e3bf5358b76f59936a')]",
-            "location": "West US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "N/A",
-                "deployer": "ZipDeploy",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-24T13:56:07.9152971Z",
-                "end_time": "2021-03-24T13:56:30.8385258Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_py_chbott_name'), '/773fde2e-0463-48ad-a682-a37e5e4cec15')]",
-            "location": "Central US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbott_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "VS Code",
-                "deployer": "Push-Deployer",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-18T21:40:41.043439Z",
-                "end_time": "2021-03-18T21:41:35.9691461Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_py_chbott_name'), '/794dc2dc-e545-42e2-b7b1-98c16b8277b4')]",
-            "location": "Central US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbott_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "VS Code",
-                "deployer": "Push-Deployer",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-11T18:34:10.121965Z",
-                "end_time": "2021-03-11T18:34:59.8547574Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_chbot_name'), '/7cda68219c72432684c4cdffa1b3eba5')]",
-            "location": "West US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "N/A",
-                "deployer": "ZipDeploy",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-03T01:31:04.5970845Z",
-                "end_time": "2021-03-03T01:31:27.366484Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_py_chbott_name'), '/7f3684b7-1ded-40b8-ae1c-fb581e0d1572')]",
-            "location": "Central US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbott_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "VS Code",
-                "deployer": "Push-Deployer",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-22T15:54:51.3457752Z",
-                "end_time": "2021-03-22T15:55:49.5404193Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_chbot_name'), '/81715952f8c643f4a96491ed1ed20800')]",
-            "location": "West US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "N/A",
-                "deployer": "ZipDeploy",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-24T14:02:13.3334595Z",
-                "end_time": "2021-03-24T14:02:39.5946713Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_py_chbot_name'), '/8b9f4d31-887d-4bae-972d-82331bcd834a')]",
-            "location": "Central US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "VS Code",
-                "deployer": "Push-Deployer",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-23T18:06:10.9216519Z",
-                "end_time": "2021-03-23T18:07:00.6319571Z",
-                "active": true
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_chbot_name'), '/9e1bfb33dcb741ad9a01f5b9a4759754')]",
-            "location": "West US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "N/A",
-                "deployer": "ZipDeploy",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-03T01:45:54.7425288Z",
-                "end_time": "2021-03-03T01:45:56.0423945Z",
-                "active": true
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_py_chbott_name'), '/a666ecd6-b75e-43b5-8ed3-006a7338016b')]",
-            "location": "Central US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbott_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "VS Code",
-                "deployer": "Push-Deployer",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-23T00:05:30.5391063Z",
-                "end_time": "2021-03-23T00:06:19.1938805Z",
-                "active": true
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_py_chbot_name'), '/a73d90ca-d7fc-47b9-9340-672492fedf90')]",
-            "location": "Central US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "VS Code",
-                "deployer": "Push-Deployer",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-16T17:35:07.3711185Z",
-                "end_time": "2021-03-16T17:36:06.0811638Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_chbot_name'), '/aab71b3326984b78b31eecb37c21757d')]",
-            "location": "West US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "N/A",
-                "deployer": "ZipDeploy",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-24T13:50:27.1065282Z",
-                "end_time": "2021-03-24T13:51:08.4434074Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_py_chbot_name'), '/ade0e352-b739-4511-84b0-1a6bcae44976')]",
-            "location": "Central US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "VS Code",
-                "deployer": "Push-Deployer",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-22T16:53:56.9210305Z",
-                "end_time": "2021-03-22T16:54:48.4832684Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_py_chbott_name'), '/af1d4236-102e-4bf5-9930-1804ed2f5625')]",
-            "location": "Central US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbott_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "VS Code",
-                "deployer": "Push-Deployer",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-11T21:31:42.2694974Z",
-                "end_time": "2021-03-11T21:32:35.472374Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_chbot_name'), '/b82e366b478f439d9952d5df92061be4')]",
-            "location": "West US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "N/A",
-                "deployer": "ZipDeploy",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-03T00:27:02.9643582Z",
-                "end_time": "2021-03-03T00:27:04.0133582Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_py_chbot_name'), '/bc36f37b-c2ce-4028-a862-6b4a3e313012')]",
-            "location": "Central US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "VS Code",
-                "deployer": "Push-Deployer",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-09T13:58:53.3679141Z",
-                "end_time": "2021-03-09T13:59:09.363232Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_chbot_name'), '/bd48d94f9db74477891cd3376c1f76df')]",
-            "location": "West US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "N/A",
-                "deployer": "ZipDeploy",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-24T14:50:04.9511942Z",
-                "end_time": "2021-03-24T14:50:27.8502835Z",
-                "active": true
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_chbot_name'), '/c19ddb0ab4594785910d063a6762b528')]",
-            "location": "West US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "N/A",
-                "deployer": "ZipDeploy",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-03T00:00:35.2775303Z",
-                "end_time": "2021-03-03T00:00:54.2522747Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_chbot_name'), '/c6d63bb840b84df98e10cc2c3ea3b452')]",
-            "location": "West US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "N/A",
-                "deployer": "ZipDeploy",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-03T00:38:30.9071398Z",
-                "end_time": "2021-03-03T00:38:32.2665742Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_py_chbot_name'), '/d3e2f44b-649b-473e-b3b1-36e63c5324df')]",
-            "location": "Central US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "VS Code",
-                "deployer": "Push-Deployer",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-22T17:10:50.0895837Z",
-                "end_time": "2021-03-22T17:11:42.2283796Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_py_chbot_name'), '/e92fb800-1001-415d-88df-700b39904acd')]",
-            "location": "Central US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "VS Code",
-                "deployer": "Push-Deployer",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-11T01:54:53.1591906Z",
-                "end_time": "2021-03-11T01:55:46.8547236Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_azfn_py_chbott_name'), '/e945c79b-5d16-4559-b45b-aef0650125f0')]",
-            "location": "Central US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbott_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "VS Code",
-                "deployer": "Push-Deployer",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-11T22:28:42.0522114Z",
-                "end_time": "2021-03-11T22:29:34.8476354Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_chbot_name'), '/ec9dad9f7c1f406391baf712ba954e48')]",
-            "location": "West US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "N/A",
-                "deployer": "ZipDeploy",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-24T14:10:10.7719719Z",
-                "end_time": "2021-03-24T14:10:35.7335781Z",
-                "active": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/deployments",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_chbot_name'), '/f454f4f8245b414484e4d34d8963bdaa')]",
-            "location": "West US",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_chbot_name'))]"
-            ],
-            "properties": {
-                "status": 4,
-                "author_email": "N/A",
-                "author": "N/A",
-                "deployer": "ZipDeploy",
-                "message": "Created via a push deployment",
-                "start_time": "2021-03-24T14:39:53.0858308Z",
-                "end_time": "2021-03-24T14:40:15.3731835Z",
-                "active": false
-            }
-        },
-        {
             "type": "Microsoft.Web/sites/functions",
             "apiVersion": "2018-11-01",
             "name": "[concat(parameters('sites_azfn_py_chbot_name'), '/azfn-py-qna')]",
@@ -6374,10 +5105,10 @@
                 "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbot_name'))]"
             ],
             "properties": {
-                "script_root_path_href": "https://azfn-py-chbot-sld-dev.azurewebsites.net/admin/vfs/home/site/wwwroot/azfn-py-qna/",
-                "script_href": "https://azfn-py-chbot-sld-dev.azurewebsites.net/admin/vfs/home/site/wwwroot/azfn-py-qna/__init__.py",
-                "config_href": "https://azfn-py-chbot-sld-dev.azurewebsites.net/admin/vfs/home/site/wwwroot/azfn-py-qna/function.json",
-                "href": "https://azfn-py-chbot-sld-dev.azurewebsites.net/admin/functions/azfn-py-qna",
+                "script_root_path_href": "[concat('https://', parameters('sites_azfn_py_chbot_name'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/azfn-py-qna/')]",
+                "script_href": "[concat('https://', parameters('sites_azfn_py_chbot_name'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/azfn-py-qna/__init__.py')]",
+                "config_href": "[concat('https://', parameters('sites_azfn_py_chbot_name'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/azfn-py-qna/function.json')]",
+                "href": "[concat('https://', parameters('sites_azfn_py_chbot_name'), '.azurewebsites.net/admin/functions/azfn-py-qna')]",
                 "config": {}
             }
         },
@@ -6390,10 +5121,10 @@
                 "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbott_name'))]"
             ],
             "properties": {
-                "script_root_path_href": "https://azfn-py-chbott-sld-dev.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoBC/",
-                "script_href": "https://azfn-py-chbott-sld-dev.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoBC/__init__.py",
-                "config_href": "https://azfn-py-chbott-sld-dev.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoBC/function.json",
-                "href": "https://azfn-py-chbott-sld-dev.azurewebsites.net/admin/functions/extUsoBC",
+                "script_root_path_href": "[concat('https://', parameters('sites_azfn_py_chbott_name'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoBC/')]",
+                "script_href": "[concat('https://', parameters('sites_azfn_py_chbott_name'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoBC/__init__.py')]",
+                "config_href": "[concat('https://', parameters('sites_azfn_py_chbott_name'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoBC/function.json')]",
+                "href": "[concat('https://', parameters('sites_azfn_py_chbott_name'), '.azurewebsites.net/admin/functions/extUsoBC')]",
                 "config": {}
             }
         },
@@ -6406,10 +5137,10 @@
                 "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbott_name'))]"
             ],
             "properties": {
-                "script_root_path_href": "https://azfn-py-chbott-sld-dev.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoLUIS/",
-                "script_href": "https://azfn-py-chbott-sld-dev.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoLUIS/__init__.py",
-                "config_href": "https://azfn-py-chbott-sld-dev.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoLUIS/function.json",
-                "href": "https://azfn-py-chbott-sld-dev.azurewebsites.net/admin/functions/extUsoLUIS",
+                "script_root_path_href": "[concat('https://', parameters('sites_azfn_py_chbott_name'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoLUIS/')]",
+                "script_href": "[concat('https://', parameters('sites_azfn_py_chbott_name'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoLUIS/__init__.py')]",
+                "config_href": "[concat('https://', parameters('sites_azfn_py_chbott_name'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoLUIS/function.json')]",
+                "href": "[concat('https://', parameters('sites_azfn_py_chbott_name'), '.azurewebsites.net/admin/functions/extUsoLUIS')]",
                 "config": {}
             }
         },
@@ -6422,10 +5153,10 @@
                 "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbott_name'))]"
             ],
             "properties": {
-                "script_root_path_href": "https://azfn-py-chbott-sld-dev.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoMensajes/",
-                "script_href": "https://azfn-py-chbott-sld-dev.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoMensajes/__init__.py",
-                "config_href": "https://azfn-py-chbott-sld-dev.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoMensajes/function.json",
-                "href": "https://azfn-py-chbott-sld-dev.azurewebsites.net/admin/functions/extUsoMensajes",
+                "script_root_path_href": "[concat('https://', parameters('sites_azfn_py_chbott_name'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoMensajes/')]",
+                "script_href": "[concat('https://', parameters('sites_azfn_py_chbott_name'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoMensajes/__init__.py')]",
+                "config_href": "[concat('https://', parameters('sites_azfn_py_chbott_name'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoMensajes/function.json')]",
+                "href": "[concat('https://', parameters('sites_azfn_py_chbott_name'), '.azurewebsites.net/admin/functions/extUsoMensajes')]",
                 "config": {}
             }
         },
@@ -6438,10 +5169,10 @@
                 "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbott_name'))]"
             ],
             "properties": {
-                "script_root_path_href": "https://azfn-py-chbott-sld-dev.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoServicios/",
-                "script_href": "https://azfn-py-chbott-sld-dev.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoServicios/__init__.py",
-                "config_href": "https://azfn-py-chbott-sld-dev.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoServicios/function.json",
-                "href": "https://azfn-py-chbott-sld-dev.azurewebsites.net/admin/functions/extUsoServicios",
+                "script_root_path_href": "[concat('https://', parameters('sites_azfn_py_chbott_name'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoServicios/')]",
+                "script_href": "[concat('https://', parameters('sites_azfn_py_chbott_name'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoServicios/__init__.py')]",
+                "config_href": "[concat('https://', parameters('sites_azfn_py_chbott_name'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoServicios/function.json')]",
+                "href": "[concat('https://', parameters('sites_azfn_py_chbott_name'), '.azurewebsites.net/admin/functions/extUsoServicios')]",
                 "config": {}
             }
         },
@@ -6454,10 +5185,10 @@
                 "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_chbot_name'))]"
             ],
             "properties": {
-                "script_root_path_href": "https://azfn-chbot-sld-dev.azurewebsites.net/admin/vfs/site/wwwroot/tecbot0chat/",
-                "script_href": "https://azfn-chbot-sld-dev.azurewebsites.net/admin/vfs/site/wwwroot/bin/azfn2chbot.dll",
-                "config_href": "https://azfn-chbot-sld-dev.azurewebsites.net/admin/vfs/site/wwwroot/tecbot0chat/function.json",
-                "href": "https://azfn-chbot-sld-dev.azurewebsites.net/admin/functions/tecbot0chat",
+                "script_root_path_href": "[concat('https://', parameters('sites_azfn_chbot_name'), '.azurewebsites.net/admin/vfs/site/wwwroot/tecbot0chat/')]",
+                "script_href": "[concat('https://', parameters('sites_azfn_chbot_name'), '.azurewebsites.net/admin/vfs/site/wwwroot/bin/azfn2chbot.dll')]",
+                "config_href": "[concat('https://', parameters('sites_azfn_chbot_name'), '.azurewebsites.net/admin/vfs/site/wwwroot/tecbot0chat/function.json')]",
+                "href": "[concat('https://', parameters('sites_azfn_chbot_name'), '.azurewebsites.net/admin/functions/tecbot0chat')]",
                 "config": {}
             }
         },
@@ -6470,7 +5201,7 @@
                 "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_chbot_name'))]"
             ],
             "properties": {
-                "siteName": "azfn-chbot-sld-dev",
+                "siteName": "parameters('sites_azfn_chbot_name')",
                 "hostNameType": "Verified"
             }
         },
@@ -6483,7 +5214,7 @@
                 "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbot_name'))]"
             ],
             "properties": {
-                "siteName": "azfn-py-chbot-sld-dev",
+                "siteName": "[parameters('sites_azfn_py_chbot_name')]",
                 "hostNameType": "Verified"
             }
         },
@@ -6496,7 +5227,7 @@
                 "[resourceId('Microsoft.Web/sites', parameters('sites_azfn_py_chbott_name'))]"
             ],
             "properties": {
-                "siteName": "azfn-py-chbott-sld-dev",
+                "siteName": "[parameters('sites_azfn_py_chbott_name')]",
                 "hostNameType": "Verified"
             }
         },
@@ -6509,7 +5240,7 @@
                 "[resourceId('Microsoft.Web/sites', parameters('sites_chbot_name'))]"
             ],
             "properties": {
-                "siteName": "chbot-sld-dev-01",
+                "siteName": "[parameters('sites_chbot_name')]",
                 "hostNameType": "Verified"
             }
         },
@@ -6522,7 +5253,7 @@
                 "[resourceId('Microsoft.Web/sites', parameters('sites_qna_app_chbot_name'))]"
             ],
             "properties": {
-                "siteName": "qna-app-chbot-sld-dev",
+                "siteName": "[parameters('sites_qna_app_chbot_name')]",
                 "hostNameType": "Verified"
             }
         },
@@ -6535,7 +5266,7 @@
                 "[resourceId('Microsoft.Web/sites', parameters('sites_wsp_api_chbot_name'))]"
             ],
             "properties": {
-                "siteName": "wsp-api-chbot-sld-dev",
+                "siteName": "[parameters('sites_wsp_api_chbot_name')]",
                 "hostNameType": "Verified"
             }
         },
