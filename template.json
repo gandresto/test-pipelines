@@ -3661,7 +3661,7 @@
                 "autoPauseDelay": 60,
                 "storageAccountType": "GRS",
                 "minCapacity": 0.5,
-                "maintenanceConfigurationId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_Default']"
+                "maintenanceConfigurationId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_Default')]"
             }
         },
         {
