@@ -4378,11 +4378,6 @@
                 "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_asp_chbot_name'))]"
             ],
             "kind": "functionapp",
-            "identity": {
-                "principalId": "96841138-d4c9-4e66-89ea-a0946721e6d6",
-                "tenantId": "[subscription().tenantId]",
-                "type": "SystemAssigned"
-            },
             "properties": {
                 "enabled": true,
                 "hostNameSslStates": [
@@ -4421,11 +4416,6 @@
                 "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_asp_azfnpy_chbot_name'))]"
             ],
             "kind": "functionapp,linux",
-            "identity": {
-                "principalId": "09e0ca48-971a-4873-aea8-afffea4052a2",
-                "tenantId": "[subscription().tenantId]",
-                "type": "SystemAssigned"
-            },
             "properties": {
                 "enabled": true,
                 "hostNameSslStates": [
@@ -4464,11 +4454,6 @@
                 "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_asp_azfnpy_chbot_name'))]"
             ],
             "kind": "functionapp,linux",
-            "identity": {
-                "principalId": "e5507763-0039-4da7-ac1f-df07c4889256",
-                "tenantId": "[subscription().tenantId]",
-                "type": "SystemAssigned"
-            },
             "properties": {
                 "enabled": true,
                 "hostNameSslStates": [
@@ -4583,11 +4568,6 @@
                 "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_aspapi_chbot_name'))]"
             ],
             "kind": "app",
-            "identity": {
-                "principalId": "45f4ba73-457d-45a3-a8d4-e87c45200faf",
-                "tenantId": "[subscription().tenantId]",
-                "type": "SystemAssigned"
-            },
             "properties": {
                 "enabled": true,
                 "hostNameSslStates": [
