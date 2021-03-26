@@ -2,110 +2,86 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "channels_WebChatChannel_enablePreview": {
-      "value": true
+    "botId": {
+      "value": ""
     },
-    "channels_WebChatChannel_enablePreview_1": {
-      "value": true
+    "botSku": {
+      "value": {
+        "name": "S1",
+        "tier": "Standard",
+        "size": "S1",
+        "family": "S",
+        "capacity": 1
+      }
     },
-    "sites_chbot_name": {
-      "value": "chbot-sld-pprd-01"
-    },
-    "sites_azfn_chbot_name": {
-      "value": "azfn-chbot-sld-pprd"
-    },
-    "servers_srv_chbot_name": {
-      "value": "srv-chbot-sld-pprd"
-    },
-    "sites_azfn_py_chbot_name": {
-      "value": "azfn-py-chbot-sld-pprd"
-    },
-    "sites_qna_app_chbot_name": {
-      "value": "qna-app-chbot-sld-pprd"
-    },
-    "sites_wsp_api_chbot_name": {
-      "value": "wsp-api-chbot-sld-pprd"
-    },
-    "sites_azfn_py_chbott_name": {
-      "value": "azfn-py-chbott-sld-pprd"
-    },
-    "components_chbot_name": {
-      "value": "chbot-sld-pprd"
-    },
-    "storageAccounts_stgapilog_name": {
-      "value": "stgapilogsldpprd"
-    },
-    "serverfarms_asp_chbot_name": {
-      "value": "asp-chbot-sld-pprd"
-    },
-    "serverfarms_qna_chbot_name": {
-      "value": "qna-chbot-sld-pprd"
-    },
-    "serverfarms_aspapi_chbot_name": {
-      "value": "aspapi-chbot-sld-pprd"
-    },
-    "components_azfn_chbot_name": {
-      "value": "azfn-chbot-sld-pprd"
-    },
-    "botServices_chbot_01_name": {
-      "value": "chbot-sld-pprd-01"
-    },
-    "vaults_keyvault_chtbot_name": {
-      "value": "keyvault-chtbot-sld-pprd"
-    },
-    "components_qna_chbot_ai_name": {
-      "value": "qna-chbot-sld-pprd-ai"
-    },
-    "serverfarms_asp_azfnpy_chbot_name": {
-      "value": "asp-azfnpy-chbot-sld-pprd"
-    },
-    "components_azfn_py_chbot_name": {
-      "value": "azfn-py-chbot-sld-pprd"
-    },
-    "components_wsp_api_chbot_name": {
-      "value": "wsp-api-chbot-sld-pprd"
-    },
-    "storageAccounts_stg0chbot0_name": {
-      "value": "stg0chbot0sld0pprd"
-    },
-    "components_azfn_py_chbott_name": {
-      "value": "azfn-py-chbott-sld-pprd"
-    },
-    "storageAccounts_sqlvawxg6hrzqkpzti_name": {
-      "value": "sqlvawxg6hrzqkpztipprd"
-    },
-    "storageAccounts_stg0chbot0gral_name": {
-      "value": "stg0chbot0sld0gralpprd"
-    },
-    "accounts_qna_chbot_name": {
-      "value": "qna-chbot-sld-pprd"
-    },
-    "accounts_luis_chbot_name": {
-      "value": "luis-chbot-sld-pprd"
-    },
-    "storageAccounts_stg_chbot_std_name": {
-      "value": "stg0chbot0sld0pprd0std"
-    },
-    "storageAccounts_stg_azfn_chbot_name": {
-      "value": "stg0azfn0chbot0sld0pprd"
-    },
-    "storageAccounts_storageaccountrgchb8da0_name": {
-      "value": "stgaccrgchbotsldpprd"
-    },
-    "databaseAccounts_cosmos_chbot_name": {
+    "cosmosDbName": {
       "value": "cosmos-chbot-sld-pprd"
     },
-    "workspaces_wksalyt_chbot_name": {
-      "value": "wksalyt-chbot-sld-pprd"
+    "newWebAppName": {
+      "value": "chbot-sld-pprd"
     },
-    "workspaces_wkspace_chbot_name": {
-      "value": "wkspace-chbot-sld-pprd"
+    "appId": {
+      "value": "chbot-sld-pprd"
     },
-    "accounts_luis_chbot_authoring_name": {
-      "value": "luis-chbot-sld-pprd-Authoring"
+    "appSecret": {
+      "value": "chbot-sld-pprd-secret"
     },
-    "searchServices_qnaappchbot_asfb3yhf7rn4l5q_name": {
-      "value": "qnaappchbotsldpprd-asfb3yhf7rn4l5q"
+    "useCosmosDb": {
+      "value": true
+    },
+    "useAppInsights": {
+      "value": true
+    },
+    "shouldCreateAuthoringResource": {
+      "value": true
+    },
+    "shouldCreateLuisResource": {
+      "value": true
+    },
+    "luisAuthoringName": {
+      "value": "luis-auth=chbot-sld-pprd"
+    },
+    "luisAuthoringKey": {
+      "value": "luis-auth=chbot-sld-pprd"
+    },
+    "newAppServicePlanName": {
+      "value": "asp-chbot-sld-pprd"
+    },
+    "newAppServicePlanSku": {
+      "value": {
+        "name": "S1",
+        "tier": "Standard",
+        "size": "S1",
+        "family": "S",
+        "capacity": 1
+      }
+    },
+    "appServicePlanLocation": {
+      "value": "westus"
+    },
+    "existingAppServicePlan": {
+      "value": "asp-chbot-sld-pprd"
+    },
+    "appInsightsName": {
+      "value": "chbot-sld-pprd"
+    },
+    "location": {
+      "value": "westus"
+    },
+    "useStorage": {
+      "value": true
+    },
+    "storageAccountName": {
+      "value": "stg0chbot0sld0pprd0std"
+    },
+    "luisServiceName": {
+      "value": "luis-chbot-sld-pprd"
+    },
+    "luisServiceAuthoringSku": {
+      "value": "F0"
+    },
+    "luisServiceRunTimeSku": {
+      "value": "S0"
     }
   }
 }
