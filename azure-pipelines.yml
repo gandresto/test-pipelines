@@ -19,6 +19,6 @@ steps:
     resourceGroupName: 'new_bot_sld'
     location: 'West US'
     templateLocation: 'Linked artifact'
-    csmFile: 'new-template.json'
-    csmParametersFile: 'new-parameters.json'
+    csmFile: 'template.json'
+    csmParametersFile: 'parameters.json'
     deploymentMode: 'Incremental'
