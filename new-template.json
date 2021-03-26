@@ -142,7 +142,7 @@
     "siteHost": "[concat(variables('webAppName'), '.azurewebsites.net')]",
     "botEndpoint": "[concat('https://', variables('siteHost'), '/api/messages')]",
     "storageAccountName": "[toLower(take(replace(replace(parameters('storageAccountName'), '-', ''), '_', ''), 24))]",
-    "LuisAuthoringAccountName": "[if(empty(parameters('luisAuthoringName')), concat(parameters('luisServiceName'), '-auth'), parameters('luisAuthoringName')))]"
+    "LuisAuthoringAccountName": "[if(empty(parameters('luisAuthoringName')), concat(parameters('luisServiceName'), '-auth'), parameters('luisAuthoringName'))]"
   },
   "resources": [
     {
