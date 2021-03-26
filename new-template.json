@@ -54,7 +54,7 @@
             "size": "S1",
             "family": "S",
             "capacity": 1
-          },
+          }
         },
         "appServicePlanLocation": {
           "value": "westus"
@@ -82,6 +82,6 @@
         },
         "luisServiceRunTimeSku": {
           "value": "S0"
-        },
+        }
     }
 }
