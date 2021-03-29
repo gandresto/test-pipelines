@@ -3,16 +3,10 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "botId": {
-      "value": ""
+      "value": "chbot-sld-pprd"
     },
     "botSku": {
-      "value": {
-        "name": "S1",
-        "tier": "Standard",
-        "size": "S1",
-        "family": "S",
-        "capacity": 1
-      }
+      "value": "F0"
     },
     "cosmosDbName": {
       "value": "cosmos-chbot-sld-pprd"
