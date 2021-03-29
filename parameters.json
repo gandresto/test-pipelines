@@ -3,22 +3,22 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "botId": {
-      "value": "chbot-sld-pprd"
+      "value": "chbot-sld-inte"
     },
     "botSku": {
       "value": "F0"
     },
     "cosmosDbName": {
-      "value": "cosmos-chbot-sld-pprd"
+      "value": "cosmos-chbot-sld-inte"
     },
     "newWebAppName": {
-      "value": "chbot-sld-pprd"
+      "value": "chbot-sld-inte"
     },
     "appId": {
-      "value": "chbot-sld-pprd"
+      "value": "chbot-sld-inte"
     },
     "appSecret": {
-      "value": "chbot-sld-pprd-secret"
+      "value": "chbot-sld-inte-secret"
     },
     "useCosmosDb": {
       "value": true
@@ -33,13 +33,13 @@
       "value": true
     },
     "luisAuthoringName": {
-      "value": "luis-auth-chbot-sld-pprd"
+      "value": "luis-auth-chbot-sld-inte"
     },
     "luisAuthoringKey": {
-      "value": "luis-auth-chbot-sld-pprd"
+      "value": "luis-auth-chbot-sld-inte"
     },
     "newAppServicePlanName": {
-      "value": "asp-chbot-sld-pprd"
+      "value": "asp-chbot-sld-inte"
     },
     "newAppServicePlanSku": {
       "value": {
@@ -53,11 +53,8 @@
     "appServicePlanLocation": {
       "value": "westus"
     },
-    "existingAppServicePlan": {
-      "value": "asp-chbot-sld-pprd"
-    },
     "appInsightsName": {
-      "value": "chbot-sld-pprd"
+      "value": "chbot-sld-inte"
     },
     "location": {
       "value": "westus"
@@ -66,10 +63,10 @@
       "value": true
     },
     "storageAccountName": {
-      "value": "stg0chbot0sld0pprd0std"
+      "value": "stg0chbot0sld0inte0std"
     },
     "luisServiceName": {
-      "value": "luis-chbot-sld-pprd"
+      "value": "luis-chbot-sld-inte"
     },
     "luisServiceAuthoringSku": {
       "value": "F0"
