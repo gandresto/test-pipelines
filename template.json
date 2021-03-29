@@ -283,14 +283,14 @@
     {
       "apiVersion": "2017-12-01",
       "type": "Microsoft.BotService/botServices",
-      "name": "[parameters('botId')]",
+      "name": "[variables('webAppName')]",
       "location": "global",
       "kind": "bot",
       "sku": {
         "name": "[parameters('botSku')]"
       },
       "properties": {
-        "name": "[parameters('botId')]",
+        "name": "[variables('webAppName')]",
         "displayName": "[parameters('botId')]",
         "endpoint": "[variables('botEndpoint')]",
         "msaAppId": "[parameters('appId')]",
