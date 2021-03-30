@@ -73,6 +73,18 @@
     },
     "luisServiceRunTimeSku": {
       "value": "S0"
+    },
+    "chatbotQnaName": {
+      "value": "qna_chbot_sld_inte"
+    },
+    "qnaAppServicePlanSku": {
+      "value": {
+        "name": "S1",
+        "tier": "Standard",
+        "size": "S1",
+        "family": "S",
+        "capacity": 1
+      }
     }
   }
 }

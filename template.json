@@ -130,6 +130,20 @@
     "luisServiceLocation": {
       "type": "string",
       "defaultValue": "[resourceGroup().location]"
+    },
+    "chatbotQnaName": {
+      "type": "string",
+      "defaultValue": "[concat('qna_', resourceGroup().name)]"
+    },
+    "qnaAppServicePlanSku": {
+      "type": "object",
+      "defaultValue": {
+        "name": "S1",
+        "tier": "Standard",
+        "size": "S1",
+        "family": "S",
+        "capacity": 1
+      }
     }
   },
   "variables": {
@@ -142,7 +156,8 @@
     "siteHost": "[concat(variables('webAppName'), '.azurewebsites.net')]",
     "botEndpoint": "[concat('https://', variables('siteHost'), '/api/messages')]",
     "storageAccountName": "[toLower(take(replace(replace(parameters('storageAccountName'), '-', ''), '_', ''), 24))]",
-    "LuisAuthoringAccountName": "[if(empty(parameters('luisAuthoringName')), concat(parameters('luisServiceName'), '-auth'), parameters('luisAuthoringName'))]"
+    "LuisAuthoringAccountName": "[if(empty(parameters('luisAuthoringName')), concat(parameters('luisServiceName'), '-auth'), parameters('luisAuthoringName'))]",
+    "qnaAppServicePlan": "[concat('asp_', parameters('chatbotQnaName'))]"
   },
   "resources": [
     {
@@ -355,6 +370,89 @@
       "condition": "[parameters('shouldCreateLuisResource')]",
       "properties": {
         "statisticsEnabled": false
+      }
+    },
+
+    // QnA
+    {
+      "type": "Microsoft.CognitiveServices/accounts",
+      "apiVersion": "2017-04-18",
+      "name": "[parameters('chatbotQnaName')]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "S0"
+      },
+      "kind": "QnAMaker",
+      "properties": {
+        "apiProperties": {
+          "qnaRuntimeEndpoint": "[concat('https://', parameters('chatbotQnaName'), '.azurewebsites.net')]"
+        },
+        "customSubDomainName": "[parameters('chatbotQnaName')]",
+        "privateEndpointConnections": [],
+        "publicNetworkAccess": "Enabled"
+      }
+    },
+    {
+      "type": "microsoft.insights/components",
+      "apiVersion": "2020-02-02-preview",
+      "name": "[parameters('chatbotQnaName')]",
+      "location": "[parameters('location')]",
+      "kind": "web",
+      "properties": {
+        "Application_Type": "web",
+        "IngestionMode": "ApplicationInsights",
+        "publicNetworkAccessForIngestion": "Enabled",
+        "publicNetworkAccessForQuery": "Enabled"
+      }
+    },
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2018-02-01",
+      "name": "[variables('qnaAppServicePlan')]",
+      "location": "West US",
+      "sku": {
+        "name": "[parameters('qnaAppServicePlanSku').name]",
+        "tier": "[parameters('qnaAppServicePlanSku').tier]",
+        "size": "[parameters('qnaAppServicePlanSku').size]",
+        "family": "[parameters('qnaAppServicePlanSku').family]",
+        "capacity": "[parameters('qnaAppServicePlanSku').capacity]"
+      },
+      "kind": "app",
+      "properties": {
+        "perSiteScaling": false,
+        "maximumElasticWorkerCount": 1,
+        "isSpot": false,
+        "reserved": false,
+        "isXenon": false,
+        "hyperV": false,
+        "targetWorkerCount": 0,
+        "targetWorkerSizeId": 0
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2018-11-01",
+      "name": "[parameters('chatbotQnaName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', variables('qnaAppServicePlan'))]"
+      ],
+      "kind": "app",
+      "properties": {
+        "enabled": true,
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('qnaAppServicePlan'))]",
+        "reserved": false,
+        "isXenon": false,
+        "hyperV": false,
+        "siteConfig": {},
+        "scmSiteAlsoStopped": false,
+        "clientAffinityEnabled": true,
+        "clientCertEnabled": false,
+        "hostNamesDisabled": false,
+        "containerSize": 0,
+        "dailyMemoryTimeQuota": 0,
+        "httpsOnly": false,
+        "redundancyMode": "None"
       }
     }
   ],
