@@ -144,6 +144,9 @@
         "family": "S",
         "capacity": 1
       }
+    },
+    "qnaSearchServiceName": {
+      "type": "string"
     }
   },
   "variables": {
@@ -453,6 +456,24 @@
         "dailyMemoryTimeQuota": 0,
         "httpsOnly": false,
         "redundancyMode": "None"
+      }
+    },
+    {
+      "type": "Microsoft.Search/searchServices",
+      "apiVersion": "2020-08-01",
+      "name": "[parameters('qnaSearchServiceName')]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "standard"
+      },
+      "properties": {
+        "replicaCount": 1,
+        "partitionCount": 1,
+        "hostingMode": "Default",
+        "publicNetworkAccess": "Enabled",
+        "networkRuleSet": {
+          "ipRules": []
+        }
       }
     }
   ],
