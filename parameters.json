@@ -75,7 +75,7 @@
       "value": "S0"
     },
     "chatbotQnaName": {
-      "value": "qna_chbot_sld_inte"
+      "value": "qna-chbot-sld-inte"
     },
     "qnaAppServicePlanSku": {
       "value": {
