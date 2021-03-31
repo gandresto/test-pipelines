@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
     "appId": {
@@ -146,6 +146,24 @@
       }
     },
     "qnaSearchServiceName": {
+      "type": "string"
+    },
+    "pythonAzFnName": {
+      "type": "string"
+    },
+    "pythonAzFnTelemName": {
+      "type": "string"
+    },
+    "workspaceAnalyticsFunctions": {
+      "type": "string"
+    },
+    "pythonFnAppServicePlan": {
+      "type": "string"
+    },
+    "pythonFnAppServicePlanSku": {
+      "type": "object"
+    },
+    "pythonFuncStorageAccount": {
       "type": "string"
     }
   },
@@ -474,6 +492,458 @@
         "networkRuleSet": {
           "ipRules": []
         }
+      }
+    },
+
+    // Python azure functions
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2021-01-01",
+      "name": "[parameters('pythonFuncStorageAccount')]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "Standard_LRS",
+        "tier": "Standard"
+      },
+      "kind": "Storage",
+      "properties": {
+        "minimumTlsVersion": "TLS1_2",
+        "networkAcls": {
+          "bypass": "AzureServices",
+          "virtualNetworkRules": [],
+          "ipRules": [],
+          "defaultAction": "Allow"
+        },
+        "supportsHttpsTrafficOnly": true,
+        "encryption": {
+          "services": {
+            "file": {
+              "keyType": "Account",
+              "enabled": true
+            },
+            "blob": {
+              "keyType": "Account",
+              "enabled": true
+            }
+          },
+          "keySource": "Microsoft.Storage"
+        }
+      }
+    },
+    {
+      "type": "microsoft.operationalinsights/workspaces",
+      "apiVersion": "2020-10-01",
+      "name": "[parameters('workspaceAnalyticsFunctions')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "provisioningState": "Succeeded",
+        "sku": {
+          "name": "pergb2018"
+        },
+        "retentionInDays": 30,
+        "features": {
+          "legacy": 0,
+          "searchVersion": 1,
+          "enableLogAccessUsingOnlyResourcePermissions": true
+        },
+        "workspaceCapping": {
+          "dailyQuotaGb": -1
+        },
+        "publicNetworkAccessForIngestion": "Enabled",
+        "publicNetworkAccessForQuery": "Enabled"
+      }
+    },
+    {
+
+      "type": "microsoft.insights/components",
+      "apiVersion": "2020-02-02-preview",
+      "name": "[parameters('pythonAzFnName')]",
+      "location": "[parameters('location')]",
+      "kind": "web",
+      "properties": {
+        "Application_Type": "web",
+        "Flow_Type": "Bluefield",
+        "Request_Source": "rest",
+        "WorkspaceResourceId": "[resourceId('microsoft.operationalinsights/workspaces', parameters('workspaceAnalyticsFunctions'))]",
+        "IngestionMode": "LogAnalytics",
+        "publicNetworkAccessForIngestion": "Enabled",
+        "publicNetworkAccessForQuery": "Enabled"
+      },
+      "dependsOn": [
+        "[resourceId('microsoft.operationalinsights/workspaces', parameters('workspaceAnalyticsFunctions'))]"
+      ]
+    },
+    {
+      "type": "microsoft.insights/components",
+      "apiVersion": "2020-02-02-preview",
+      "name": "[parameters('pythonAzFnTelemName')]",
+      "location": "[parameters('location')]",
+      "kind": "web",
+      "properties": {
+        "Application_Type": "web",
+        "Flow_Type": "Bluefield",
+        "Request_Source": "rest",
+        "WorkspaceResourceId": "[resourceId('microsoft.operationalinsights/workspaces', parameters('workspaceAnalyticsFunctions'))]",
+        "IngestionMode": "LogAnalytics",
+        "publicNetworkAccessForIngestion": "Enabled",
+        "publicNetworkAccessForQuery": "Enabled"
+      },
+      "dependsOn": [
+        "[resourceId('microsoft.operationalinsights/workspaces', parameters('workspaceAnalyticsFunctions'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2018-02-01",
+      "name": "[parameters('pythonFnAppServicePlan')]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "[parameters('pythonFnAppServicePlanSku').name]",
+        "tier": "[parameters('pythonFnAppServicePlanSku').tier]",
+        "size": "[parameters('pythonFnAppServicePlanSku').size]",
+        "family": "[parameters('pythonFnAppServicePlanSku').family]",
+        "capacity": "[parameters('pythonFnAppServicePlanSku').capacity]"
+      },
+      "kind": "linux",
+      "properties": {
+        "perSiteScaling": false,
+        "maximumElasticWorkerCount": 1,
+        "isSpot": false,
+        "reserved": true,
+        "isXenon": false,
+        "hyperV": false,
+        "targetWorkerCount": 0,
+        "targetWorkerSizeId": 0
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2018-11-01",
+      "name": "[parameters('pythonAzFnName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', parameters('pythonFnAppServicePlan'))]"
+      ],
+      "kind": "functionapp,linux",
+      "identity": {
+        "principalId": "09e0ca48-971a-4873-aea8-afffea4052a2",
+        "tenantId": "c65a3ea6-0f7c-400b-8934-5a6dc1705645",
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "enabled": true,
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('pythonFnAppServicePlan'))]",
+        "reserved": true,
+        "isXenon": false,
+        "hyperV": false,
+        "siteConfig": {},
+        "scmSiteAlsoStopped": false,
+        "clientAffinityEnabled": false,
+        "clientCertEnabled": false,
+        "hostNamesDisabled": false,
+        "containerSize": 1536,
+        "dailyMemoryTimeQuota": 0,
+        "httpsOnly": false,
+        "redundancyMode": "None"
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2018-11-01",
+      "name": "[parameters('pythonAzFnTelemName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', parameters('pythonFnAppServicePlan'))]"
+      ],
+      "kind": "functionapp,linux",
+      "identity": {
+        "principalId": "e5507763-0039-4da7-ac1f-df07c4889256",
+        "tenantId": "c65a3ea6-0f7c-400b-8934-5a6dc1705645",
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "enabled": true,
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('pythonFnAppServicePlan'))]",
+        "reserved": true,
+        "isXenon": false,
+        "hyperV": false,
+        "siteConfig": {},
+        "scmSiteAlsoStopped": false,
+        "clientAffinityEnabled": false,
+        "clientCertEnabled": false,
+        "hostNamesDisabled": false,
+        "containerSize": 1536,
+        "dailyMemoryTimeQuota": 0,
+        "httpsOnly": false,
+        "redundancyMode": "None"
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/config",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('pythonAzFnName'), '/web')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('pythonAzFnName'))]"
+      ],
+      "properties": {
+        "numberOfWorkers": 1,
+        "defaultDocuments": [
+          "Default.htm",
+          "Default.html",
+          "Default.asp",
+          "index.htm",
+          "index.html",
+          "iisstart.htm",
+          "default.aspx",
+          "index.php"
+        ],
+        "netFrameworkVersion": "v4.0",
+        "linuxFxVersion": "PYTHON|3.8",
+        "requestTracingEnabled": false,
+        "remoteDebuggingEnabled": false,
+        "remoteDebuggingVersion": "VS2019",
+        "httpLoggingEnabled": false,
+        "logsDirectorySizeLimit": 35,
+        "detailedErrorLoggingEnabled": false,
+        "azureStorageAccounts": {},
+        "scmType": "None",
+        "use32BitWorkerProcess": false,
+        "webSocketsEnabled": false,
+        "alwaysOn": true,
+        "managedPipelineMode": "Integrated",
+        "virtualApplications": [
+          {
+            "virtualPath": "/",
+            "physicalPath": "site\\wwwroot",
+            "preloadEnabled": true
+          }
+        ],
+        "loadBalancing": "LeastRequests",
+        "experiments": {
+          "rampUpRules": []
+        },
+        "autoHealEnabled": false,
+        "cors": {
+          "allowedOrigins": [
+            "https://functions.azure.com",
+            "https://functions-staging.azure.com",
+            "https://functions-next.azure.com"
+          ],
+          "supportCredentials": false
+        },
+        "localMySqlEnabled": false,
+        "managedServiceIdentityId": 1789,
+        "ipSecurityRestrictions": [
+          {
+            "ipAddress": "Any",
+            "action": "Allow",
+            "priority": 1,
+            "name": "Allow all",
+            "description": "Allow all access"
+          }
+        ],
+        "scmIpSecurityRestrictions": [
+          {
+            "ipAddress": "Any",
+            "action": "Allow",
+            "priority": 1,
+            "name": "Allow all",
+            "description": "Allow all access"
+          }
+        ],
+        "scmIpSecurityRestrictionsUseMain": false,
+        "http20Enabled": false,
+        "minTlsVersion": "1.2",
+        "ftpsState": "AllAllowed",
+        "reservedInstanceCount": 0
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/config",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('pythonAzFnTelemName'), '/web')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('pythonAzFnTelemName'))]"
+      ],
+      "properties": {
+        "numberOfWorkers": 1,
+        "defaultDocuments": [
+          "Default.htm",
+          "Default.html",
+          "Default.asp",
+          "index.htm",
+          "index.html",
+          "iisstart.htm",
+          "default.aspx",
+          "index.php"
+        ],
+        "netFrameworkVersion": "v4.0",
+        "linuxFxVersion": "PYTHON|3.8",
+        "requestTracingEnabled": false,
+        "remoteDebuggingEnabled": false,
+        "remoteDebuggingVersion": "VS2019",
+        "httpLoggingEnabled": false,
+        "logsDirectorySizeLimit": 35,
+        "detailedErrorLoggingEnabled": false,
+        "azureStorageAccounts": {},
+        "scmType": "None",
+        "use32BitWorkerProcess": false,
+        "webSocketsEnabled": false,
+        "alwaysOn": true,
+        "managedPipelineMode": "Integrated",
+        "virtualApplications": [
+          {
+            "virtualPath": "/",
+            "physicalPath": "site\\wwwroot",
+            "preloadEnabled": true
+          }
+        ],
+        "loadBalancing": "LeastRequests",
+        "experiments": {
+          "rampUpRules": []
+        },
+        "autoHealEnabled": false,
+        "cors": {
+          "allowedOrigins": [
+            "https://functions.azure.com",
+            "https://functions-staging.azure.com",
+            "https://functions-next.azure.com"
+          ],
+          "supportCredentials": false
+        },
+        "localMySqlEnabled": false,
+        "managedServiceIdentityId": 1817,
+        "ipSecurityRestrictions": [
+          {
+            "ipAddress": "Any",
+            "action": "Allow",
+            "priority": 1,
+            "name": "Allow all",
+            "description": "Allow all access"
+          }
+        ],
+        "scmIpSecurityRestrictions": [
+          {
+            "ipAddress": "Any",
+            "action": "Allow",
+            "priority": 1,
+            "name": "Allow all",
+            "description": "Allow all access"
+          }
+        ],
+        "scmIpSecurityRestrictionsUseMain": false,
+        "http20Enabled": false,
+        "minTlsVersion": "1.2",
+        "ftpsState": "AllAllowed",
+        "reservedInstanceCount": 0
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/functions",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('pythonAzFnName'), '/azfn-py-qna')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('pythonAzFnName'))]"
+      ],
+      "properties": {
+        "script_root_path_href": "[concat('https://', parameters('pythonAzFnName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/azfn-py-qna/')]",
+        "script_href": "[concat('https://', parameters('pythonAzFnName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/azfn-py-qna/__init__.py')]",
+        "config_href": "[concat('https://', parameters('pythonAzFnName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/azfn-py-qna/function.json')]",
+        "href": "[concat('https://', parameters('pythonAzFnName'), '.azurewebsites.net/admin/functions/azfn-py-qna')]",
+        "config": {}
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/functions",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('pythonAzFnTelemName'), '/extUsoBC')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('pythonAzFnTelemName'))]"
+      ],
+      "properties": {
+        "script_root_path_href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoBC/')]",
+        "script_href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoBC/__init__.py')]",
+        "config_href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoBC/function.json')]",
+        "href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/functions/extUsoBC')]",
+        "config": {}
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/functions",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('pythonAzFnTelemName'), '/extUsoLUIS')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('pythonAzFnTelemName'))]"
+      ],
+      "properties": {
+        "script_root_path_href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoLUIS/')]",
+        "script_href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoLUIS/__init__.py')]",
+        "config_href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoLUIS/function.json')]",
+        "href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/functions/extUsoLUIS')]",
+        "config": {}
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/functions",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('pythonAzFnTelemName'), '/extUsoMensajes')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('pythonAzFnTelemName'))]"
+      ],
+      "properties": {
+        "script_root_path_href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoMensajes/')]",
+        "script_href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoMensajes/__init__.py')]",
+        "config_href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoMensajes/function.json')]",
+        "href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/functions/extUsoMensajes')]",
+        "config": {}
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/functions",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('pythonAzFnTelemName'), '/extUsoServicios')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('pythonAzFnTelemName'))]"
+      ],
+      "properties": {
+        "script_root_path_href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoServicios/')]",
+        "script_href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoServicios/__init__.py')]",
+        "config_href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoServicios/function.json')]",
+        "href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/functions/extUsoServicios')]",
+        "config": {}
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/hostNameBindings",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('pythonAzFnName'), '/', parameters('pythonAzFnName'), '.azurewebsites.net')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('pythonAzFnName'))]"
+      ],
+      "properties": {
+        "siteName": "[parameters('pythonAzFnName')]",
+        "hostNameType": "Verified"
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites/hostNameBindings",
+      "apiVersion": "2018-11-01",
+      "name": "[concat(parameters('pythonAzFnTelemName'), '/', parameters('pythonAzFnTelemName'), '.azurewebsites.net')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', parameters('pythonAzFnTelemName'))]"
+      ],
+      "properties": {
+        "siteName": "[parameters('pythonAzFnTelemName')]",
+        "hostNameType": "Verified"
       }
     }
   ],

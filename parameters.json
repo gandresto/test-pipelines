@@ -88,6 +88,30 @@
         "family": "S",
         "capacity": 1
       }
+    },
+    "pythonFnAppServicePlan": {
+      "value": "asp-azfnpy-chbot-sld-inte"
+    },
+    "pythonFnAppServicePlanSku": {
+      "value": {
+        "name": "P1v2",
+        "tier": "PremiumV2",
+        "size": "P1v2",
+        "family": "Pv2",
+        "capacity": 1
+      }
+    },
+    "pythonAzFnName": {
+      "value": "azfn-py-chbot-sld-inte"
+    },
+    "pythonAzFnTelemName": {
+      "value": "azfn-py-chbott-sld-inte"
+    },
+    "workspaceAnalyticsFunctions": {
+      "value": "wksalyt-chbot-sld-inte"
+    },
+    "pythonFuncStorageAccount": {
+      "value": "stgaccpyfnchbotsldinte"
     }
   }
 }
