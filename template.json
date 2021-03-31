@@ -625,11 +625,6 @@
         "[resourceId('Microsoft.Web/serverfarms', parameters('pythonFnAppServicePlan'))]"
       ],
       "kind": "functionapp,linux",
-      "identity": {
-        "principalId": "09e0ca48-971a-4873-aea8-afffea4052a2",
-        "tenantId": "c65a3ea6-0f7c-400b-8934-5a6dc1705645",
-        "type": "SystemAssigned"
-      },
       "properties": {
         "enabled": true,
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('pythonFnAppServicePlan'))]",
@@ -656,11 +651,6 @@
         "[resourceId('Microsoft.Web/serverfarms', parameters('pythonFnAppServicePlan'))]"
       ],
       "kind": "functionapp,linux",
-      "identity": {
-        "principalId": "e5507763-0039-4da7-ac1f-df07c4889256",
-        "tenantId": "c65a3ea6-0f7c-400b-8934-5a6dc1705645",
-        "type": "SystemAssigned"
-      },
       "properties": {
         "enabled": true,
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('pythonFnAppServicePlan'))]",
@@ -733,7 +723,6 @@
           "supportCredentials": false
         },
         "localMySqlEnabled": false,
-        "managedServiceIdentityId": 1789,
         "ipSecurityRestrictions": [
           {
             "ipAddress": "Any",
@@ -814,7 +803,6 @@
           "supportCredentials": false
         },
         "localMySqlEnabled": false,
-        "managedServiceIdentityId": 1817,
         "ipSecurityRestrictions": [
           {
             "ipAddress": "Any",
