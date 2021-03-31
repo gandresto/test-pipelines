@@ -2,6 +2,9 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "appId": {
+      "value": "5c802e0a-80c0-434a-8da9-657d0b977a3d"
+    },
     "botId": {
       "value": "0d44208a-4b94-4ab6-a26c-d1498647a4f3"
     },
@@ -13,9 +16,6 @@
     },
     "newWebAppName": {
       "value": "chbot-sld-inte"
-    },
-    "appId": {
-      "value": "5c802e0a-80c0-434a-8da9-657d0b977a3d"
     },
     "appSecret": {
       "value": "chbot-sld-inte-secret"
@@ -112,6 +112,9 @@
     },
     "pythonFuncStorageAccount": {
       "value": "stgaccpyfnchbotsldinte"
+    },
+    "keyvaultName": {
+      "value": "keyvault-chtbot-sld-dev"
     }
   }
 }

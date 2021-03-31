@@ -165,6 +165,9 @@
     },
     "pythonFuncStorageAccount": {
       "type": "string"
+    },
+    "keyvaultName": {
+      "type": "string"
     }
   },
   "variables": {
@@ -823,61 +826,6 @@
       }
     },
     {
-      "type": "Microsoft.Web/sites/functions",
-      "apiVersion": "2018-11-01",
-      "name": "[concat(parameters('pythonAzFnName'), '/azfn-py-qna')]",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', parameters('pythonAzFnName'))]"
-      ],
-      "properties": {
-      }
-    },
-    {
-      "type": "Microsoft.Web/sites/functions",
-      "apiVersion": "2018-11-01",
-      "name": "[concat(parameters('pythonAzFnTelemName'), '/extUsoBC')]",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', parameters('pythonAzFnTelemName'))]"
-      ],
-      "properties": {
-      }
-    },
-    {
-      "type": "Microsoft.Web/sites/functions",
-      "apiVersion": "2018-11-01",
-      "name": "[concat(parameters('pythonAzFnTelemName'), '/extUsoLUIS')]",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', parameters('pythonAzFnTelemName'))]"
-      ],
-      "properties": {
-      }
-    },
-    {
-      "type": "Microsoft.Web/sites/functions",
-      "apiVersion": "2018-11-01",
-      "name": "[concat(parameters('pythonAzFnTelemName'), '/extUsoMensajes')]",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', parameters('pythonAzFnTelemName'))]"
-      ],
-      "properties": {
-      }
-    },
-    {
-      "type": "Microsoft.Web/sites/functions",
-      "apiVersion": "2018-11-01",
-      "name": "[concat(parameters('pythonAzFnTelemName'), '/extUsoServicios')]",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', parameters('pythonAzFnTelemName'))]"
-      ],
-      "properties": {
-      }
-    },
-    {
       "type": "Microsoft.Web/sites/hostNameBindings",
       "apiVersion": "2018-11-01",
       "name": "[concat(parameters('pythonAzFnName'), '/', parameters('pythonAzFnName'), '.azurewebsites.net')]",
@@ -901,6 +849,27 @@
       "properties": {
         "siteName": "[parameters('pythonAzFnTelemName')]",
         "hostNameType": "Verified"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults",
+      "apiVersion": "2020-04-01-preview",
+      "name": "[parameters('keyvaultName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "sku": {
+          "family": "A",
+          "name": "Standard"
+        },
+        "tenantId": "[subscription().tenantId]",
+        "enabledForDeployment": false,
+        "enabledForDiskEncryption": false,
+        "enabledForTemplateDeployment": false,
+        "enableSoftDelete": true,
+        "softDeleteRetentionInDays": 90,
+        "enableRbacAuthorization": false,
+        "vaultUri": "[concat('https://', parameters('keyvaultName'), '.vault.azure.net/')]",
+        "provisioningState": "Succeeded"
       }
     }
   ],
