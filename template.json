@@ -178,7 +178,7 @@
     "botEndpoint": "[concat('https://', variables('siteHost'), '/api/messages')]",
     "storageAccountName": "[toLower(take(replace(replace(parameters('storageAccountName'), '-', ''), '_', ''), 24))]",
     "LuisAuthoringAccountName": "[if(empty(parameters('luisAuthoringName')), concat(parameters('luisServiceName'), '-auth'), parameters('luisAuthoringName'))]",
-    "qnaAppServicePlan": "[concat('asp_', parameters('chatbotQnaName'))]"
+    "qnaAppServicePlan": "[concat('asp-', parameters('chatbotQnaName'))]"
   },
   "resources": [
     {
@@ -536,16 +536,10 @@
       "name": "[parameters('workspaceAnalyticsFunctions')]",
       "location": "[parameters('location')]",
       "properties": {
-        "provisioningState": "Succeeded",
         "sku": {
           "name": "pergb2018"
         },
         "retentionInDays": 30,
-        "features": {
-          "legacy": 0,
-          "searchVersion": 1,
-          "enableLogAccessUsingOnlyResourcePermissions": true
-        },
         "workspaceCapping": {
           "dailyQuotaGb": -1
         },
