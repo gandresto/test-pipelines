@@ -869,7 +869,6 @@
         "softDeleteRetentionInDays": 90,
         "enableRbacAuthorization": false,
         "vaultUri": "[concat('https://', parameters('keyvaultName'), '.vault.azure.net/')]",
-        "provisioningState": "Succeeded"
       }
     }
   ],
