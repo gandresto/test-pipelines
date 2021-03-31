@@ -831,11 +831,6 @@
         "[resourceId('Microsoft.Web/sites', parameters('pythonAzFnName'))]"
       ],
       "properties": {
-        "script_root_path_href": "[concat('https://', parameters('pythonAzFnName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/azfn-py-qna/')]",
-        "script_href": "[concat('https://', parameters('pythonAzFnName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/azfn-py-qna/__init__.py')]",
-        "config_href": "[concat('https://', parameters('pythonAzFnName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/azfn-py-qna/function.json')]",
-        "href": "[concat('https://', parameters('pythonAzFnName'), '.azurewebsites.net/admin/functions/azfn-py-qna')]",
-        "config": {}
       }
     },
     {
@@ -847,11 +842,6 @@
         "[resourceId('Microsoft.Web/sites', parameters('pythonAzFnTelemName'))]"
       ],
       "properties": {
-        "script_root_path_href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoBC/')]",
-        "script_href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoBC/__init__.py')]",
-        "config_href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoBC/function.json')]",
-        "href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/functions/extUsoBC')]",
-        "config": {}
       }
     },
     {
@@ -863,11 +853,6 @@
         "[resourceId('Microsoft.Web/sites', parameters('pythonAzFnTelemName'))]"
       ],
       "properties": {
-        "script_root_path_href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoLUIS/')]",
-        "script_href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoLUIS/__init__.py')]",
-        "config_href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoLUIS/function.json')]",
-        "href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/functions/extUsoLUIS')]",
-        "config": {}
       }
     },
     {
@@ -879,11 +864,6 @@
         "[resourceId('Microsoft.Web/sites', parameters('pythonAzFnTelemName'))]"
       ],
       "properties": {
-        "script_root_path_href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoMensajes/')]",
-        "script_href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoMensajes/__init__.py')]",
-        "config_href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoMensajes/function.json')]",
-        "href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/functions/extUsoMensajes')]",
-        "config": {}
       }
     },
     {
@@ -895,11 +875,6 @@
         "[resourceId('Microsoft.Web/sites', parameters('pythonAzFnTelemName'))]"
       ],
       "properties": {
-        "script_root_path_href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoServicios/')]",
-        "script_href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoServicios/__init__.py')]",
-        "config_href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/vfs/home/site/wwwroot/extUsoServicios/function.json')]",
-        "href": "[concat('https://', parameters('pythonAzFnTelemName'), '.azurewebsites.net/admin/functions/extUsoServicios')]",
-        "config": {}
       }
     },
     {
