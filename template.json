@@ -806,14 +806,15 @@
           "family": "A",
           "name": "Standard"
         },
-        "tenantId": "[subscription().tenantId]",
         "enabledForDeployment": false,
         "enabledForDiskEncryption": false,
         "enabledForTemplateDeployment": false,
         "enableSoftDelete": true,
         "softDeleteRetentionInDays": 90,
         "enableRbacAuthorization": false,
-        "vaultUri": "[concat('https://', variables('keyvaultName'), '.vault.azure.net/')]"
+        "vaultUri": "[concat('https://', variables('keyvaultName'), '.vault.azure.net/')]",
+        "tenantId": "[subscription().tenantId]",
+        "accessPolicies": []
       }
     }
   ],
