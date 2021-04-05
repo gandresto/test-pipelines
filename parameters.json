@@ -28,10 +28,10 @@
     },
     "chatbotAppServicePlanSku": {
       "value": {
-        "name": "S1",
-        "tier": "Standard",
-        "size": "S1",
-        "family": "S",
+        "name": "F0",
+        "tier": "Free",
+        "size": "F0",
+        "family": "F",
         "capacity": 1
       }
     },
@@ -52,19 +52,19 @@
     },
     "qnaAppServicePlanSku": {
       "value": {
-        "name": "S1",
-        "tier": "Standard",
-        "size": "S1",
-        "family": "S",
+        "name": "F0",
+        "tier": "Free",
+        "size": "F0",
+        "family": "F",
         "capacity": 1
       }
     },
     "pythonFnAppServicePlanSku": {
       "value": {
-        "name": "S1",
-        "tier": "Standard",
-        "size": "S1",
-        "family": "S",
+        "name": "F0",
+        "tier": "Free",
+        "size": "F0",
+        "family": "F",
         "capacity": 1
       }
     }
