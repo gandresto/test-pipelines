@@ -115,6 +115,15 @@
         "capacity": 0
       }
     },
+    "sqlSKU": {
+      "type": "object",
+      "defaultValue": {
+        "name": "GP_S_Gen5",
+        "tier": "GeneralPurpose",
+        "family": "Gen5",
+        "capacity": 1
+      }
+    },
     "pythonFnAppServicePlanSku": {
       "type": "object"
     }
@@ -142,7 +151,9 @@
     "resourcesLocation": "[parameters('appServicePlanLocation')]",
     "siteHost": "[concat(variables('appServiceChatBotName'), '.azurewebsites.net')]",
     "botEndpoint": "[concat('https://', variables('siteHost'), '/api/messages')]",
-    "qnaAppServicePlan": "[concat('asp-', variables('qnaChatbotName'))]"
+    "qnaAppServicePlan": "[concat('asp-', variables('qnaChatbotName'))]",
+    "sqlServerName": "[concat('sql-srv-chbot-', parameters('org'), '-', parameters('enviorment'))]",
+    "sqlServerStgAccName": "[toLower(take(replace(replace(concat('sql0srv0', parameters('org'), '0', parameters('enviorment')), '-', '0'), '_', '0'), 24))]"
   },
   "resources": [
     {
@@ -851,142 +862,6 @@
         "vaultUri": "[concat('https://', variables('keyvaultName'), '.vault.azure.net/')]",
         "tenantId": "[subscription().tenantId]",
         "accessPolicies": [
-          {
-            "tenantId": "[subscription().tenantId]",
-            "objectId": "[resourceId('Microsoft.Web/sites', variables('pythonAzFnName'))]",
-            "permissions": {
-              "keys": [
-                "Get",
-                "List",
-                "Update",
-                "Create",
-                "Import",
-                "Delete",
-                "Recover",
-                "Backup",
-                "Restore"
-              ],
-              "secrets": [
-                "Get",
-                "List",
-                "Set",
-                "Delete",
-                "Recover",
-                "Backup",
-                "Restore"
-              ],
-              "certificates": [
-                "Get",
-                "List",
-                "Update",
-                "Create",
-                "Import",
-                "Delete",
-                "Recover",
-                "Backup",
-                "Restore",
-                "ManageContacts",
-                "ManageIssuers",
-                "GetIssuers",
-                "ListIssuers",
-                "SetIssuers",
-                "DeleteIssuers"
-              ]
-            }
-          },
-          {
-            "tenantId": "[subscription().tenantId]",
-            "objectId": "[resourceId('Microsoft.Web/sites', variables('pythonAzFnTelemName'))]",
-            "permissions": {
-              "keys": [
-                "Get",
-                "List",
-                "Update",
-                "Create",
-                "Import",
-                "Delete",
-                "Recover",
-                "Backup",
-                "Restore"
-              ],
-              "secrets": [
-                "Get",
-                "List",
-                "Set",
-                "Delete",
-                "Recover",
-                "Backup",
-                "Restore"
-              ],
-              "certificates": [
-                "Get",
-                "List",
-                "Update",
-                "Create",
-                "Import",
-                "Delete",
-                "Recover",
-                "Backup",
-                "Restore",
-                "ManageContacts",
-                "ManageIssuers",
-                "GetIssuers",
-                "ListIssuers",
-                "SetIssuers",
-                "DeleteIssuers"
-              ]
-            }
-          },
-          {
-            "tenantId": "[subscription().tenantId]",
-            "objectId": "[resourceId('Microsoft.Web/sites', variables('appServiceApi'))]",
-            "permissions": {
-              "keys": [
-                "Get",
-                "List",
-                "Update",
-                "Create",
-                "Import",
-                "Delete",
-                "Recover",
-                "Backup",
-                "Restore",
-                "Decrypt",
-                "Encrypt",
-                "UnwrapKey",
-                "WrapKey",
-                "Verify",
-                "Sign",
-                "Purge"
-              ],
-              "secrets": [
-                "Get",
-                "List",
-                "Set",
-                "Delete",
-                "Recover",
-                "Backup",
-                "Restore"
-              ],
-              "certificates": [
-                "Get",
-                "List",
-                "Update",
-                "Create",
-                "Import",
-                "Delete",
-                "Recover",
-                "Backup",
-                "Restore",
-                "ManageContacts",
-                "ManageIssuers",
-                "GetIssuers",
-                "ListIssuers",
-                "SetIssuers",
-                "DeleteIssuers"
-              ]
-            }
-          }
         ]
       }
     },
@@ -1146,7 +1021,7 @@
       "type": "Microsoft.Web/sites/hostNameBindings",
       "apiVersion": "2018-11-01",
       "name": "[concat(variables('appServiceApi'), '/', variables('appServiceApi'), '.azurewebsites.net')]",
-      "location": "West US",
+      "location": "[parameters('location')]",
       "dependsOn": [
         "[resourceId('Microsoft.Web/sites', variables('appServiceApi'))]"
       ],
@@ -1163,6 +1038,205 @@
       "dependsOn": [
         "[resourceId('Microsoft.Web/sites', variables('appServiceApi'))]"
       ]
+    },
+
+    // SQL
+    {
+      "type": "Microsoft.Sql/servers",
+      "apiVersion": "2020-08-01-preview",
+      "name": "[variables('sqlServerName')]",
+      "location": "[parameters('location')]",
+      "kind": "v12.0",
+      "properties": {
+        "administratorLogin": "chtecbotadmin",
+        "version": "12.0",
+        "publicNetworkAccess": "Enabled"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2021-01-01",
+      "name": "[variables('sqlServerStgAccName')]",
+      "location": "westus",
+      "sku": {
+        "name": "Standard_LRS",
+        "tier": "Standard"
+      },
+      "kind": "StorageV2",
+      "properties": {
+        "networkAcls": {
+          "bypass": "AzureServices",
+          "virtualNetworkRules": [],
+          "ipRules": [],
+          "defaultAction": "Allow"
+        },
+        "supportsHttpsTrafficOnly": true,
+        "encryption": {
+          "services": {
+            "file": {
+              "keyType": "Account",
+              "enabled": true
+            },
+            "blob": {
+              "keyType": "Account",
+              "enabled": true
+            }
+          },
+          "keySource": "Microsoft.Storage"
+        },
+        "accessTier": "Hot"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/auditingPolicies",
+      "apiVersion": "2014-04-01",
+      "name": "[concat(variables('sqlServerName'), '/Default')]",
+      "location": "West US",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', variables('sqlServerName'))]"
+      ],
+      "properties": {
+        "auditingState": "Disabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/auditingSettings",
+      "apiVersion": "2020-08-01-preview",
+      "name": "[concat(variables('sqlServerName'), '/Default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', variables('sqlServerName'))]"
+      ],
+      "properties": {
+        "retentionDays": 0,
+        "auditActionsAndGroups": [],
+        "isStorageSecondaryKeyInUse": false,
+        "isAzureMonitorTargetEnabled": false,
+        "state": "Disabled",
+        "storageAccountSubscriptionId": "00000000-0000-0000-0000-000000000000"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases",
+      "apiVersion": "2020-08-01-preview",
+      "name": "[concat(variables('sqlServerName'), '/', variables('sqlServerName'))]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', variables('sqlServerName'))]"
+      ],
+      "sku": {
+        "name": "[parameters('sqlSKU').name]",
+        "tier": "[parameters('sqlSKU').tier]",
+        "family": "[parameters('sqlSKU').family]",
+        "capacity": "[parameters('sqlSKU').capacity]"
+      },
+      "kind": "v12.0,user,vcore,serverless",
+      "properties": {
+        "collation": "SQL_Latin1_General_CP1_CI_AS",
+        "maxSizeBytes": 34359738368,
+        "catalogCollation": "SQL_Latin1_General_CP1_CI_AS",
+        "zoneRedundant": false,
+        "readScale": "Disabled",
+        "autoPauseDelay": 60,
+        "storageAccountType": "GRS",
+        "minCapacity": 0.5
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/devOpsAuditingSettings",
+      "apiVersion": "2020-08-01-preview",
+      "name": "[concat(variables('sqlServerName'), '/Default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', variables('sqlServerName'))]"
+      ],
+      "properties": {
+        "isAzureMonitorTargetEnabled": false,
+        "state": "Disabled",
+        "storageAccountSubscriptionId": "00000000-0000-0000-0000-000000000000"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices",
+      "apiVersion": "2021-01-01",
+      "name": "[concat(variables('sqlServerStgAccName'), '/default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('sqlServerStgAccName'))]"
+      ],
+      "sku": {
+        "name": "Standard_LRS",
+        "tier": "Standard"
+      },
+      "properties": {
+        "cors": {
+          "corsRules": []
+        },
+        "deleteRetentionPolicy": {
+          "enabled": false
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/fileServices",
+      "apiVersion": "2021-01-01",
+      "name": "[concat(variables('sqlServerStgAccName'), '/default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('sqlServerStgAccName'))]"
+      ],
+      "sku": {
+        "name": "Standard_LRS",
+        "tier": "Standard"
+      },
+      "properties": {
+        "protocolSettings": {
+          "smb": {}
+        },
+        "cors": {
+          "corsRules": []
+        },
+        "shareDeleteRetentionPolicy": {
+          "enabled": true,
+          "days": 7
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/queueServices",
+      "apiVersion": "2021-01-01",
+      "name": "[concat(variables('sqlServerStgAccName'), '/default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('sqlServerStgAccName'))]"
+      ],
+      "properties": {
+        "cors": {
+          "corsRules": []
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/tableServices",
+      "apiVersion": "2021-01-01",
+      "name": "[concat(variables('sqlServerStgAccName'), '/default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('sqlServerStgAccName'))]"
+      ],
+      "properties": {
+        "cors": {
+          "corsRules": []
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2021-01-01",
+      "name": "[concat(variables('sqlServerStgAccName'), '/default/vulnerability-assessment')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', variables('sqlServerStgAccName'), 'default')]",
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('sqlServerStgAccName'))]"
+      ],
+      "properties": {
+        "defaultEncryptionScope": "$account-encryption-key",
+        "denyEncryptionScopeOverride": false,
+        "publicAccess": "None"
+      }
     }
   ],
   "outputs": {
