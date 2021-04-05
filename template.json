@@ -117,7 +117,7 @@
     "qnaSearchServiceName": "[toLower(take(replace(replace(concat('qna0srch0serv0', parameters('org'), '0', parameters('enviorment')), '-', '0'), '_', '0'), 24))]",
     "cosmosDBChatBotName": "[toLower(take(replace(concat('cosmos-chbot-', parameters('org'), '-', parameters('enviorment')), '_', ''), 31))]",
     "luisServiceName": "[concat('luis-chbot-', parameters('org'), '-', parameters('enviorment'))]",
-    "luisAuthoringName": "[concat('luis-chbot', parameters('org'), '-', parameters('enviorment'), '-auth')]",
+    "luisAuthoringName": "[concat('luis-chbot-', parameters('org'), '-', parameters('enviorment'), '-auth')]",
     // "luisAuthoringKey": "[concat('luis-chbot', parameters('org'), '-', parameters('enviorment'), '-auth')]",
     "stgAccChatbotName": "[toLower(take(replace(replace(concat('stg0chbot0', parameters('org'), '0', parameters('enviorment')), '-', '0'), '_', '0'), 24))]",
     "pythonAzFnName": "[concat('azfnpy-chbot-', parameters('org'), '-', parameters('enviorment'))]",
