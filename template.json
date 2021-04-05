@@ -125,7 +125,7 @@
     "pythonAzFnTelemName": "[concat('azfnpy-chbott-', parameters('org'), '-', parameters('enviorment'))]",
     "pythonFnStorageAccount": "[toLower(take(replace(replace(concat('stg0pyfn0', parameters('org'), '0', parameters('enviorment')), '-', '0'), '_', '0'), 24))]",
     "workspaceAnalyticsFunctions": "[concat('wksalyt-chbot-', parameters('org'), '-', parameters('enviorment'))]",
-    "keyvaultName": "[concat('keyvault-chbot-', parameters('org'), '-', parameters('enviorment'))]",
+    "keyvaultName": "[toLower(take(replace(replace(concat('keyvault0chbot0', parameters('org'), '0', parameters('enviorment')), '-', '0'), '_', '0'), 24))]",
     "resourcesLocation": "[parameters('appServicePlanLocation')]",
     "siteHost": "[concat(variables('appServiceChatBotName'), '.azurewebsites.net')]",
     "botEndpoint": "[concat('https://', variables('siteHost'), '/api/messages')]",
