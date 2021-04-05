@@ -1175,30 +1175,6 @@
       }
     },
     {
-      "type": "Microsoft.Storage/storageAccounts/fileServices",
-      "apiVersion": "2021-01-01",
-      "name": "[concat(variables('sqlServerStgAccName'), '/default')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Storage/storageAccounts', variables('sqlServerStgAccName'))]"
-      ],
-      "sku": {
-        "name": "Standard_LRS",
-        "tier": "Standard"
-      },
-      "properties": {
-        "protocolSettings": {
-          "smb": {}
-        },
-        "cors": {
-          "corsRules": []
-        },
-        "shareDeleteRetentionPolicy": {
-          "enabled": true,
-          "days": 7
-        }
-      }
-    },
-    {
       "type": "Microsoft.Storage/storageAccounts/queueServices",
       "apiVersion": "2021-01-01",
       "name": "[concat(variables('sqlServerStgAccName'), '/default')]",
