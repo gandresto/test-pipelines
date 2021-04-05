@@ -45,10 +45,10 @@
       "value": true
     },
     "luisServiceAuthoringSku": {
-      "value": "B1"
+      "value": "F0"
     },
     "luisServiceRunTimeSku": {
-      "value": "B1"
+      "value": "S0"
     },
     "qnaAppServicePlanSku": {
       "value": {
