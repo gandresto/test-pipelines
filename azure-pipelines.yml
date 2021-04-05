@@ -13,10 +13,10 @@ steps:
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
     deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'Azure for Students(26151880-1c46-475f-b346-11ddbadbafed)'
-    subscriptionId: '26151880-1c46-475f-b346-11ddbadbafed'
+    azureResourceManagerConnection: 'Azure for Students(e209c568-0f60-4c6d-ae25-7f3a24b518db)'
+    subscriptionId: 'e209c568-0f60-4c6d-ae25-7f3a24b518db'
     action: 'Create Or Update Resource Group'
-    resourceGroupName: 'new_bot_sld'
+    resourceGroupName: 'chbot-intevolution'
     location: 'West US'
     templateLocation: 'Linked artifact'
     csmFile: 'template.json'
