@@ -402,7 +402,7 @@
       "type": "Microsoft.Web/serverfarms",
       "apiVersion": "2018-02-01",
       "name": "[variables('qnaAppServicePlan')]",
-      "location": "West US",
+      "location": "[parameters('location')]",
       "sku": {
         "name": "[parameters('qnaAppServicePlanSku').name]",
         "tier": "[parameters('qnaAppServicePlanSku').tier]",
@@ -508,15 +508,10 @@
       "type": "Microsoft.DesktopVirtualization/workspaces",
       "apiVersion": "2021-02-01-preview",
       "name": "[variables('workspaceName')]",
-      "location": "westus",
-      "tags": {
-        "Responsable": "Manuel Terán",
-        "Proyecto": "chbot-tecsalud",
-        "Categoría": "Monitoreo"
-      },
+      "location": "[parameters('location')]",
       "properties": {
         "description": "WorksSpace para almacenamiento de telemetría del bot.",
-        "friendlyName": "WorkSpaceChBotTecSaludDev",
+        "friendlyName": "WorkSpaceChatBot",
         "applicationGroupReferences": []
       }
     },
@@ -870,7 +865,7 @@
       "type": "microsoft.insights/components",
       "apiVersion": "2020-02-02-preview",
       "name": "[variables('appServiceApi')]",
-      "location": "westus",
+      "location": "[parameters('location')]",
       "kind": "web",
       "properties": {
         "Application_Type": "web",
@@ -910,7 +905,7 @@
       "type": "Microsoft.Web/sites",
       "apiVersion": "2018-11-01",
       "name": "[variables('appServiceApi')]",
-      "location": "West US",
+      "location": "[parameters('location')]",
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanApi'))]"
       ],
@@ -1050,14 +1045,14 @@
       "properties": {
         "administratorLogin": "chtecbotadmin",
         "version": "12.0",
-        "publicNetworkAccess": "Enabled"
+        "publicNetworkAccess": "Enabled",
       }
     },
     {
       "type": "Microsoft.Storage/storageAccounts",
       "apiVersion": "2021-01-01",
       "name": "[variables('sqlServerStgAccName')]",
-      "location": "westus",
+      "location": "[parameters('location')]",
       "sku": {
         "name": "Standard_LRS",
         "tier": "Standard"
@@ -1091,7 +1086,7 @@
       "type": "Microsoft.Sql/servers/auditingPolicies",
       "apiVersion": "2014-04-01",
       "name": "[concat(variables('sqlServerName'), '/Default')]",
-      "location": "West US",
+      "location": "[parameters('location')]",
       "dependsOn": [
         "[resourceId('Microsoft.Sql/servers', variables('sqlServerName'))]"
       ],
