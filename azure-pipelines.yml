@@ -16,7 +16,7 @@ steps:
     azureResourceManagerConnection: 'Azure for Students(e209c568-0f60-4c6d-ae25-7f3a24b518db)'
     subscriptionId: 'e209c568-0f60-4c6d-ae25-7f3a24b518db'
     action: 'Create Or Update Resource Group'
-    resourceGroupName: 'chbot-intevolution'
+    resourceGroupName: 'chbot-intevolution-test'
     location: 'West US'
     templateLocation: 'Linked artifact'
     csmFile: 'template.json'
