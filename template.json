@@ -1045,7 +1045,7 @@
       "properties": {
         "administratorLogin": "chtecbotadmin",
         "version": "12.0",
-        "publicNetworkAccess": "Enabled",
+        "publicNetworkAccess": "Enabled"
       }
     },
     {
