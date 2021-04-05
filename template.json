@@ -2,13 +2,30 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "enviorment": {
+      "type": "string",
+      // "allowedValues": [
+      //   "dev",
+      //   "pprd",
+      //   "prod"
+      // ],
+      "metadata": {
+        "description": "Entorno de desarrollo del bot. dev - desarrollo, pprd - preproducción, prod - producción"
+      }
+    },
+    "org": {
+      "type": "string",
+      "metadata": {
+        "description": "Código de la organización en la cuál se montará el bot, por ejemplo sld para TecSalud o mil para TecMilenio"
+      }
+    },
     "appId": {
       "type": "string",
       "metadata": {
         "description": "Active Directory App ID, set as MicrosoftAppId in the Web App's Application Settings."
       }
     },
-    "appSecret": {
+    "chatbotWebAppSecret": {
       "type": "string",
       "metadata": {
         "description": "Active Directory App Password, set as MicrosoftAppPassword in the Web App's Application Settings. Defaults to \"\"."
@@ -21,18 +38,6 @@
     "useAppInsights": {
       "type": "bool",
       "defaultValue": true
-    },
-    "shouldCreateAuthoringResource": {
-      "type": "bool",
-      "defaultValue": true
-    },
-    "shouldCreateLuisResource": {
-      "type": "bool",
-      "defaultValue": true
-    },
-    "cosmosDbName": {
-      "type": "string",
-      "defaultValue": "[resourceGroup().name]"
     },
     "botId": {
       "type": "string",
@@ -47,22 +52,7 @@
         "description": "The pricing tier of the Bot Service Registration. Acceptable values are F0 and S1."
       }
     },
-    "luisAuthoringName": {
-      "type": "string",
-      "defaultValue": ""
-    },
-    "luisAuthoringKey": {
-      "type": "string",
-      "defaultValue": ""
-    },
-    "newAppServicePlanName": {
-      "type": "string",
-      "defaultValue": "[parameters('newAppServicePlanName')]",
-      "metadata": {
-        "description": "The name of the new App Service Plan."
-      }
-    },
-    "newAppServicePlanSku": {
+    "chatbotAppServicePlanSku": {
       "type": "object",
       "defaultValue": {
         "name": "S1",
@@ -81,24 +71,6 @@
         "description": "The location of the App Service Plan."
       }
     },
-    "existingAppServicePlan": {
-      "type": "string",
-      "defaultValue": "",
-      "metadata": {
-        "description": "Name of the existing App Service Plan used to create the Web App for the bot."
-      }
-    },
-    "newWebAppName": {
-      "type": "string",
-      "defaultValue": "[resourceGroup().name]",
-      "metadata": {
-        "description": "The globally unique name of the Web App. Defaults to the value passed in for \"botId\"."
-      }
-    },
-    "appInsightsName": {
-      "type": "string",
-      "defaultValue": "[resourceGroup().name]"
-    },
     "location": {
       "type": "string",
       "defaultValue": "[resourceGroup().location]"
@@ -110,14 +82,6 @@
     "useStorage": {
       "type": "bool",
       "defaultValue": true
-    },
-    "storageAccountName": {
-      "type": "string",
-      "defaultValue": "[resourceGroup().name]"
-    },
-    "luisServiceName": {
-      "type": "string",
-      "defaultValue": "[concat(resourceGroup().name, '-luis')]"
     },
     "luisServiceAuthoringSku": {
       "type": "string",
@@ -131,10 +95,6 @@
       "type": "string",
       "defaultValue": "[resourceGroup().location]"
     },
-    "chatbotQnaName": {
-      "type": "string",
-      "defaultValue": "[concat('qna_', resourceGroup().name)]"
-    },
     "qnaAppServicePlanSku": {
       "type": "object",
       "defaultValue": {
@@ -145,43 +105,31 @@
         "capacity": 1
       }
     },
-    "qnaSearchServiceName": {
-      "type": "string"
-    },
-    "pythonAzFnName": {
-      "type": "string"
-    },
-    "pythonAzFnTelemName": {
-      "type": "string"
-    },
-    "workspaceAnalyticsFunctions": {
-      "type": "string"
-    },
-    "pythonFnAppServicePlan": {
-      "type": "string"
-    },
     "pythonFnAppServicePlanSku": {
       "type": "object"
-    },
-    "pythonFuncStorageAccount": {
-      "type": "string"
-    },
-    "keyvaultName": {
-      "type": "string"
     }
   },
   "variables": {
-    "defaultAppServicePlanName": "[if(empty(parameters('existingAppServicePlan')), 'createNewAppServicePlan', parameters('existingAppServicePlan'))]",
-    "useExistingAppServicePlan": "[not(equals(variables('defaultAppServicePlanName'), 'createNewAppServicePlan'))]",
-    "servicePlanName": "[if(variables('useExistingAppServicePlan'), parameters('existingAppServicePlan'), parameters('newAppServicePlanName'))]",
+    "appServicePlanChatBotName": "[concat('asp-chbot-', parameters('org'), '-', parameters('enviorment'))]",
+    "appServiceChatBotName": "[concat('chbot-', parameters('org'), '-', parameters('enviorment'))]",
+    "appInsightsChatBotName": "[concat('chbot-', parameters('org'), '-', parameters('enviorment'))]",
+    "qnaChatbotName": "[concat('qna-chbot-', parameters('org'), '-', parameters('enviorment'))]",
+    "qnaSearchServiceName": "[toLower(take(replace(replace(concat('qna0srch0serv0', parameters('org'), '0', parameters('enviorment')), '-', '0'), '_', '0'), 24))]",
+    "cosmosDBChatBotName": "[toLower(take(replace(concat('cosmos-chbot-', parameters('org'), '-', parameters('enviorment')), '_', ''), 31))]",
+    "luisServiceName": "[concat('luis-chbot-', parameters('org'), '-', parameters('enviorment'))]",
+    "luisAuthoringName": "[concat('luis-chbot', parameters('org'), '-', parameters('enviorment'), '-auth')]",
+    // "luisAuthoringKey": "[concat('luis-chbot', parameters('org'), '-', parameters('enviorment'), '-auth')]",
+    "stgAccChatbotName": "[toLower(take(replace(replace(concat('stg0chbot0', parameters('org'), '0', parameters('enviorment')), '-', '0'), '_', '0'), 24))]",
+    "pythonAzFnName": "[concat('azfnpy-chbot-', parameters('org'), '-', parameters('enviorment'))]",
+    "pythonFnAppServicePlan": "[concat('asp-azfnpy-chbot-', parameters('org'), '-', parameters('enviorment'))]",
+    "pythonAzFnTelemName": "[concat('azfnpy-chbott-', parameters('org'), '-', parameters('enviorment'))]",
+    "pythonFnStorageAccount": "[toLower(take(replace(replace(concat('stg0pyfn0', parameters('org'), '0', parameters('enviorment')), '-', '0'), '_', '0'), 24))]",
+    "workspaceAnalyticsFunctions": "[concat('wksalyt-chbot-', parameters('org'), '-', parameters('enviorment'))]",
+    "keyvaultName": "[concat('keyvault-chbot-', parameters('org'), '-', parameters('enviorment'))]",
     "resourcesLocation": "[parameters('appServicePlanLocation')]",
-    "cosmosDbAccountName": "[toLower(take(replace(parameters('cosmosDbName'), '_', ''), 31))]",
-    "webAppName": "[if(empty(parameters('newWebAppName')), parameters('botId'), parameters('newWebAppName'))]",
-    "siteHost": "[concat(variables('webAppName'), '.azurewebsites.net')]",
+    "siteHost": "[concat(variables('appServiceChatBotName'), '.azurewebsites.net')]",
     "botEndpoint": "[concat('https://', variables('siteHost'), '/api/messages')]",
-    "storageAccountName": "[toLower(take(replace(replace(parameters('storageAccountName'), '-', ''), '_', ''), 24))]",
-    "LuisAuthoringAccountName": "[if(empty(parameters('luisAuthoringName')), concat(parameters('luisServiceName'), '-auth'), parameters('luisAuthoringName'))]",
-    "qnaAppServicePlan": "[concat('asp-', parameters('chatbotQnaName'))]"
+    "qnaAppServicePlan": "[concat('asp-', variables('qnaChatbotName'))]"
   },
   "resources": [
     {
@@ -200,13 +148,12 @@
     {
       "comments": "Create a new App Service Plan if no existing App Service Plan name was passed in.",
       "type": "Microsoft.Web/serverfarms",
-      "condition": "[not(variables('useExistingAppServicePlan'))]",
-      "name": "[variables('servicePlanName')]",
+      "name": "[variables('appServicePlanChatBotName')]",
       "apiVersion": "2018-02-01",
       "location": "[variables('resourcesLocation')]",
-      "sku": "[parameters('newAppServicePlanSku')]",
+      "sku": "[parameters('chatbotAppServicePlanSku')]",
       "properties": {
-        "name": "[variables('servicePlanName')]"
+        "name": "[variables('appServicePlanChatBotName')]"
       }
     },
     {
@@ -216,12 +163,12 @@
       "location": "[variables('resourcesLocation')]",
       "kind": "app",
       "dependsOn": [
-        "[resourceId('Microsoft.Web/serverfarms/', variables('servicePlanName'))]"
+        "[resourceId('Microsoft.Web/serverfarms/', variables('appServicePlanChatBotName'))]"
       ],
-      "name": "[variables('webAppName')]",
+      "name": "[variables('appServiceChatBotName')]",
       "properties": {
-        "name": "[variables('webAppName')]",
-        "serverFarmId": "[variables('servicePlanName')]",
+        "name": "[variables('appServiceChatBotName')]",
+        "serverFarmId": "[variables('appServicePlanChatBotName')]",
         "siteConfig": {
           "appSettings": [
             {
@@ -234,7 +181,7 @@
             },
             {
               "name": "MicrosoftAppPassword",
-              "value": "[parameters('appSecret')]"
+              "value": "[parameters('chatbotWebAppSecret')]"
             }
           ],
           "cors": {
@@ -251,7 +198,7 @@
       "type": "Microsoft.DocumentDB/databaseAccounts",
       "kind": "GlobalDocumentDB",
       "apiVersion": "2015-04-08",
-      "name": "[variables('cosmosDbAccountName')]",
+      "name": "[variables('cosmosDBChatBotName')]",
       "location": "[parameters('location')]",
       "properties": {
         "databaseAccountOfferType": "Standard",
@@ -267,9 +214,9 @@
     {
       "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
       "apiVersion": "2020-03-01",
-      "name": "[concat(variables('cosmosDbAccountName'), '/botstate-db')]",
+      "name": "[concat(variables('cosmosDBChatBotName'), '/botstate-db')]",
       "dependsOn": [
-        "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('cosmosDbAccountName'))]"
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('cosmosDBChatBotName'))]"
       ],
       "properties": {
         "resource": {
@@ -282,10 +229,10 @@
     {
       "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers",
       "apiVersion": "2020-03-01",
-      "name": "[concat(variables('cosmosDbAccountName'), '/botstate-db/botstate-container')]",
+      "name": "[concat(variables('cosmosDBChatBotName'), '/botstate-db/botstate-container')]",
       "dependsOn": [
-        "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', variables('cosmosDbAccountName'), 'botstate-db')]",
-        "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('cosmosDbAccountName'))]"
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', variables('cosmosDBChatBotName'), 'botstate-db')]",
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('cosmosDBChatBotName'))]"
       ],
       "properties": {
         "resource": {
@@ -322,14 +269,14 @@
     {
       "apiVersion": "2017-12-01",
       "type": "Microsoft.BotService/botServices",
-      "name": "[variables('webAppName')]",
+      "name": "[variables('appServiceChatBotName')]",
       "location": "global",
       "kind": "bot",
       "sku": {
         "name": "[parameters('botSku')]"
       },
       "properties": {
-        "name": "[variables('webAppName')]",
+        "name": "[variables('appServiceChatBotName')]",
         "displayName": "[parameters('botId')]",
         "endpoint": "[variables('botEndpoint')]",
         "msaAppId": "[parameters('appId')]",
@@ -339,7 +286,7 @@
         "storageResourceId": null
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Web/sites/', variables('webAppName'))]"
+        "[resourceId('Microsoft.Web/sites/', variables('appServiceChatBotName'))]"
       ]
     },
     {
@@ -347,7 +294,7 @@
       "type": "Microsoft.Insights/components",
       "kind": "web",
       "apiVersion": "2015-05-01",
-      "name": "[parameters('appInsightsName')]",
+      "name": "[variables('appInsightsChatBotName')]",
       "location": "[parameters('appInsightsLocation')]",
       "properties": {
         "Application_Type": "web"
@@ -359,7 +306,7 @@
       "type": "Microsoft.Storage/storageAccounts",
       "kind": "StorageV2",
       "apiVersion": "2018-07-01",
-      "name": "[variables('storageAccountName')]",
+      "name": "[variables('stgAccChatbotName')]",
       "location": "[parameters('location')]",
       "sku": {
         "name": "Standard_LRS"
@@ -369,14 +316,13 @@
     {
       "comments": "Cognitive service authoring key for all LUIS apps.",
       "apiVersion": "2017-04-18",
-      "name": "[variables('LuisAuthoringAccountName')]",
+      "name": "[variables('luisAuthoringName')]",
       "location": "[parameters('luisServiceLocation')]",
       "type": "Microsoft.CognitiveServices/accounts",
       "kind": "LUIS.Authoring",
       "sku": {
         "name": "[parameters('luisServiceAuthoringSku')]"
       },
-      "condition": "[parameters('shouldCreateAuthoringResource')]",
       "properties": {
         "statisticsEnabled": false
       }
@@ -386,12 +332,11 @@
       "type": "Microsoft.CognitiveServices/accounts",
       "kind": "LUIS",
       "apiVersion": "2017-04-18",
-      "name": "[parameters('luisServiceName')]",
+      "name": "[variables('luisServiceName')]",
       "location": "[parameters('luisServiceLocation')]",
       "sku": {
         "name": "[parameters('luisServiceRunTimeSku')]"
       },
-      "condition": "[parameters('shouldCreateLuisResource')]",
       "properties": {
         "statisticsEnabled": false
       }
@@ -401,7 +346,7 @@
     {
       "type": "Microsoft.CognitiveServices/accounts",
       "apiVersion": "2017-04-18",
-      "name": "[parameters('chatbotQnaName')]",
+      "name": "[variables('qnaChatbotName')]",
       "location": "[parameters('location')]",
       "sku": {
         "name": "S0"
@@ -409,9 +354,9 @@
       "kind": "QnAMaker",
       "properties": {
         "apiProperties": {
-          "qnaRuntimeEndpoint": "[concat('https://', parameters('chatbotQnaName'), '.azurewebsites.net')]"
+          "qnaRuntimeEndpoint": "[concat('https://', variables('qnaChatbotName'), '.azurewebsites.net')]"
         },
-        "customSubDomainName": "[parameters('chatbotQnaName')]",
+        "customSubDomainName": "[variables('qnaChatbotName')]",
         "privateEndpointConnections": [],
         "publicNetworkAccess": "Enabled"
       }
@@ -419,7 +364,7 @@
     {
       "type": "microsoft.insights/components",
       "apiVersion": "2020-02-02-preview",
-      "name": "[parameters('chatbotQnaName')]",
+      "name": "[variables('qnaChatbotName')]",
       "location": "[parameters('location')]",
       "kind": "web",
       "properties": {
@@ -456,7 +401,7 @@
     {
       "type": "Microsoft.Web/sites",
       "apiVersion": "2018-11-01",
-      "name": "[parameters('chatbotQnaName')]",
+      "name": "[variables('qnaChatbotName')]",
       "location": "[parameters('location')]",
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms', variables('qnaAppServicePlan'))]"
@@ -482,7 +427,7 @@
     {
       "type": "Microsoft.Search/searchServices",
       "apiVersion": "2020-08-01",
-      "name": "[parameters('qnaSearchServiceName')]",
+      "name": "[variables('qnaSearchServiceName')]",
       "location": "[parameters('location')]",
       "sku": {
         "name": "standard"
@@ -502,7 +447,7 @@
     {
       "type": "Microsoft.Storage/storageAccounts",
       "apiVersion": "2021-01-01",
-      "name": "[parameters('pythonFuncStorageAccount')]",
+      "name": "[variables('pythonFnStorageAccount')]",
       "location": "[parameters('location')]",
       "sku": {
         "name": "Standard_LRS",
@@ -536,7 +481,7 @@
     {
       "type": "microsoft.operationalinsights/workspaces",
       "apiVersion": "2020-10-01",
-      "name": "[parameters('workspaceAnalyticsFunctions')]",
+      "name": "[variables('workspaceAnalyticsFunctions')]",
       "location": "[parameters('location')]",
       "properties": {
         "sku": {
@@ -554,45 +499,45 @@
 
       "type": "microsoft.insights/components",
       "apiVersion": "2020-02-02-preview",
-      "name": "[parameters('pythonAzFnName')]",
+      "name": "[variables('pythonAzFnName')]",
       "location": "[parameters('location')]",
       "kind": "web",
       "properties": {
         "Application_Type": "web",
         "Flow_Type": "Bluefield",
         "Request_Source": "rest",
-        "WorkspaceResourceId": "[resourceId('microsoft.operationalinsights/workspaces', parameters('workspaceAnalyticsFunctions'))]",
+        "WorkspaceResourceId": "[resourceId('microsoft.operationalinsights/workspaces', variables('workspaceAnalyticsFunctions'))]",
         "IngestionMode": "LogAnalytics",
         "publicNetworkAccessForIngestion": "Enabled",
         "publicNetworkAccessForQuery": "Enabled"
       },
       "dependsOn": [
-        "[resourceId('microsoft.operationalinsights/workspaces', parameters('workspaceAnalyticsFunctions'))]"
+        "[resourceId('microsoft.operationalinsights/workspaces', variables('workspaceAnalyticsFunctions'))]"
       ]
     },
     {
       "type": "microsoft.insights/components",
       "apiVersion": "2020-02-02-preview",
-      "name": "[parameters('pythonAzFnTelemName')]",
+      "name": "[variables('pythonAzFnTelemName')]",
       "location": "[parameters('location')]",
       "kind": "web",
       "properties": {
         "Application_Type": "web",
         "Flow_Type": "Bluefield",
         "Request_Source": "rest",
-        "WorkspaceResourceId": "[resourceId('microsoft.operationalinsights/workspaces', parameters('workspaceAnalyticsFunctions'))]",
+        "WorkspaceResourceId": "[resourceId('microsoft.operationalinsights/workspaces', variables('workspaceAnalyticsFunctions'))]",
         "IngestionMode": "LogAnalytics",
         "publicNetworkAccessForIngestion": "Enabled",
         "publicNetworkAccessForQuery": "Enabled"
       },
       "dependsOn": [
-        "[resourceId('microsoft.operationalinsights/workspaces', parameters('workspaceAnalyticsFunctions'))]"
+        "[resourceId('microsoft.operationalinsights/workspaces', variables('workspaceAnalyticsFunctions'))]"
       ]
     },
     {
       "type": "Microsoft.Web/serverfarms",
       "apiVersion": "2018-02-01",
-      "name": "[parameters('pythonFnAppServicePlan')]",
+      "name": "[variables('pythonFnAppServicePlan')]",
       "location": "[parameters('location')]",
       "sku": {
         "name": "[parameters('pythonFnAppServicePlanSku').name]",
@@ -616,15 +561,15 @@
     {
       "type": "Microsoft.Web/sites",
       "apiVersion": "2018-11-01",
-      "name": "[parameters('pythonAzFnName')]",
+      "name": "[variables('pythonAzFnName')]",
       "location": "[parameters('location')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Web/serverfarms', parameters('pythonFnAppServicePlan'))]"
+        "[resourceId('Microsoft.Web/serverfarms', variables('pythonFnAppServicePlan'))]"
       ],
       "kind": "functionapp,linux",
       "properties": {
         "enabled": true,
-        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('pythonFnAppServicePlan'))]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('pythonFnAppServicePlan'))]",
         "reserved": true,
         "isXenon": false,
         "hyperV": false,
@@ -642,15 +587,15 @@
     {
       "type": "Microsoft.Web/sites",
       "apiVersion": "2018-11-01",
-      "name": "[parameters('pythonAzFnTelemName')]",
+      "name": "[variables('pythonAzFnTelemName')]",
       "location": "[parameters('location')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Web/serverfarms', parameters('pythonFnAppServicePlan'))]"
+        "[resourceId('Microsoft.Web/serverfarms', variables('pythonFnAppServicePlan'))]"
       ],
       "kind": "functionapp,linux",
       "properties": {
         "enabled": true,
-        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('pythonFnAppServicePlan'))]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('pythonFnAppServicePlan'))]",
         "reserved": true,
         "isXenon": false,
         "hyperV": false,
@@ -668,10 +613,10 @@
     {
       "type": "Microsoft.Web/sites/config",
       "apiVersion": "2018-11-01",
-      "name": "[concat(parameters('pythonAzFnName'), '/web')]",
+      "name": "[concat(variables('pythonAzFnName'), '/web')]",
       "location": "[parameters('location')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', parameters('pythonAzFnName'))]"
+        "[resourceId('Microsoft.Web/sites', variables('pythonAzFnName'))]"
       ],
       "properties": {
         "numberOfWorkers": 1,
@@ -748,10 +693,10 @@
     {
       "type": "Microsoft.Web/sites/config",
       "apiVersion": "2018-11-01",
-      "name": "[concat(parameters('pythonAzFnTelemName'), '/web')]",
+      "name": "[concat(variables('pythonAzFnTelemName'), '/web')]",
       "location": "[parameters('location')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', parameters('pythonAzFnTelemName'))]"
+        "[resourceId('Microsoft.Web/sites', variables('pythonAzFnTelemName'))]"
       ],
       "properties": {
         "numberOfWorkers": 1,
@@ -828,33 +773,33 @@
     {
       "type": "Microsoft.Web/sites/hostNameBindings",
       "apiVersion": "2018-11-01",
-      "name": "[concat(parameters('pythonAzFnName'), '/', parameters('pythonAzFnName'), '.azurewebsites.net')]",
+      "name": "[concat(variables('pythonAzFnName'), '/', variables('pythonAzFnName'), '.azurewebsites.net')]",
       "location": "[parameters('location')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', parameters('pythonAzFnName'))]"
+        "[resourceId('Microsoft.Web/sites', variables('pythonAzFnName'))]"
       ],
       "properties": {
-        "siteName": "[parameters('pythonAzFnName')]",
+        "siteName": "[variables('pythonAzFnName')]",
         "hostNameType": "Verified"
       }
     },
     {
       "type": "Microsoft.Web/sites/hostNameBindings",
       "apiVersion": "2018-11-01",
-      "name": "[concat(parameters('pythonAzFnTelemName'), '/', parameters('pythonAzFnTelemName'), '.azurewebsites.net')]",
+      "name": "[concat(variables('pythonAzFnTelemName'), '/', variables('pythonAzFnTelemName'), '.azurewebsites.net')]",
       "location": "[parameters('location')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', parameters('pythonAzFnTelemName'))]"
+        "[resourceId('Microsoft.Web/sites', variables('pythonAzFnTelemName'))]"
       ],
       "properties": {
-        "siteName": "[parameters('pythonAzFnTelemName')]",
+        "siteName": "[variables('pythonAzFnTelemName')]",
         "hostNameType": "Verified"
       }
     },
     {
       "type": "Microsoft.KeyVault/vaults",
       "apiVersion": "2020-04-01-preview",
-      "name": "[parameters('keyvaultName')]",
+      "name": "[variables('keyvaultName')]",
       "location": "[parameters('location')]",
       "properties": {
         "sku": {
@@ -868,7 +813,7 @@
         "enableSoftDelete": true,
         "softDeleteRetentionInDays": 90,
         "enableRbacAuthorization": false,
-        "vaultUri": "[concat('https://', parameters('keyvaultName'), '.vault.azure.net/')]"
+        "vaultUri": "[concat('https://', variables('keyvaultName'), '.vault.azure.net/')]"
       }
     }
   ],
@@ -876,14 +821,14 @@
     "ApplicationInsights": {
       "type": "object",
       "value": {
-        "InstrumentationKey": "[if(parameters('useAppInsights'), reference(resourceId('Microsoft.Insights/components', parameters('appInsightsName'))).InstrumentationKey, '')]"
+        "InstrumentationKey": "[if(parameters('useAppInsights'), reference(resourceId('Microsoft.Insights/components', variables('appInsightsChatBotName'))).InstrumentationKey, '')]"
       }
     },
     "cosmosDb": {
       "type": "object",
       "value": {
-        "cosmosDBEndpoint": "[if(parameters('useCosmosDb'), reference(resourceId('Microsoft.DocumentDB/databaseAccounts', variables('cosmosDbAccountName'))).documentEndpoint, '')]",
-        "authKey": "[if(parameters('useCosmosDb'), listKeys(resourceId('Microsoft.DocumentDB/databaseAccounts', variables('cosmosDbAccountName')), '2015-04-08').primaryMasterKey, '')]",
+        "cosmosDBEndpoint": "[if(parameters('useCosmosDb'), reference(resourceId('Microsoft.DocumentDB/databaseAccounts', variables('cosmosDBChatBotName'))).documentEndpoint, '')]",
+        "authKey": "[if(parameters('useCosmosDb'), listKeys(resourceId('Microsoft.DocumentDB/databaseAccounts', variables('cosmosDBChatBotName')), '2015-04-08').primaryMasterKey, '')]",
         "databaseId": "botstate-db",
         "containerId": "botstate-container"
       }
@@ -891,18 +836,18 @@
     "blobStorage": {
       "type": "object",
       "value": {
-        "connectionString": "[if(parameters('useStorage'), concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2018-07-01').keys[0].value, ';EndpointSuffix=core.windows.net'), '')]",
+        "connectionString": "[if(parameters('useStorage'), concat('DefaultEndpointsProtocol=https;AccountName=', variables('stgAccChatbotName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('stgAccChatbotName')), '2018-07-01').keys[0].value, ';EndpointSuffix=core.windows.net'), '')]",
         "container": "transcripts"
       }
     },
     "luis": {
       "type": "object",
       "value": {
-        "endpointKey": "[if(parameters('shouldCreateLuisResource'), listKeys(resourceId('Microsoft.CognitiveServices/accounts', parameters('luisServiceName')),'2017-04-18').key1, '')]",
-        "authoringKey": "[if(parameters('shouldCreateAuthoringResource'), listKeys(resourceId('Microsoft.CognitiveServices/accounts', variables('LuisAuthoringAccountName')),'2017-04-18').key1, parameters('luisAuthoringKey'))]",
+        "endpointKey": "[listKeys(resourceId('Microsoft.CognitiveServices/accounts', variables('luisServiceName')),'2017-04-18').key1]",
+        "authoringKey": "[listKeys(resourceId('Microsoft.CognitiveServices/accounts', variables('luisAuthoringName')),'2017-04-18').key1]",
         "region": "[parameters('luisServiceLocation')]",
-        "endpoint": "[if(parameters('shouldCreateLuisResource'), reference(resourceId('Microsoft.CognitiveServices/accounts', parameters('luisServiceName'))).endpoint, '')]",
-        "authoringEndpoint": "[if(parameters('shouldCreateAuthoringResource'), reference(resourceId('Microsoft.CognitiveServices/accounts', variables('LuisAuthoringAccountName'))).endpoint, '')]"
+        "endpoint": "[reference(resourceId('Microsoft.CognitiveServices/accounts', variables('luisServiceName'))).endpoint]",
+        "authoringEndpoint": "[reference(resourceId('Microsoft.CognitiveServices/accounts', variables('luisAuthoringName'))).endpoint]"
       }
     }
   }

@@ -2,6 +2,12 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "enviorment": {
+      "value": "dev"
+    },
+    "org": {
+      "value": "inte"
+    },
     "appId": {
       "value": "5c802e0a-80c0-434a-8da9-657d0b977a3d"
     },
@@ -11,13 +17,7 @@
     "botSku": {
       "value": "F0"
     },
-    "cosmosDbName": {
-      "value": "cosmos-chbot-sld-inte"
-    },
-    "newWebAppName": {
-      "value": "chbot-sld-inte"
-    },
-    "appSecret": {
+    "chatbotWebAppSecret": {
       "value": "chbot-sld-inte-secret"
     },
     "useCosmosDb": {
@@ -26,22 +26,7 @@
     "useAppInsights": {
       "value": true
     },
-    "shouldCreateAuthoringResource": {
-      "value": true
-    },
-    "shouldCreateLuisResource": {
-      "value": true
-    },
-    "luisAuthoringName": {
-      "value": "luis-auth-chbot-sld-inte"
-    },
-    "luisAuthoringKey": {
-      "value": "luis-auth-chbot-sld-inte"
-    },
-    "newAppServicePlanName": {
-      "value": "asp-chbot-sld-inte"
-    },
-    "newAppServicePlanSku": {
+    "chatbotAppServicePlanSku": {
       "value": {
         "name": "S1",
         "tier": "Standard",
@@ -53,32 +38,17 @@
     "appServicePlanLocation": {
       "value": "westus"
     },
-    "appInsightsName": {
-      "value": "chbot-sld-inte"
-    },
     "location": {
       "value": "westus"
     },
     "useStorage": {
       "value": true
     },
-    "storageAccountName": {
-      "value": "stg0chbot0sld0inte0std"
-    },
-    "luisServiceName": {
-      "value": "luis-chbot-sld-inte"
-    },
     "luisServiceAuthoringSku": {
       "value": "F0"
     },
     "luisServiceRunTimeSku": {
-      "value": "S0"
-    },
-    "chatbotQnaName": {
-      "value": "qna-chbot-sld-inte"
-    },
-    "qnaSearchServiceName": {
-      "value": "qnasearchservicesldinte"
+      "value": "F0"
     },
     "qnaAppServicePlanSku": {
       "value": {
@@ -89,9 +59,6 @@
         "capacity": 1
       }
     },
-    "pythonFnAppServicePlan": {
-      "value": "asp-azfnpy-chbot-sld-inte"
-    },
     "pythonFnAppServicePlanSku": {
       "value": {
         "name": "S1",
@@ -100,21 +67,6 @@
         "family": "S",
         "capacity": 1
       }
-    },
-    "pythonAzFnName": {
-      "value": "azfn-py-chbot-sld-inte"
-    },
-    "pythonAzFnTelemName": {
-      "value": "azfn-py-chbott-sld-inte"
-    },
-    "workspaceAnalyticsFunctions": {
-      "value": "wksalyt-chbot-sld-inte"
-    },
-    "pythonFuncStorageAccount": {
-      "value": "stgaccpyfnchbotsldinte"
-    },
-    "keyvaultName": {
-      "value": "keyvault-chtbot-sld-dev"
     }
   }
 }
