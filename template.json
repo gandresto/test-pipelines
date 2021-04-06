@@ -31,6 +31,12 @@
         "description": "Active Directory App Password, set as MicrosoftAppPassword in the Web App's Application Settings. Defaults to \"\"."
       }
     },
+    "sqlServerAdminLogin": {
+      "type": "string"
+    },
+    "sqlServerAdminPassword ": {
+      "type": "string"
+    },
     "useCosmosDb": {
       "type": "bool",
       "defaultValue": true
@@ -1043,6 +1049,8 @@
       "location": "[parameters('location')]",
       "kind": "v12.0",
       "properties": {
+        "administratorLogin": "[parameters('sqlServerAdminLogin')]",
+        "administratorLoginPassword": "[parameters('sqlServerAdminLogin')]",
         "version": "12.0",
         "publicNetworkAccess": "Enabled"
       }
