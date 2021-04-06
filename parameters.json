@@ -20,8 +20,8 @@
     "sqlServerAdminLogin": {
       "value": "adminshido"
     },
-    "sqlServerAdminPassword ": {
-      "value": "passwordsupersegura"
+    "sqlServerAdminPassword": {
+      "value": "pass-word-1-super-2-segura-3"
     },
     "botSku": {
       "value": "B1"
