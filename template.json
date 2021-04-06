@@ -1043,7 +1043,6 @@
       "location": "[parameters('location')]",
       "kind": "v12.0",
       "properties": {
-        "administratorLogin": "chtecbotadmin",
         "version": "12.0",
         "publicNetworkAccess": "Enabled"
       }
@@ -1083,34 +1082,6 @@
       }
     },
     {
-      "type": "Microsoft.Sql/servers/auditingPolicies",
-      "apiVersion": "2014-04-01",
-      "name": "[concat(variables('sqlServerName'), '/Default')]",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', variables('sqlServerName'))]"
-      ],
-      "properties": {
-        "auditingState": "Disabled"
-      }
-    },
-    {
-      "type": "Microsoft.Sql/servers/auditingSettings",
-      "apiVersion": "2020-08-01-preview",
-      "name": "[concat(variables('sqlServerName'), '/Default')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', variables('sqlServerName'))]"
-      ],
-      "properties": {
-        "retentionDays": 0,
-        "auditActionsAndGroups": [],
-        "isStorageSecondaryKeyInUse": false,
-        "isAzureMonitorTargetEnabled": false,
-        "state": "Disabled",
-        "storageAccountSubscriptionId": "00000000-0000-0000-0000-000000000000"
-      }
-    },
-    {
       "type": "Microsoft.Sql/servers/databases",
       "apiVersion": "2020-08-01-preview",
       "name": "[concat(variables('sqlServerName'), '/', variables('sqlServerName'))]",
@@ -1134,79 +1105,6 @@
         "autoPauseDelay": 60,
         "storageAccountType": "GRS",
         "minCapacity": 0.5
-      }
-    },
-    {
-      "type": "Microsoft.Sql/servers/devOpsAuditingSettings",
-      "apiVersion": "2020-08-01-preview",
-      "name": "[concat(variables('sqlServerName'), '/Default')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', variables('sqlServerName'))]"
-      ],
-      "properties": {
-        "isAzureMonitorTargetEnabled": false,
-        "state": "Disabled",
-        "storageAccountSubscriptionId": "00000000-0000-0000-0000-000000000000"
-      }
-    },
-    {
-      "type": "Microsoft.Storage/storageAccounts/blobServices",
-      "apiVersion": "2021-01-01",
-      "name": "[concat(variables('sqlServerStgAccName'), '/default')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Storage/storageAccounts', variables('sqlServerStgAccName'))]"
-      ],
-      "sku": {
-        "name": "Standard_LRS",
-        "tier": "Standard"
-      },
-      "properties": {
-        "cors": {
-          "corsRules": []
-        },
-        "deleteRetentionPolicy": {
-          "enabled": false
-        }
-      }
-    },
-    {
-      "type": "Microsoft.Storage/storageAccounts/queueServices",
-      "apiVersion": "2021-01-01",
-      "name": "[concat(variables('sqlServerStgAccName'), '/default')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Storage/storageAccounts', variables('sqlServerStgAccName'))]"
-      ],
-      "properties": {
-        "cors": {
-          "corsRules": []
-        }
-      }
-    },
-    {
-      "type": "Microsoft.Storage/storageAccounts/tableServices",
-      "apiVersion": "2021-01-01",
-      "name": "[concat(variables('sqlServerStgAccName'), '/default')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Storage/storageAccounts', variables('sqlServerStgAccName'))]"
-      ],
-      "properties": {
-        "cors": {
-          "corsRules": []
-        }
-      }
-    },
-    {
-      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
-      "apiVersion": "2021-01-01",
-      "name": "[concat(variables('sqlServerStgAccName'), '/default/vulnerability-assessment')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', variables('sqlServerStgAccName'), 'default')]",
-        "[resourceId('Microsoft.Storage/storageAccounts', variables('sqlServerStgAccName'))]"
-      ],
-      "properties": {
-        "defaultEncryptionScope": "$account-encryption-key",
-        "denyEncryptionScopeOverride": false,
-        "publicAccess": "None"
       }
     }
   ],
