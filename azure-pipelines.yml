@@ -7,7 +7,7 @@ trigger:
 - new-pipeline
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: windows-latest
 
 steps:
 - task: AzureResourceManagerTemplateDeployment@3
