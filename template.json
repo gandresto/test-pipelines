@@ -189,7 +189,7 @@
     {
       "comments": "Create a Web App using an App Service Plan",
       "type": "Microsoft.Web/sites",
-      "apiVersion": "2015-08-01",
+      "apiVersion": "2018-11-01",
       "location": "[variables('resourcesLocation')]",
       "kind": "app",
       "dependsOn": [
@@ -297,7 +297,7 @@
       "condition": "[parameters('useCosmosDb')]"
     },
     {
-      "apiVersion": "2017-12-01",
+      "apiVersion": "2020-06-02",
       "type": "Microsoft.BotService/botServices",
       "name": "[variables('appServiceChatBotName')]",
       "location": "global",
@@ -305,15 +305,16 @@
       "sku": {
         "name": "[parameters('botSku')]"
       },
+      "tags": {
+        "webapp": "[variables('siteHost')]"
+      },
       "properties": {
         "name": "[variables('appServiceChatBotName')]",
         "displayName": "[parameters('botId')]",
         "endpoint": "[variables('botEndpoint')]",
         "msaAppId": "[parameters('appId')]",
-        "developerAppInsightsApplicationId": null,
-        "developerAppInsightKey": null,
-        "publishingCredentials": null,
-        "storageResourceId": null
+        "luisAppIds": [],
+        "isCmekEnabled": false
       },
       "dependsOn": [
         "[resourceId('Microsoft.Web/sites/', variables('appServiceChatBotName'))]"
@@ -345,11 +346,11 @@
     },
     {
       "comments": "Cognitive service authoring key for all LUIS apps.",
+      "type": "Microsoft.CognitiveServices/accounts",
+      "kind": "LUIS.Authoring",
       "apiVersion": "2017-04-18",
       "name": "[variables('luisAuthoringName')]",
       "location": "[parameters('luisServiceLocation')]",
-      "type": "Microsoft.CognitiveServices/accounts",
-      "kind": "LUIS.Authoring",
       "sku": {
         "name": "[parameters('luisServiceAuthoringSku')]"
       },

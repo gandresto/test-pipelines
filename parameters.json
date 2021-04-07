@@ -11,11 +11,11 @@
     "appId": {
       "value": "7d496dc3-e647-424c-bc76-550f802ab7d4"
     },
+    "chatbotWebAppSecret": {
+      "value": "~iInM7-5S~t~RKo29Yz6d~i6fyOq3z3PEX"
+    },
     "botId": {
       "value": "c1ebe451-8b14-4f15-bc3e-6a395e895fdf"
-    },
-    "chatbotWebAppSecret": {
-      "value": "chbot-sld-inte-secret"
     },
     "sqlServerAdminLogin": {
       "value": "adminshido"
