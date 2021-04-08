@@ -14,10 +14,11 @@ $appId = (
 
 Write-Output $appId
 Write-Output $password
-Write-Output "{ \"chatbotWebAppSecret\": { \"value\": \"$($password)\" } }"
+Write-Output $appDisplayName+$org
+Write-Output '{ \"chatbotWebAppSecret\": { \"value\": \"$($password)\" } }'
 Write-Output "{ \"appId\": { \"value\": \"$($appId)\" } }" 
 Write-Output "{ \"org\": { \"value\": \"$($org)\" } }" 
-Write-Output "{ \"enviorment\": { \"value\": \"$($enviorment)\" } }"
+Write-Output "{ \"enviorment\": { \"value\": \"$($env)\" } }"
   
 # az deployment group create --resource-group chbot-intevolution-test --name deploy-de-infraestructura `
 #   --template-file template.json  `
@@ -25,4 +26,4 @@ Write-Output "{ \"enviorment\": { \"value\": \"$($enviorment)\" } }"
 #   --parameters "{ \"chatbotWebAppSecret\": { \"value\": \"$($password)\" } }" `
 #   --parameters "{ \"appId\": { \"value\": \"$($appId)\" } }" `
 #   --parameters "{ \"org\": { \"value\": \"$($org)\" } }" `
-#   --parameters "{ \"enviorment\": { \"value\": \"$($enviorment)\" } }"
+#   --parameters "{ \"enviorment\": { \"value\": \"$($env)\" } }"
