@@ -13,11 +13,12 @@ $appId = (
 )
 
 Write-Output $appId
+Write-Output $password
   
-az deployment group create --resource-group chbot-intevolution-test --name deploy-de-infraestructura `
-  --template-file template.json  `
-  --parameters parameters.json `
-  --parameters "{ \"chatbotWebAppSecret\": { \"value\": \"$($password)\" } }" `
-  --parameters "{ \"appId\": { \"value\": \"$($appId)\" } }" `
-  --parameters "{ \"org\": { \"value\": \"$($org)\" } }" `
-  --parameters "{ \"enviorment\": { \"value\": \"$($enviorment)\" } }"
+# az deployment group create --resource-group chbot-intevolution-test --name deploy-de-infraestructura `
+#   --template-file template.json  `
+#   --parameters parameters.json `
+#   --parameters "{ \"chatbotWebAppSecret\": { \"value\": \"$($password)\" } }" `
+#   --parameters "{ \"appId\": { \"value\": \"$($appId)\" } }" `
+#   --parameters "{ \"org\": { \"value\": \"$($org)\" } }" `
+#   --parameters "{ \"enviorment\": { \"value\": \"$($enviorment)\" } }"
