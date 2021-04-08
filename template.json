@@ -882,7 +882,10 @@
         "IngestionMode": "LogAnalytics",
         "publicNetworkAccessForIngestion": "Enabled",
         "publicNetworkAccessForQuery": "Enabled"
-      }
+      },
+      "dependsOn": [
+        "[resourceId('microsoft.operationalinsights/workspaces', variables('workspaceAnalyticsFunctions'))]"
+      ]
     },
     {
       "type": "Microsoft.Web/serverfarms",
