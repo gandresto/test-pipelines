@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 trigger:
-- new-pipeline
+- infra-intev
 
 pool:
   vmImage: windows-latest
