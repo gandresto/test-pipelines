@@ -1,5 +1,5 @@
-$org = "inte2"
-$env = "pprd"
+$org = "brk"
+$env = "dev"
 $appDisplayName = "chbot-$($org)-$($env)"
 
 # Generate a new client secret
