@@ -15,7 +15,7 @@ $appId = (
 Write-Output $appId
 # Write-Output $password
 # Write-Output $appDisplayName+$org
-Write-Output '{ "chatbotWebAppSecret": { "value": "'$password'" } }'
+# Write-Output '{ "chatbotWebAppSecret": { "value": "'$password'" } }'
 # Write-Output "{ \"appId\": { \"value\": \"$($appId)\" } }" 
 # Write-Output "{ \"org\": { \"value\": \"$($org)\" } }" 
 # Write-Output "{ \"enviorment\": { \"value\": \"$($env)\" } }"
