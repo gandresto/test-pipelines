@@ -10,7 +10,13 @@ $appId = (
   --password $password  `
   --available-to-other-tenants 
 )
+
+HOST-WRITE $appId
   
 az deployment group create --resource-group chbot-intevolution-test --name deploy-de-infraestructura `
-  --template-file template.json  --parameters parameters.json `
-  --parameters chatbotWebAppSecret=$password appId=$appId org=$org enviorment=$env
+  --template-file template.json  `
+  --parameters parameters.json `
+  --parameters "{ \"chatbotWebAppSecret\": { \"value\": \"$($password)\" } }" `
+  --parameters "{ \"appId\": { \"value\": \"$($appId)\" } }" `
+  --parameters "{ \"org\": { \"value\": \"$($org)\" } }" `
+  --parameters "{ \"enviorment\": { \"value\": \"$($enviorment)\" } }"
