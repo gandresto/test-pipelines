@@ -12,7 +12,7 @@ pool:
 steps:
 - task: AzureCLI@2
   inputs:
-    azureSubscription: ''
+    azureSubscription: 'Microsoft Azure(5cba7ac5-ff4a-4b58-8587-a49336477d5c)'
     scriptType: 'ps'
     scriptLocation: 'scriptPath'
     scriptPath: 'app-registration.ps1'
