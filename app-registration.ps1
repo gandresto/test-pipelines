@@ -14,6 +14,10 @@ $appId = (
 
 Write-Output $appId
 Write-Output $password
+Write-Output "{ \"chatbotWebAppSecret\": { \"value\": \"$($password)\" } }"
+Write-Output "{ \"appId\": { \"value\": \"$($appId)\" } }" 
+Write-Output "{ \"org\": { \"value\": \"$($org)\" } }" 
+Write-Output "{ \"enviorment\": { \"value\": \"$($enviorment)\" } }"
   
 # az deployment group create --resource-group chbot-intevolution-test --name deploy-de-infraestructura `
 #   --template-file template.json  `
