@@ -8,7 +8,8 @@ $password = (head /dev/urandom | tr -dc [:alnum:] | fold -w 30 | head -n 1)
 $appId = ( 
   az ad app create --display-name $appDisplayName `
   --password $password  `
-  --available-to-other-tenants 
+  --available-to-other-tenants `
+  --query 'appId' -o tsv
 )
 
 Write-Output $appId
