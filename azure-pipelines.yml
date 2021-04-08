@@ -10,12 +10,6 @@ pool:
   vmImage: windows-latest
 
 steps:
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'Azure for Students(1)(e209c568-0f60-4c6d-ae25-7f3a24b518db)'
-    scriptType: 'ps'
-    scriptLocation: 'scriptPath'
-    scriptPath: 'app-registration.ps1'
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
     deploymentScope: 'Resource Group'
