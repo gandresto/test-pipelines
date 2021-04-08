@@ -11,7 +11,7 @@ $appId = (
   --available-to-other-tenants 
 )
 
-HOST-WRITE $appId
+Write-Output $appId
   
 az deployment group create --resource-group chbot-intevolution-test --name deploy-de-infraestructura `
   --template-file template.json  `
