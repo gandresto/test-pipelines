@@ -1,1 +1,16 @@
-az ad app create --display-name "chbot-inte2-pprd" --password "~iInM7-5S~t~RKo29Yz6d~i6fyOq3z3PEX"
+$org = "inte2"
+$env = "pprd"
+$appDisplayName = "chbot-$($org)-$($env)"
+
+# Generate a new client secret
+$password = (head /dev/urandom | tr -dc [:alnum:] | fold -w 30 | head -n 1)
+
+$appId = ( 
+  az ad app create --display-name $appDisplayName `
+  --password $password  `
+  --available-to-other-tenants 
+)
+  
+az deployment group create --resource-group chbot-intevolution-test --name deploy-de-infraestructura `
+  --template-file template.json  --parameters parameters.json `
+  --parameters chatbotWebAppSecret=$password appId=$appId org=$org enviorment=$env

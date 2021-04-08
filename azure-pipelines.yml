@@ -10,15 +10,21 @@ pool:
   vmImage: windows-latest
 
 steps:
-- task: AzureResourceManagerTemplateDeployment@3
+- task: AzureCLI@2
   inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'Azure for Students(e209c568-0f60-4c6d-ae25-7f3a24b518db)'
-    subscriptionId: 'e209c568-0f60-4c6d-ae25-7f3a24b518db'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: 'chbot-intevolution-test'
-    location: 'West US'
-    templateLocation: 'Linked artifact'
-    csmFile: 'template.json'
-    csmParametersFile: 'parameters.json'
-    deploymentMode: 'Incremental'
+    azureSubscription: ''
+    scriptType: 'ps'
+    scriptLocation: 'scriptPath'
+    scriptPath: 'app-registration.ps1'
+# - task: AzureResourceManagerTemplateDeployment@3
+#   inputs:
+#     deploymentScope: 'Resource Group'
+#     azureResourceManagerConnection: 'Azure for Students(e209c568-0f60-4c6d-ae25-7f3a24b518db)'
+#     subscriptionId: 'e209c568-0f60-4c6d-ae25-7f3a24b518db'
+#     action: 'Create Or Update Resource Group'
+#     resourceGroupName: 'chbot-intevolution-test'
+#     location: 'West US'
+#     templateLocation: 'Linked artifact'
+#     csmFile: 'template.json'
+#     csmParametersFile: 'parameters.json'
+#     deploymentMode: 'Incremental'
