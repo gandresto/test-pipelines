@@ -4,11 +4,6 @@
   "parameters": {
     "enviorment": {
       "type": "string",
-      // "allowedValues": [
-      //   "dev",
-      //   "pprd",
-      //   "prod"
-      // ],
       "metadata": {
         "description": "Entorno de desarrollo del bot. dev - desarrollo, pprd - preproducción, prod - producción"
       }
@@ -135,29 +130,35 @@
     }
   },
   "variables": {
-    "appServicePlanChatBotName": "[concat('asp-chbot-', parameters('org'), '-', parameters('enviorment'))]",
-    "appServicePlanApi": "[concat('asp-api-chbot-', parameters('org'), '-', parameters('enviorment'))]",
-    "appServiceApi": "[concat('api-chbot-', parameters('org'), '-', parameters('enviorment'))]",
-    "appServiceChatBotName": "[concat('chbot-', parameters('org'), '-', parameters('enviorment'))]",
-    "appInsightsChatBotName": "[concat('chbot-', parameters('org'), '-', parameters('enviorment'))]",
-    "qnaChatbotName": "[concat('qna-chbot-', parameters('org'), '-', parameters('enviorment'))]",
-    "qnaSearchServiceName": "[toLower(take(replace(replace(concat('qna0srch0serv0', parameters('org'), '0', parameters('enviorment')), '-', '0'), '_', '0'), 24))]",
-    "cosmosDBChatBotName": "[toLower(take(replace(concat('cosmos-chbot-', parameters('org'), '-', parameters('enviorment')), '_', ''), 31))]",
-    "luisServiceName": "[concat('luis-chbot-', parameters('org'), '-', parameters('enviorment'))]",
-    "luisAuthoringName": "[concat('luis-chbot-', parameters('org'), '-', parameters('enviorment'), '-auth')]",
-    // "luisAuthoringKey": "[concat('luis-chbot', parameters('org'), '-', parameters('enviorment'), '-auth')]",
-    "stgAccChatbotName": "[toLower(take(replace(replace(concat('stg0chbot0', parameters('org'), '0', parameters('enviorment')), '-', '0'), '_', '0'), 24))]",
-    "pythonAzFnName": "[concat('azfnpy-chbot-', parameters('org'), '-', parameters('enviorment'))]",
-    "pythonFnAppServicePlan": "[concat('asp-azfnpy-chbot-', parameters('org'), '-', parameters('enviorment'))]",
-    "pythonAzFnTelemName": "[concat('azfnpy-chbott-', parameters('org'), '-', parameters('enviorment'))]",
-    "pythonFnStorageAccount": "[toLower(take(replace(replace(concat('stg0pyfn0', parameters('org'), '0', parameters('enviorment')), '-', '0'), '_', '0'), 24))]",
+    "resourcesLocation": "[parameters('appServicePlanLocation')]",
+    "keyvaultName": "[toLower(take(replace(replace(concat('keyvault0chbot0', parameters('org'), '0', parameters('enviorment')), '-', '0'), '_', '0'), 24))]",
     "workspaceName": "[concat('wkspace-chbot-', parameters('org'), '-', parameters('enviorment'))]",
     "workspaceAnalyticsFunctions": "[concat('wksalyt-chbot-', parameters('org'), '-', parameters('enviorment'))]",
-    "keyvaultName": "[toLower(take(replace(replace(concat('keyvault0chbot0', parameters('org'), '0', parameters('enviorment')), '-', '0'), '_', '0'), 24))]",
-    "resourcesLocation": "[parameters('appServicePlanLocation')]",
+
+    "appServiceApi": "[concat('api-chbot-', parameters('org'), '-', parameters('enviorment'))]",
+    "appServicePlanApi": "[concat('asp-api-chbot-', parameters('org'), '-', parameters('enviorment'))]",
+
+    "appServicePlanChatBotName": "[concat('asp-chbot-', parameters('org'), '-', parameters('enviorment'))]",
+    "appServiceChatBotName": "[concat('chbot-', parameters('org'), '-', parameters('enviorment'))]",
     "siteHost": "[concat(variables('appServiceChatBotName'), '.azurewebsites.net')]",
     "botEndpoint": "[concat('https://', variables('siteHost'), '/api/messages')]",
+    "appInsightsChatBotName": "[concat('chbot-', parameters('org'), '-', parameters('enviorment'))]",
+    "cosmosDBChatBotName": "[toLower(take(replace(concat('cosmos-chbot-', parameters('org'), '-', parameters('enviorment')), '_', ''), 31))]",
     "qnaAppServicePlan": "[concat('asp-', variables('qnaChatbotName'))]",
+    "qnaChatbotName": "[concat('qna-chbot-', parameters('org'), '-', parameters('enviorment'))]",
+    "qnaSearchServiceName": "[toLower(take(replace(replace(concat('qna0srch0serv0', parameters('org'), '0', parameters('enviorment')), '-', '0'), '_', '0'), 24))]",
+    "luisServiceName": "[concat('luis-chbot-', parameters('org'), '-', parameters('enviorment'))]",
+    "luisAuthoringName": "[concat('luis-chbot-', parameters('org'), '-', parameters('enviorment'), '-auth')]",
+    "stgAccChatbotName": "[toLower(take(replace(replace(concat('stg0chbot0', parameters('org'), '0', parameters('enviorment')), '-', '0'), '_', '0'), 24))]",
+
+    "pythonFnAppServicePlan": "[concat('asp-azfnpy-chbot-', parameters('org'), '-', parameters('enviorment'))]",
+    "pythonAzFnTelemName": "[concat('azfnpy-chbott-', parameters('org'), '-', parameters('enviorment'))]",
+    "pythonAzFnTelemStorageAcc": "[toLower(take(replace(replace(concat('stg0pyfnt0', parameters('org'), '0', parameters('enviorment')), '-', '0'), '_', '0'), 24))]",
+
+    "csFnAppServicePlan": "[concat('asp-azfncs-chbot-', parameters('org'), '-', parameters('enviorment'))]",
+    "csAzFnTelemName": "[concat('azfncs-chbott-', parameters('org'), '-', parameters('enviorment'))]",
+    "csAzFnTelemStorageAcc": "[toLower(take(replace(replace(concat('stg0csfn0', parameters('org'), '0', parameters('enviorment')), '-', '0'), '_', '0'), 24))]",
+
     "sqlServerName": "[concat('sql-srv-chbot-', parameters('org'), '-', parameters('enviorment'))]",
     "sqlServerStgAccName": "[toLower(take(replace(replace(concat('sql0srv0', parameters('org'), '0', parameters('enviorment')), '-', '0'), '_', '0'), 24))]"
   },
@@ -474,43 +475,7 @@
       }
     },
 
-    // Python azure functions
-    {
-      "type": "Microsoft.Storage/storageAccounts",
-      "apiVersion": "2021-01-01",
-      "name": "[variables('pythonFnStorageAccount')]",
-      "location": "[parameters('location')]",
-      "sku": {
-        "name": "Standard_LRS",
-        "tier": "Standard"
-      },
-      "kind": "Storage",
-      "properties": {
-        "minimumTlsVersion": "TLS1_2",
-        "networkAcls": {
-          "bypass": "AzureServices",
-          "virtualNetworkRules": [],
-          "ipRules": [],
-          "defaultAction": "Allow"
-        },
-        "supportsHttpsTrafficOnly": true,
-        "encryption": {
-          "services": {
-            "file": {
-              "keyType": "Account",
-              "enabled": true
-            },
-            "blob": {
-              "keyType": "Account",
-              "enabled": true
-            }
-          },
-          "keySource": "Microsoft.Storage"
-        }
-      }
-    },
-
-    // Workspace analytics
+    // BEGIN - Workspace analytics
     {
       "type": "Microsoft.DesktopVirtualization/workspaces",
       "apiVersion": "2021-02-01-preview",
@@ -540,45 +505,6 @@
       }
     },
     {
-
-      "type": "microsoft.insights/components",
-      "apiVersion": "2020-02-02-preview",
-      "name": "[variables('pythonAzFnName')]",
-      "location": "[parameters('location')]",
-      "kind": "web",
-      "properties": {
-        "Application_Type": "web",
-        "Flow_Type": "Bluefield",
-        "Request_Source": "rest",
-        "WorkspaceResourceId": "[resourceId('microsoft.operationalinsights/workspaces', variables('workspaceAnalyticsFunctions'))]",
-        "IngestionMode": "LogAnalytics",
-        "publicNetworkAccessForIngestion": "Enabled",
-        "publicNetworkAccessForQuery": "Enabled"
-      },
-      "dependsOn": [
-        "[resourceId('microsoft.operationalinsights/workspaces', variables('workspaceAnalyticsFunctions'))]"
-      ]
-    },
-    {
-      "type": "microsoft.insights/components",
-      "apiVersion": "2020-02-02-preview",
-      "name": "[variables('pythonAzFnTelemName')]",
-      "location": "[parameters('location')]",
-      "kind": "web",
-      "properties": {
-        "Application_Type": "web",
-        "Flow_Type": "Bluefield",
-        "Request_Source": "rest",
-        "WorkspaceResourceId": "[resourceId('microsoft.operationalinsights/workspaces', variables('workspaceAnalyticsFunctions'))]",
-        "IngestionMode": "LogAnalytics",
-        "publicNetworkAccessForIngestion": "Enabled",
-        "publicNetworkAccessForQuery": "Enabled"
-      },
-      "dependsOn": [
-        "[resourceId('microsoft.operationalinsights/workspaces', variables('workspaceAnalyticsFunctions'))]"
-      ]
-    },
-    {
       "type": "Microsoft.Web/serverfarms",
       "apiVersion": "2018-02-01",
       "name": "[variables('pythonFnAppServicePlan')]",
@@ -602,38 +528,52 @@
         "targetWorkerSizeId": 0
       }
     },
+    // END - Workspace analytics
+
+
+    // BEGIN - Python Fn Telemetría
     {
-      "type": "Microsoft.Web/sites",
-      "apiVersion": "2018-11-01",
-      "name": "[variables('pythonAzFnName')]",
+      "apiVersion": "2019-06-01",
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "[variables('pythonAzFnTelemStorageAcc')]",
       "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/serverfarms', variables('pythonFnAppServicePlan'))]"
-      ],
-      "kind": "functionapp,linux",
+      "kind": "StorageV2",
+      "tags": {},
+      "sku": {
+        "name": "Standard_LRS"
+      },
       "properties": {
-        "enabled": true,
-        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('pythonFnAppServicePlan'))]",
-        "reserved": true,
-        "isXenon": false,
-        "hyperV": false,
-        "siteConfig": {},
-        "scmSiteAlsoStopped": false,
-        "clientAffinityEnabled": false,
-        "clientCertEnabled": false,
-        "hostNamesDisabled": false,
-        "containerSize": 1536,
-        "dailyMemoryTimeQuota": 0,
-        "httpsOnly": false,
-        "redundancyMode": "None"
+        "supportsHttpsTrafficOnly": true,
+        "minimumTlsVersion": "TLS1_2"
       }
     },
     {
+      "type": "microsoft.insights/components",
+      "apiVersion": "2020-02-02-preview",
+      "name": "[variables('pythonAzFnTelemName')]",
+      "location": "[parameters('location')]",
+      "kind": "web",
+      "properties": {
+        "Application_Type": "web",
+        "Flow_Type": "Bluefield",
+        "Request_Source": "rest",
+        "WorkspaceResourceId": "[resourceId('microsoft.operationalinsights/workspaces', variables('workspaceAnalyticsFunctions'))]",
+        "IngestionMode": "LogAnalytics",
+        "publicNetworkAccessForIngestion": "Enabled",
+        "publicNetworkAccessForQuery": "Enabled"
+      },
+      "dependsOn": [
+        "[resourceId('microsoft.operationalinsights/workspaces', variables('workspaceAnalyticsFunctions'))]"
+      ]
+    },
+    {
+      // App Service Telem python
       "type": "Microsoft.Web/sites",
       "apiVersion": "2018-11-01",
       "name": "[variables('pythonAzFnTelemName')]",
       "location": "[parameters('location')]",
       "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('pythonAzFnTelemStorageAcc'))]",
         "[resourceId('Microsoft.Web/serverfarms', variables('pythonFnAppServicePlan'))]"
       ],
       "kind": "functionapp,linux",
@@ -655,86 +595,7 @@
       }
     },
     {
-      "type": "Microsoft.Web/sites/config",
-      "apiVersion": "2018-11-01",
-      "name": "[concat(variables('pythonAzFnName'), '/web')]",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', variables('pythonAzFnName'))]"
-      ],
-      "properties": {
-        "numberOfWorkers": 1,
-        "defaultDocuments": [
-          "Default.htm",
-          "Default.html",
-          "Default.asp",
-          "index.htm",
-          "index.html",
-          "iisstart.htm",
-          "default.aspx",
-          "index.php"
-        ],
-        "netFrameworkVersion": "v4.0",
-        "linuxFxVersion": "PYTHON|3.8",
-        "requestTracingEnabled": false,
-        "remoteDebuggingEnabled": false,
-        "remoteDebuggingVersion": "VS2019",
-        "httpLoggingEnabled": false,
-        "logsDirectorySizeLimit": 35,
-        "detailedErrorLoggingEnabled": false,
-        "azureStorageAccounts": {},
-        "scmType": "None",
-        "use32BitWorkerProcess": false,
-        "webSocketsEnabled": false,
-        "alwaysOn": true,
-        "managedPipelineMode": "Integrated",
-        "virtualApplications": [
-          {
-            "virtualPath": "/",
-            "physicalPath": "site\\wwwroot",
-            "preloadEnabled": true
-          }
-        ],
-        "loadBalancing": "LeastRequests",
-        "experiments": {
-          "rampUpRules": []
-        },
-        "autoHealEnabled": false,
-        "cors": {
-          "allowedOrigins": [
-            "https://functions.azure.com",
-            "https://functions-staging.azure.com",
-            "https://functions-next.azure.com"
-          ],
-          "supportCredentials": false
-        },
-        "localMySqlEnabled": false,
-        "ipSecurityRestrictions": [
-          {
-            "ipAddress": "Any",
-            "action": "Allow",
-            "priority": 1,
-            "name": "Allow all",
-            "description": "Allow all access"
-          }
-        ],
-        "scmIpSecurityRestrictions": [
-          {
-            "ipAddress": "Any",
-            "action": "Allow",
-            "priority": 1,
-            "name": "Allow all",
-            "description": "Allow all access"
-          }
-        ],
-        "scmIpSecurityRestrictionsUseMain": false,
-        "http20Enabled": false,
-        "minTlsVersion": "1.2",
-        "ftpsState": "AllAllowed",
-        "reservedInstanceCount": 0
-      }
-    },
-    {
+      // Configuración de App Service de Python Fn de Telemetría
       "type": "Microsoft.Web/sites/config",
       "apiVersion": "2018-11-01",
       "name": "[concat(variables('pythonAzFnTelemName'), '/web')]",
@@ -743,110 +604,42 @@
         "[resourceId('Microsoft.Web/sites', variables('pythonAzFnTelemName'))]"
       ],
       "properties": {
-        "numberOfWorkers": 1,
-        "defaultDocuments": [
-          "Default.htm",
-          "Default.html",
-          "Default.asp",
-          "index.htm",
-          "index.html",
-          "iisstart.htm",
-          "default.aspx",
-          "index.php"
+        "appSettings": [
+          {
+            "name": "FUNCTIONS_EXTENSION_VERSION",
+            "value": "~3"
+          },
+          {
+            "name": "FUNCTIONS_WORKER_RUNTIME",
+            "value": "python"
+          },
+          {
+            "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+            "value": "[reference(concat('microsoft.insights/components/', variables('pythonAzFnTelemName')), '2015-05-01').InstrumentationKey]"
+          },
+          {
+            "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
+            "value": "[reference(concat('microsoft.insights/components/', variables('pythonAzFnTelemName')), '2015-05-01').ConnectionString]"
+          },
+          {
+            "name": "AzureWebJobsStorage",
+            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('pythonAzFnTelemStorageAcc'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('pythonAzFnTelemStorageAcc')), '2019-06-01').keys[0].value,';EndpointSuffix=','core.windows.net')]"
+          }
         ],
-        "netFrameworkVersion": "v4.0",
         "linuxFxVersion": "PYTHON|3.8",
-        "requestTracingEnabled": false,
-        "remoteDebuggingEnabled": false,
-        "remoteDebuggingVersion": "VS2019",
-        "httpLoggingEnabled": false,
-        "logsDirectorySizeLimit": 35,
-        "detailedErrorLoggingEnabled": false,
-        "azureStorageAccounts": {},
-        "scmType": "None",
         "use32BitWorkerProcess": false,
-        "webSocketsEnabled": false,
-        "alwaysOn": true,
-        "managedPipelineMode": "Integrated",
-        "virtualApplications": [
-          {
-            "virtualPath": "/",
-            "physicalPath": "site\\wwwroot",
-            "preloadEnabled": true
-          }
-        ],
-        "loadBalancing": "LeastRequests",
-        "experiments": {
-          "rampUpRules": []
-        },
-        "autoHealEnabled": false,
-        "cors": {
-          "allowedOrigins": [
-            "https://functions.azure.com",
-            "https://functions-staging.azure.com",
-            "https://functions-next.azure.com"
-          ],
-          "supportCredentials": false
-        },
-        "localMySqlEnabled": false,
-        "ipSecurityRestrictions": [
-          {
-            "ipAddress": "Any",
-            "action": "Allow",
-            "priority": 1,
-            "name": "Allow all",
-            "description": "Allow all access"
-          }
-        ],
-        "scmIpSecurityRestrictions": [
-          {
-            "ipAddress": "Any",
-            "action": "Allow",
-            "priority": 1,
-            "name": "Allow all",
-            "description": "Allow all access"
-          }
-        ],
-        "scmIpSecurityRestrictionsUseMain": false,
-        "http20Enabled": false,
-        "minTlsVersion": "1.2",
-        "ftpsState": "AllAllowed",
-        "reservedInstanceCount": 0
+        "alwaysOn": true
       }
     },
-    {
-      "type": "Microsoft.Web/sites/hostNameBindings",
-      "apiVersion": "2018-11-01",
-      "name": "[concat(variables('pythonAzFnName'), '/', variables('pythonAzFnName'), '.azurewebsites.net')]",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', variables('pythonAzFnName'))]"
-      ],
-      "properties": {
-        "siteName": "[variables('pythonAzFnName')]",
-        "hostNameType": "Verified"
-      }
-    },
-    {
-      "type": "Microsoft.Web/sites/hostNameBindings",
-      "apiVersion": "2018-11-01",
-      "name": "[concat(variables('pythonAzFnTelemName'), '/', variables('pythonAzFnTelemName'), '.azurewebsites.net')]",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', variables('pythonAzFnTelemName'))]"
-      ],
-      "properties": {
-        "siteName": "[variables('pythonAzFnTelemName')]",
-        "hostNameType": "Verified"
-      }
-    },
+    // END - Python Fn Telem
+
+    // Keyvault
     {
       "type": "Microsoft.KeyVault/vaults",
       "apiVersion": "2020-04-01-preview",
       "name": "[variables('keyvaultName')]",
       "location": "[parameters('location')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', variables('pythonAzFnName'))]",
         "[resourceId('Microsoft.Web/sites', variables('pythonAzFnTelemName'))]",
         "[resourceId('Microsoft.Web/sites', variables('appServiceApi'))]"
       ],
@@ -882,7 +675,10 @@
         "IngestionMode": "LogAnalytics",
         "publicNetworkAccessForIngestion": "Enabled",
         "publicNetworkAccessForQuery": "Enabled"
-      }
+      },
+      "dependsOn": [
+        "[resourceId('microsoft.operationalinsights/workspaces', variables('workspaceAnalyticsFunctions'))]"
+      ]
     },
     {
       "type": "Microsoft.Web/serverfarms",
