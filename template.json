@@ -804,6 +804,7 @@
       "name": "[variables('appServiceApi')]",
       "location": "[parameters('location')]",
       "dependsOn": [
+        "[resourceId('microsoft.insights/components', variables('appServiceApi'))]",
         "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanApi'))]"
       ],
       "kind": "app",
