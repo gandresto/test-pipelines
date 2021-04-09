@@ -547,8 +547,8 @@
               "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('csAzFnTelemStorageAcc'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('csAzFnTelemStorageAcc')), '2019-06-01').keys[0].value,';EndpointSuffix=','core.windows.net')]"
             }
           ],
-          "use32BitWorkerProcess": true,
-          "alwaysOn": true
+          "use32BitWorkerProcess": "[equals(parameters('csFnAppServicePlanSku').name, 'F0')]",
+          "alwaysOn": "[not(equals(parameters('csFnAppServicePlanSku').name, 'F0'))]"
         },
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms/', variables('csAzFnAppServicePlan'))]",
         "clientAffinityEnabled": false
@@ -702,9 +702,8 @@
               "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('pythonAzFnTelemStorageAcc'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('pythonAzFnTelemStorageAcc')), '2019-06-01').keys[0].value,';EndpointSuffix=','core.windows.net')]"
             }
           ],
-
-          "use32BitWorkerProcess": false,
-          "alwaysOn": true
+          "use32BitWorkerProcess": "[equals(parameters('pythonFnAppServicePlanSku').name, 'F0')]",
+          "alwaysOn": "[not(equals(parameters('pythonFnAppServicePlanSku').name, 'F0'))]"
         },
         "enabled": true,
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('pythonFnAppServicePlan'))]",
