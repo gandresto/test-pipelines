@@ -36,10 +36,6 @@
       "type": "bool",
       "defaultValue": true
     },
-    "useAppInsights": {
-      "type": "bool",
-      "defaultValue": true
-    },
     "botId": {
       "type": "string",
       "metadata": {
@@ -179,6 +175,8 @@
         }
       }
     },
+
+    // START - INFRAESTRUCTURA BOT
     {
       "comments": "Create a new App Service Plan if no existing App Service Plan name was passed in.",
       "type": "Microsoft.Web/serverfarms",
@@ -191,13 +189,44 @@
       }
     },
     {
+      "comments": "app insights",
+      "type": "Microsoft.Insights/components",
+      "kind": "web",
+      "apiVersion": "2015-05-01",
+      "name": "[variables('appInsightsChatBotName')]",
+      "location": "[parameters('appInsightsLocation')]",
+      "properties": {
+        "ApplicationId": "[variables('appInsightsChatBotName')]",
+        "Application_Type": "web",
+        "Request_Source": "IbizaWebAppExtensionCreate",
+        "Flow_Type": "Redfield",
+        "WorkspaceResourceId": "[resourceId('microsoft.operationalinsights/workspaces', variables('workspaceAnalyticsFunctions'))]"
+      },
+      "dependsOn": [
+        "[resourceId('microsoft.operationalinsights/workspaces', variables('workspaceAnalyticsFunctions'))]"
+      ]
+    },
+    {
+      "comments": "storage account",
+      "type": "Microsoft.Storage/storageAccounts",
+      "kind": "StorageV2",
+      "apiVersion": "2018-07-01",
+      "name": "[variables('stgAccChatbotName')]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "condition": "[parameters('useStorage')]"
+    },
+    {
       "comments": "Create a Web App using an App Service Plan",
       "type": "Microsoft.Web/sites",
       "apiVersion": "2018-11-01",
       "location": "[variables('resourcesLocation')]",
       "kind": "app",
       "dependsOn": [
-        "[resourceId('Microsoft.Web/serverfarms/', variables('appServicePlanChatBotName'))]"
+        "[resourceId('Microsoft.Web/serverfarms/', variables('appServicePlanChatBotName'))]",
+        "[resourceId('microsoft.insights/components/', variables('appInsightsChatBotName'))]"
       ],
       "name": "[variables('appServiceChatBotName')]",
       "properties": {
@@ -205,6 +234,14 @@
         "serverFarmId": "[variables('appServicePlanChatBotName')]",
         "siteConfig": {
           "appSettings": [
+            {
+              "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+              "value": "[reference(concat('microsoft.insights/components/', variables('appInsightsChatBotName')), '2015-05-01').InstrumentationKey]"
+            },
+            {
+              "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
+              "value": "[reference(concat('microsoft.insights/components/', variables('appInsightsChatBotName')), '2015-05-01').ConnectionString]"
+            },
             {
               "name": "WEBSITE_NODE_DEFAULT_VERSION",
               "value": "10.14.1"
@@ -325,30 +362,6 @@
       ]
     },
     {
-      "comments": "app insights",
-      "type": "Microsoft.Insights/components",
-      "kind": "web",
-      "apiVersion": "2015-05-01",
-      "name": "[variables('appInsightsChatBotName')]",
-      "location": "[parameters('appInsightsLocation')]",
-      "properties": {
-        "Application_Type": "web"
-      },
-      "condition": "[parameters('useAppInsights')]"
-    },
-    {
-      "comments": "storage account",
-      "type": "Microsoft.Storage/storageAccounts",
-      "kind": "StorageV2",
-      "apiVersion": "2018-07-01",
-      "name": "[variables('stgAccChatbotName')]",
-      "location": "[parameters('location')]",
-      "sku": {
-        "name": "Standard_LRS"
-      },
-      "condition": "[parameters('useStorage')]"
-    },
-    {
       "comments": "Cognitive service authoring key for all LUIS apps.",
       "type": "Microsoft.CognitiveServices/accounts",
       "kind": "LUIS.Authoring",
@@ -376,6 +389,8 @@
         "statisticsEnabled": false
       }
     },
+    // END - INFRAESTRUCTURA BOT
+
 
     // QnA
     {
@@ -448,7 +463,9 @@
         "reserved": false,
         "isXenon": false,
         "hyperV": false,
-        "siteConfig": {},
+        "siteConfig": {
+
+        },
         "scmSiteAlsoStopped": false,
         "clientAffinityEnabled": true,
         "clientCertEnabled": false,
@@ -575,12 +592,14 @@
       }
     },
     {
+      "type": "microsoft.insights/components",
       "apiVersion": "2020-02-02-preview",
       "name": "[variables('csAzFnTelemName')]",
-      "type": "microsoft.insights/components",
       "location": "[parameters('location')]",
       "tags": {},
-      "dependsOn": [],
+      "dependsOn": [
+        "[resourceId('microsoft.operationalinsights/workspaces', variables('workspaceAnalyticsFunctions'))]"
+      ],
       "properties": {
         "ApplicationId": "[variables('csAzFnTelemName')]",
         "Request_Source": "IbizaWebAppExtensionCreate",
@@ -655,12 +674,9 @@
       "properties": {
         "ApplicationId": "[variables('pythonAzFnTelemName')]",
         "Application_Type": "web",
-        "Flow_Type": "Bluefield",
-        "Request_Source": "rest",
-        "WorkspaceResourceId": "[resourceId('microsoft.operationalinsights/workspaces', variables('workspaceAnalyticsFunctions'))]",
-        "IngestionMode": "LogAnalytics",
-        "publicNetworkAccessForIngestion": "Enabled",
-        "publicNetworkAccessForQuery": "Enabled"
+        "Request_Source": "IbizaWebAppExtensionCreate",
+        "Flow_Type": "Redfield",
+        "WorkspaceResourceId": "[resourceId('microsoft.operationalinsights/workspaces', variables('workspaceAnalyticsFunctions'))]"
       },
       "dependsOn": [
         "[resourceId('microsoft.operationalinsights/workspaces', variables('workspaceAnalyticsFunctions'))]"
@@ -710,43 +726,6 @@
         "clientAffinityEnabled": false
       }
     },
-    {
-      // Configuración de App Service de Python Fn de Telemetría
-      "type": "Microsoft.Web/sites/config",
-      "apiVersion": "2018-11-01",
-      "name": "[concat(variables('pythonAzFnTelemName'), '/web')]",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', variables('pythonAzFnTelemName'))]"
-      ],
-      "properties": {
-        "appSettings": [
-          {
-            "name": "FUNCTIONS_EXTENSION_VERSION",
-            "value": "~3"
-          },
-          {
-            "name": "FUNCTIONS_WORKER_RUNTIME",
-            "value": "python"
-          },
-          {
-            "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
-            "value": "[reference(concat('microsoft.insights/components/', variables('pythonAzFnTelemName')), '2015-05-01').InstrumentationKey]"
-          },
-          {
-            "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
-            "value": "[reference(concat('microsoft.insights/components/', variables('pythonAzFnTelemName')), '2015-05-01').ConnectionString]"
-          },
-          {
-            "name": "AzureWebJobsStorage",
-            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('pythonAzFnTelemStorageAcc'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('pythonAzFnTelemStorageAcc')), '2019-06-01').keys[0].value,';EndpointSuffix=','core.windows.net')]"
-          }
-        ],
-        "linuxFxVersion": "PYTHON|3.8",
-        "use32BitWorkerProcess": false,
-        "alwaysOn": true
-      }
-    },
     // END - Python Fn Telem
 
     // Keyvault
@@ -776,6 +755,7 @@
         ]
       }
     },
+
     // API
     {
       "type": "microsoft.insights/components",
@@ -784,13 +764,11 @@
       "location": "[parameters('location')]",
       "kind": "web",
       "properties": {
+        "ApplicationId": "[variables('appServiceApi')]",
         "Application_Type": "web",
-        "Flow_Type": "Bluefield",
-        "Request_Source": "rest",
-        "WorkspaceResourceId": "[resourceId('microsoft.operationalinsights/workspaces', variables('workspaceAnalyticsFunctions'))]",
-        "IngestionMode": "LogAnalytics",
-        "publicNetworkAccessForIngestion": "Enabled",
-        "publicNetworkAccessForQuery": "Enabled"
+        "Request_Source": "IbizaWebAppExtensionCreate",
+        "Flow_Type": "Redfield",
+        "WorkspaceResourceId": "[resourceId('microsoft.operationalinsights/workspaces', variables('workspaceAnalyticsFunctions'))]"
       },
       "dependsOn": [
         "[resourceId('microsoft.operationalinsights/workspaces', variables('workspaceAnalyticsFunctions'))]"
@@ -844,114 +822,40 @@
           }
         ],
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanApi'))]",
-        "reserved": false,
-        "isXenon": false,
-        "hyperV": false,
-        "siteConfig": {},
-        "scmSiteAlsoStopped": false,
-        "clientAffinityEnabled": true,
-        "clientCertEnabled": false,
-        "hostNamesDisabled": false,
-        "containerSize": 0,
-        "dailyMemoryTimeQuota": 0,
-        "httpsOnly": true,
-        "redundancyMode": "None"
-      }
-    },
-    {
-      "type": "Microsoft.Web/sites/config",
-      "apiVersion": "2018-11-01",
-      "name": "[concat(variables('appServiceApi'), '/web')]",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', variables('appServiceApi'))]"
-      ],
-      "properties": {
-        "numberOfWorkers": 1,
-        "defaultDocuments": [
-          "Default.htm",
-          "Default.html",
-          "Default.asp",
-          "index.htm",
-          "index.html",
-          "iisstart.htm",
-          "default.aspx",
-          "index.php",
-          "hostingstart.html"
-        ],
-        "netFrameworkVersion": "v4.0",
-        "phpVersion": "5.6",
-        "requestTracingEnabled": false,
-        "remoteDebuggingEnabled": false,
-        "httpLoggingEnabled": false,
-        "logsDirectorySizeLimit": 35,
-        "detailedErrorLoggingEnabled": false,
-        "azureStorageAccounts": {},
-        "scmType": "None",
-        "use32BitWorkerProcess": true,
-        "webSocketsEnabled": false,
-        "alwaysOn": false,
-        "managedPipelineMode": "Integrated",
-        "virtualApplications": [
-          {
-            "virtualPath": "/",
-            "physicalPath": "site\\wwwroot",
-            "preloadEnabled": false
-          }
-        ],
-        "loadBalancing": "LeastRequests",
-        "experiments": {
-          "rampUpRules": []
+        "siteConfig": {
+          "appSettings": [
+            {
+              "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+              "value": "[reference(concat('microsoft.insights/components/', variables('appServicePlanApi')), '2015-05-01').InstrumentationKey]"
+            },
+            {
+              "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
+              "value": "[reference(concat('microsoft.insights/components/', variables('appServicePlanApi')), '2015-05-01').ConnectionString]"
+            },
+            {
+              "name": "ApplicationInsightsAgent_EXTENSION_VERSION",
+              "value": "~2"
+            },
+            {
+              "name": "XDT_MicrosoftApplicationInsights_Mode",
+              "value": "default"
+            },
+            {
+              "name": "ANCM_ADDITIONAL_ERROR_PAGE_LINK",
+              "value": "[concat('https://', variables('appServicePlanApi') ,'.scm.azurewebsites.net/detectors?type=tools&name=eventviewer')]"
+            }
+          ],
+          "metadata": [
+            {
+              "name": "CURRENT_STACK",
+              "value": "dotnetcore"
+            }
+          ],
+          "phpVersion": "OFF",
+          "alwaysOn": false
         },
-        "autoHealEnabled": false,
-        "localMySqlEnabled": false,
-        "managedServiceIdentityId": 9535,
-        "ipSecurityRestrictions": [
-          {
-            "ipAddress": "Any",
-            "action": "Allow",
-            "priority": 1,
-            "name": "Allow all",
-            "description": "Allow all access"
-          }
-        ],
-        "scmIpSecurityRestrictions": [
-          {
-            "ipAddress": "Any",
-            "action": "Allow",
-            "priority": 1,
-            "name": "Allow all",
-            "description": "Allow all access"
-          }
-        ],
-        "scmIpSecurityRestrictionsUseMain": false,
-        "http20Enabled": false,
-        "minTlsVersion": "1.2",
-        "ftpsState": "AllAllowed",
-        "reservedInstanceCount": 0
+        "clientAffinityEnabled": true
       }
-    },
-    {
-      "type": "Microsoft.Web/sites/hostNameBindings",
-      "apiVersion": "2018-11-01",
-      "name": "[concat(variables('appServiceApi'), '/', variables('appServiceApi'), '.azurewebsites.net')]",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', variables('appServiceApi'))]"
-      ],
-      "properties": {
-        "siteName": "[variables('appServiceApi')]",
-        "hostNameType": "Verified"
-      }
-    },
-    {
-      "type": "Microsoft.Web/sites/siteextensions",
-      "apiVersion": "2018-11-01",
-      "name": "[concat(variables('appServiceApi'), '/Microsoft.AspNetCore.AzureAppServices.SiteExtension')]",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', variables('appServiceApi'))]"
-      ]
     },
 
     // SQL
@@ -1030,12 +934,6 @@
     }
   ],
   "outputs": {
-    "ApplicationInsights": {
-      "type": "object",
-      "value": {
-        "InstrumentationKey": "[if(parameters('useAppInsights'), reference(resourceId('Microsoft.Insights/components', variables('appInsightsChatBotName'))).InstrumentationKey, '')]"
-      }
-    },
     "cosmosDb": {
       "type": "object",
       "value": {

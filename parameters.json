@@ -29,9 +29,6 @@
     "useCosmosDb": {
       "value": true
     },
-    "useAppInsights": {
-      "value": true
-    },
     "chatbotAppServicePlanSku": {
       "value": {
         "name": "B1",
