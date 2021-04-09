@@ -576,9 +576,9 @@
     },
     {
       "apiVersion": "2020-02-02-preview",
-      "name": "csh-blank-fn",
+      "name": "[variables('csAzFnTelemName')]",
       "type": "microsoft.insights/components",
-      "location": "westus",
+      "location": "[parameters('location')]",
       "tags": {},
       "dependsOn": [],
       "properties": {
