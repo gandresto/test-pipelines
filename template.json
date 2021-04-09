@@ -827,11 +827,11 @@
           "appSettings": [
             {
               "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
-              "value": "[reference(concat('microsoft.insights/components/', variables('appServicePlanApi')), '2015-05-01').InstrumentationKey]"
+              "value": "[reference(concat('microsoft.insights/components/', variables('appServiceApi')), '2015-05-01').InstrumentationKey]"
             },
             {
               "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
-              "value": "[reference(concat('microsoft.insights/components/', variables('appServicePlanApi')), '2015-05-01').ConnectionString]"
+              "value": "[reference(concat('microsoft.insights/components/', variables('appServiceApi')), '2015-05-01').ConnectionString]"
             },
             {
               "name": "ApplicationInsightsAgent_EXTENSION_VERSION",
@@ -843,7 +843,7 @@
             },
             {
               "name": "ANCM_ADDITIONAL_ERROR_PAGE_LINK",
-              "value": "[concat('https://', variables('appServicePlanApi') ,'.scm.azurewebsites.net/detectors?type=tools&name=eventviewer')]"
+              "value": "[concat('https://', variables('appServiceApi') ,'.scm.azurewebsites.net/detectors?type=tools&name=eventviewer')]"
             }
           ],
           "metadata": [
