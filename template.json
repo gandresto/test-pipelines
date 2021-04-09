@@ -192,7 +192,7 @@
       "comments": "app insights",
       "type": "Microsoft.Insights/components",
       "kind": "web",
-      "apiVersion": "2015-05-01",
+      "apiVersion": "2020-02-02-preview",
       "name": "[variables('appInsightsChatBotName')]",
       "location": "[parameters('appInsightsLocation')]",
       "properties": {
