@@ -127,6 +127,9 @@
     },
     "pythonFnAppServicePlanSku": {
       "type": "object"
+    },
+    "csFnAppServicePlanSku": {
+      "type": "object"
     }
   },
   "variables": {
@@ -155,7 +158,7 @@
     "pythonAzFnTelemName": "[concat('azfnpy-chbott-', parameters('org'), '-', parameters('enviorment'))]",
     "pythonAzFnTelemStorageAcc": "[toLower(take(replace(replace(concat('stg0pyfnt0', parameters('org'), '0', parameters('enviorment')), '-', '0'), '_', '0'), 24))]",
 
-    "csFnAppServicePlan": "[concat('asp-azfncs-chbot-', parameters('org'), '-', parameters('enviorment'))]",
+    "csAzFnAppServicePlan": "[concat('asp-azfncs-chbot-', parameters('org'), '-', parameters('enviorment'))]",
     "csAzFnTelemName": "[concat('azfncs-chbott-', parameters('org'), '-', parameters('enviorment'))]",
     "csAzFnTelemStorageAcc": "[toLower(take(replace(replace(concat('stg0csfn0', parameters('org'), '0', parameters('enviorment')), '-', '0'), '_', '0'), 24))]",
 
@@ -504,7 +507,107 @@
         "publicNetworkAccessForQuery": "Enabled"
       }
     },
+    // END - Workspace analytics
+
+    // BEGIN - C# Fn Conversación Bot
     {
+      "apiVersion": "2018-11-01",
+      "name": "[variables('csAzFnTelemName')]",
+      "type": "Microsoft.Web/sites",
+      "kind": "functionapp",
+      "location": "[parameters('location')]",
+      "tags": {},
+      "dependsOn": [
+        "[resourceId('microsoft.insights/components/', variables('csAzFnTelemName'))]",
+        "[resourceId('Microsoft.Web/serverfarms/', variables('csAzFnAppServicePlan'))]",
+        "[resourceId('Microsoft.Storage/storageAccounts/', variables('csAzFnTelemStorageAcc'))]"
+      ],
+      "properties": {
+        "name": "[variables('csAzFnTelemName')]",
+        "siteConfig": {
+          "appSettings": [
+            {
+              "name": "FUNCTIONS_EXTENSION_VERSION",
+              "value": "~3"
+            },
+            {
+              "name": "FUNCTIONS_WORKER_RUNTIME",
+              "value": "dotnet"
+            },
+            {
+              "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+              "value": "[reference(concat('microsoft.insights/components/', variables('csAzFnTelemName')), '2015-05-01').InstrumentationKey]"
+            },
+            {
+              "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
+              "value": "[reference(concat('microsoft.insights/components/', variables('csAzFnTelemName')), '2015-05-01').ConnectionString]"
+            },
+            {
+              "name": "AzureWebJobsStorage",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('csAzFnTelemStorageAcc'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('csAzFnTelemStorageAcc')), '2019-06-01').keys[0].value,';EndpointSuffix=','core.windows.net')]"
+            }
+          ],
+          "use32BitWorkerProcess": false,
+          "alwaysOn": true
+        },
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms/', variables('csAzFnAppServicePlan'))]",
+        "clientAffinityEnabled": false
+      }
+    },
+    {
+      "apiVersion": "2018-11-01",
+      "name": "[variables('csAzFnAppServicePlan')]",
+      "type": "Microsoft.Web/serverfarms",
+      "location": "[parameters('location')]",
+      "kind": "",
+      "tags": {},
+      "dependsOn": [],
+      "properties": {
+        "name": "[variables('csAzFnAppServicePlan')]",
+        "workerSize": "1"
+      },
+      "sku": {
+        "name": "[parameters('csFnAppServicePlanSku').name]",
+        "tier": "[parameters('csFnAppServicePlanSku').tier]",
+        "size": "[parameters('csFnAppServicePlanSku').size]",
+        "family": "[parameters('csFnAppServicePlanSku').family]",
+        "capacity": "[parameters('csFnAppServicePlanSku').capacity]"
+      }
+    },
+    {
+      "apiVersion": "2020-02-02-preview",
+      "name": "csh-blank-fn",
+      "type": "microsoft.insights/components",
+      "location": "westus",
+      "tags": {},
+      "dependsOn": [],
+      "properties": {
+        "ApplicationId": "[variables('csAzFnTelemName')]",
+        "Request_Source": "IbizaWebAppExtensionCreate",
+        "Flow_Type": "Redfield",
+        "Application_Type": "web",
+        "WorkspaceResourceId": "[resourceId('microsoft.operationalinsights/workspaces', variables('workspaceAnalyticsFunctions'))]"
+      }
+    },
+    {
+      "apiVersion": "2019-06-01",
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "[variables('csAzFnTelemStorageAcc')]",
+      "location": "[parameters('location')]",
+      "tags": {},
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "properties": {
+        "supportsHttpsTrafficOnly": true,
+        "minimumTlsVersion": "TLS1_2"
+      }
+    },
+    // END - C# Fn Conversación Bot
+
+    // BEGIN - Python Fn Telemetría
+    {
+      // App Service Plan Python Telem
       "type": "Microsoft.Web/serverfarms",
       "apiVersion": "2018-02-01",
       "name": "[variables('pythonFnAppServicePlan')]",
@@ -528,10 +631,6 @@
         "targetWorkerSizeId": 0
       }
     },
-    // END - Workspace analytics
-
-
-    // BEGIN - Python Fn Telemetría
     {
       "apiVersion": "2019-06-01",
       "type": "Microsoft.Storage/storageAccounts",
@@ -554,6 +653,7 @@
       "location": "[parameters('location')]",
       "kind": "web",
       "properties": {
+        "ApplicationId": "[variables('pythonAzFnTelemName')]",
         "Application_Type": "web",
         "Flow_Type": "Bluefield",
         "Request_Source": "rest",
@@ -573,25 +673,42 @@
       "name": "[variables('pythonAzFnTelemName')]",
       "location": "[parameters('location')]",
       "dependsOn": [
+        "[resourceId('microsoft.insights/components/', variables('pythonAzFnTelemName'))]",
         "[resourceId('Microsoft.Storage/storageAccounts', variables('pythonAzFnTelemStorageAcc'))]",
         "[resourceId('Microsoft.Web/serverfarms', variables('pythonFnAppServicePlan'))]"
       ],
       "kind": "functionapp,linux",
       "properties": {
+        "siteConfig": {
+          "appSettings": [
+            {
+              "name": "FUNCTIONS_EXTENSION_VERSION",
+              "value": "~3"
+            },
+            {
+              "name": "FUNCTIONS_WORKER_RUNTIME",
+              "value": "python"
+            },
+            {
+              "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+              "value": "[reference(concat('microsoft.insights/components/', variables('pythonAzFnTelemName')), '2015-05-01').InstrumentationKey]"
+            },
+            {
+              "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
+              "value": "[reference(concat('microsoft.insights/components/', variables('pythonAzFnTelemName')), '2015-05-01').ConnectionString]"
+            },
+            {
+              "name": "AzureWebJobsStorage",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('pythonAzFnTelemStorageAcc'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('pythonAzFnTelemStorageAcc')), '2019-06-01').keys[0].value,';EndpointSuffix=','core.windows.net')]"
+            }
+          ],
+
+          "use32BitWorkerProcess": false,
+          "alwaysOn": true
+        },
         "enabled": true,
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('pythonFnAppServicePlan'))]",
-        "reserved": true,
-        "isXenon": false,
-        "hyperV": false,
-        "siteConfig": {},
-        "scmSiteAlsoStopped": false,
-        "clientAffinityEnabled": false,
-        "clientCertEnabled": false,
-        "hostNamesDisabled": false,
-        "containerSize": 1536,
-        "dailyMemoryTimeQuota": 0,
-        "httpsOnly": false,
-        "redundancyMode": "None"
+        "clientAffinityEnabled": false
       }
     },
     {

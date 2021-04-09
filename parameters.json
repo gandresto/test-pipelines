@@ -74,6 +74,15 @@
         "capacity": 1
       }
     },
+    "csFnAppServicePlanSku": {
+      "value": {
+        "name": "F1",
+        "tier": "Free",
+        "size": "F1",
+        "family": "F",
+        "capacity": 0
+      }
+    },
     "apiSKU": {
       "value": {
         "name": "F1",
