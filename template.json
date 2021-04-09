@@ -547,7 +547,8 @@
               "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('csAzFnTelemStorageAcc'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('csAzFnTelemStorageAcc')), '2019-06-01').keys[0].value,';EndpointSuffix=','core.windows.net')]"
             }
           ],
-          "alwaysOn": "[not(equals(parameters('csFnAppServicePlanSku').name, 'F0'))]"
+          "use32BitWorkerProcess": true,
+          "alwaysOn": false
         },
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms/', variables('csAzFnAppServicePlan'))]",
         "clientAffinityEnabled": false
